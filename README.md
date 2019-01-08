@@ -1,10 +1,13 @@
-[![Appveyor build Status](https://ci.appveyor.com/api/projects/status/github/KWB-R/test.pkg1?branch=master&svg=true)](https://ci.appveyor.com/project/KWB-R/test-pkg1/branch/master)
-[![Travis build Status](https://travis-ci.org/KWB-R/test.pkg1.svg?branch=master)](https://travis-ci.org/KWB-R/test.pkg1)
-[![codecov](https://codecov.io/github/KWB-R/test.pkg1/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/test.pkg1)
+[![Appveyor build Status](https://ci.appveyor.com/api/projects/status/jp6vfegit5c6hhwl?svg=true)](https://ci.appveyor.com/project/KWB-R/kwb-endnote)
+[![Travis build Status](https://travis-ci.org/KWB-R/kwb.endnote.svg?branch=master)](https://travis-ci.org/KWB-R/kwb.endnote)
+[![codecov](https://codecov.io/github/KWB-R/kwb.endnote/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.endnote)
 [![Project Status](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/test.pkg1)]()
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/kwb.endnote)]()
 
-# test.pkg1
+Helper Functions For Analysing KWB Endnote Library
+(Exported As .XML).
+
+# kwb.endnote
 
 Helper Functions For Analysing KWB Endnote Library
 (Exported As .XML).
@@ -13,11 +16,11 @@ Helper Functions For Analysing KWB Endnote Library
 
 ```r
 #install.packages("remotes", repos = "https://cloud.r-project.org")
-remotes::install_github("KWB-R/test.pkg1")
+remotes::install_github("KWB-R/kwb.endnote")
 ```
 
 ## Documentation
 
-Release: [https://kwb-r.github.io/test.pkg1](https://kwb-r.github.io/test.pkg1)
+Release: [https://kwb-r.github.io/kwb.endnote](https://kwb-r.github.io/kwb.endnote)
 
-Development: [https://kwb-r.github.io/test.pkg1/dev](https://kwb-r.github.io/test.pkg1/dev)
+Development: [https://kwb-r.github.io/kwb.endnote/dev](https://kwb-r.github.io/kwb.endnote/dev)
