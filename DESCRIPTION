@@ -15,7 +15,19 @@ Description: Helper Functions For Analysing KWB Endnote Library
 License: MIT + file LICENSE
 URL: https://github.com/KWB-R/kwb.endnote
 BugReports: https://github.com/KWB-R/kwb.endnote/issues
+Imports: 
+    dplyr,
+    kwb.fakin,
+    kwb.read,
+    stringr,
+    xml2
+Suggests: 
+    covr,
+    knitr,
+    rmarkdown,
+    ggplot2
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
-Suggests: 
-    covr
+RoxygenNote: 6.1.1

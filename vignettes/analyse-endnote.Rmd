@@ -1,0 +1,75 @@
+---
+title: "Analyse Endnote Library"
+author: "Michael Rustler"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analyse Endnote Library}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# First results
+
+```{r echo=TRUE}
+endnote_xml <- "KWB_documents.xml"
+
+references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml)
+
+n_publications <- length(unique(references_df$record_id))
+
+library(dplyr)
+
+## Bibs with abstracts
+refs_with_abstract <- references_df %>% 
+  dplyr::filter(.data$key1 == "abstract") %>%
+  dplyr::count(.data$record_id, .data$ref_type_name) 
+knitr::kable(refs_with_abstract)
+
+### Percent of Publications with Abstracts
+100*nrow(refs_with_abstract)/n_publications 
+
+
+## Group references by "custom3" (confidential or not?)
+
+refs_with_accessability_level <- references_df %>% 
+  dplyr::filter(.data$key1 == "custom3") %>%
+  dplyr::count(.data$value) 
+
+knitr::kable(refs_with_accessability_level)
+
+is_confidential <- stringr::str_detect(refs_with_accessability_level$value, 
+                         stringr::regex("conf|PU|intern|private",
+                                        ignore_case = TRUE))
+
+sum(refs_with_accessability_level$n[is_confidential])
+
+### in percent
+100*sum(refs_with_accessability_level$n[is_confidential])/n_publications 
+
+## Group references by "custom2" (i.e. "project names")
+
+refs_with_project <- references_df %>% 
+  dplyr::filter(.data$key1 == "custom2") 
+
+
+nrow(refs_with_project)
+
+### in percent
+100*nrow(refs_with_project)/n_publications
+
+
+unique_project_names <- refs_with_project  %>% 
+  dplyr::count(.data$value) 
+
+knitr::kable(unique_project_names)
+
+```
