@@ -1,0 +1,21 @@
+Package: test.pkg1
+Title: Helper Functions for Analysing KWB Endnote Library
+    (Exported as .xml)
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Michael",
+             family = "Rustler",
+             role = c("aut", "cre"),
+             email = "michael.rustler@kompetenz-wasser.de",
+             comment = c(ORCID = "0000-0003-0647-7726")),
+      person(given = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
+             role = "cph"))
+Description: Helper Functions For Analysing KWB Endnote Library
+    (Exported As .XML).
+License: MIT + file LICENSE
+URL: https://github.com/KWB-R/kwb.endnote
+BugReports: https://github.com/KWB-R/kwb.endnote/issues
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    covr
