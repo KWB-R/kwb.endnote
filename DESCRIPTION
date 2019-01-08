@@ -26,6 +26,9 @@ Suggests:
     knitr,
     rmarkdown,
     ggplot2
+Remotes:
+    github::kwb-r/kwb.fakin,
+    github::kwb-r/kwb.read
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
