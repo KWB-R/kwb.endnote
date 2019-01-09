@@ -22,7 +22,8 @@ Imports:
     stringr,
     xml2,
     ggplot2,
-    forcats
+    forcats,
+    magrittr
 Suggests: 
     covr,
     knitr,
