@@ -7,7 +7,7 @@
 #' @importFrom xml2 as_list
 #' @examples
 #' references_list <- create_endnote_list()
-#' head(references_list)
+#' str(references_list$xml$records[1]$record)
 create_endnote_list <- function(
   endnote_xml = system.file("extdata/KWB_documents.xml",
                             package = "kwb.endnote")) {
