@@ -23,7 +23,8 @@ Imports:
     xml2,
     ggplot2,
     forcats,
-    magrittr
+    magrittr,
+    rlang
 Suggests: 
     covr,
     knitr,

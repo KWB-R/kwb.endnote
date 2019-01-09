@@ -7,6 +7,7 @@
 #' @import ggplot2
 #' @importFrom forcats fct_reorder
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data
 #' @examples
 #' refs_by_author_lastfirst <- references_df %>%
 #' dplyr::filter(.data$key2 == "authors") %>%
