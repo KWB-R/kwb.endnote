@@ -4,13 +4,16 @@
 \alias{get_reference_type_names}
 \title{Helper function: get reference type names}
 \usage{
-get_reference_type_names(endnote_xml)
+
+  get_reference_type_names(endnote_xml = system.file("extdata/KWB_documents.xml",
+  package = "kwb.endnote"))
 }
 \arguments{
-\item{endnote_xml}{path to Endnote library exported as .xml}
+\item{endnote_xml}{path to Endnote library exported as .xml (default:
+system.file("extdata/KWB_documents.xml", package = "kwb.endnote")}
 }
 \value{
-data.frame with columns record_id, ref_type_id, ref_type_name
+data.frame with columns record_id, rec_number, ref_type_id, ref_type_name
 }
 \description{
 Helper function: get reference type names

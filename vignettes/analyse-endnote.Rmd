@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 
-# First results
+# Import Endote XML As Data Frame
 
 ```{r echo=TRUE}
 endnote_xml <- system.file("extdata/KWB_documents.xml", 
@@ -27,45 +27,87 @@ references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml)
 
 n_publications <- length(unique(references_df$record_id))
 
-library(dplyr)
+```
 
-## Bibs with abstracts
+# Analysis of Publications
+
+The imported Endnote XML library `r basename(endnote_xml)` contains 
+`r n_publications` which are analysed in detail in the following. 
+
+## By Type
+
+
+```{r echo=TRUE}
+library(dplyr)
+refs_by_type <- kwb.endnote::get_reference_type_names(endnote_xml) %>%
+  dplyr::count(.data$ref_type_name) %>%
+  dplyr::arrange(dplyr::desc(.data$n))
+
+knitr::kable(refs_by_type)
+```
+
+
+## Has an Abstract?
+
+```{r echo=TRUE}
 refs_with_abstract <- references_df %>% 
   dplyr::filter(.data$key1 == "abstract") %>%
   dplyr::count(.data$record_id, .data$ref_type_name) 
-knitr::kable(refs_with_abstract)
 
+n_pubs_with_abstract <- nrow(refs_with_abstract) 
 ### Percent of Publications with Abstracts
-100*nrow(refs_with_abstract)/n_publications 
+percent_pubs_with_abstracts <- round(100*nrow(refs_with_abstract)/n_publications,1) 
+
+```
+
+`r percent_pubs_with_abstracts` percent (i.e. 
+`r sprintf("%d / %d", n_pubs_with_abstract, n_publications)` 
+publications) have an abstract. However there are some line breaks for 
 
 
-## Group references by "custom3" (confidential or not?)
+## By Accessibility Level 
 
+Is the accessibility level for the referenc defined in the fiel"custom3" 
+(confidential or not?)
+
+```{r echo=TRUE}
 refs_with_accessability_level <- references_df %>% 
   dplyr::filter(.data$key1 == "custom3") %>%
   dplyr::count(.data$value) 
 
+n_pubs_with_accessability_level <- nrow(refs_with_accessability_level) 
+
+percent_with_accessibility_level <- round(100*n_pubs_with_accessability_level/n_publications, 1)
 knitr::kable(refs_with_accessability_level)
 
 is_confidential <- stringr::str_detect(refs_with_accessability_level$value, 
                          stringr::regex("conf|PU|intern|private",
                                         ignore_case = TRUE))
 
-sum(refs_with_accessability_level$n[is_confidential])
+n_pubs_confidential <-sum(refs_with_accessability_level$n[is_confidential])
 
 ### in percent
-100*sum(refs_with_accessability_level$n[is_confidential])/n_publications 
+percent_confidential <- 100*sum(refs_with_accessability_level$n[is_confidential])/n_publications 
+```
 
-## Group references by "custom2" (i.e. "project names")
+Only for `r n_pubs_with_accessability_level` (i.e. `r percent_with_accessibility_level` percent) 
+meta information on the accessibility level is explicitly defined, out of which 
+`r n_pubs_confidential` are defined as confidential.
 
+
+## By Project 
+
+Group references by "custom2" (i.e. "project names")
+
+```{r echo=TRUE}
 refs_with_project <- references_df %>% 
   dplyr::filter(.data$key1 == "custom2") 
 
 
-nrow(refs_with_project)
+n_pubs_with_project_meta <- nrow(refs_with_project)
 
 ### in percent
-100*nrow(refs_with_project)/n_publications
+percent_pubs_with_project_meta <- round(100*n_pubs_with_project_meta/n_publications,1)
 
 
 unique_project_names <- refs_with_project  %>% 
@@ -73,4 +115,57 @@ unique_project_names <- refs_with_project  %>%
 
 knitr::kable(unique_project_names)
 
+```
+
+In total `r percent_pubs_with_project_meta` percent (i.e. 
+`r sprintf("%d / %s", n_pubs_with_project_meta, n_publications)` publications) 
+contain meta-information on the project. However, the spelling of project names
+does not follow a controlled vocabulary yet as can be seen in the table above. 
+
+Thus it is recommended to establish a controlled vocabulary for [project acroyms](https://kwb-r.github.io/fakin.doc/best-practices.html#acronyms) 
+according to the best-practices defined in the FAKIN project (see [here](https://kwb-r.github.io/fakin.doc/best-practices.html#acronyms))
+
+## By Author
+
+## Lastname/Firstname
+
+Quite messy. Names should be entered in Endnote in the following format:
+
+**Lastname, Firstname**
+
+
+```{r echo=TRUE}
+refs_by_author_lastfirst <- references_df %>%
+  dplyr::filter(.data$key2 == "authors") %>%
+  dplyr::count(.data$value)  %>%
+  dplyr::arrange(dplyr::desc(.data$n))
+
+g <- ggplot2::ggplot(refs_by_author_lastfirst[1:30, ],
+                ggplot2::aes(x = forcats::fct_reorder(value, n), y = n)) +
+  ggplot2::geom_col() +
+  ggplot2::coord_flip() +
+  ggplot2::theme_minimal()
+g
+```
+
+## Lastname
+
+Better if 
+
+```{r echo=TRUE}
+refs_by_author_last <- references_df %>%
+  dplyr::filter(.data$key2 == "authors") %>%
+  dplyr::mutate(value = stringr::str_remove_all(.data$value, ",.*")) %>%
+  dplyr::mutate(value = stringr::str_remove_all(.data$value, "^\\w+\\.?\\s+")) %>%
+  dplyr::count(.data$value)  %>%
+  dplyr::arrange(dplyr::desc(.data$n))
+
+g <- ggplot2::ggplot(refs_by_author_last[1:30, ],
+                ggplot2::aes(x = forcats::fct_reorder(value, n), y = n)) +
+  ggplot2::geom_col() +
+  ggplot2::coord_flip() +
+  ggplot2::theme_minimal()
+
+#plotly::ggplotly(g)
+print(g)
 ```
