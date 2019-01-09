@@ -92,9 +92,9 @@
 
     
     
-<div id="first-results" class="section level1">
+<div id="import-endote-xml-as-data-frame" class="section level1">
 <h1 class="hasAnchor">
-<a href="#first-results" class="anchor"></a>First results</h1>
+<a href="#import-endote-xml-as-data-frame" class="anchor"></a>Import Endote XML As Data Frame</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">endnote_xml &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata/KWB_documents.xml"</span>, </a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">                           <span class="dt">package =</span> <span class="st">"kwb.endnote"</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"></a>
@@ -104,1340 +104,98 @@
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; Splitting paths ... ok.</span></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; Joining, by = "record_id"</span></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">n_publications &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(references_df<span class="op">$</span>record_id))</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt;     filter, lag</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">## Bibs with abstracts</a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">refs_with_abstract &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "abstract"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>record_id, .data<span class="op">$</span>ref_type_name) </a>
-<a class="sourceLine" id="cb1-26" data-line-number="26">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(refs_with_abstract)</a></code></pre></div>
+<a class="sourceLine" id="cb1-10" data-line-number="10">n_publications &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(references_df<span class="op">$</span>record_id))</a></code></pre></div>
+</div>
+<div id="analysis-of-publications" class="section level1">
+<h1 class="hasAnchor">
+<a href="#analysis-of-publications" class="anchor"></a>Analysis of Publications</h1>
+<p>The imported Endnote XML library KWB_documents.xml contains 904 which are analysed in detail in the following.</p>
+<div id="by-type" class="section level2">
+<h2 class="hasAnchor">
+<a href="#by-type" class="anchor"></a>By Type</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">refs_by_type &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">get_reference_type_names</span>(endnote_xml) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>ref_type_name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(refs_by_type)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="right">record_id</th>
 <th align="left">ref_type_name</th>
 <th align="right">n</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">3</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">13</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">15</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">16</td>
 <td align="left">Conference Paper</td>
-<td align="right">1</td>
+<td align="right">285</td>
 </tr>
 <tr class="even">
-<td align="right">17</td>
-<td align="left">Conference Paper</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="right">18</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">19</td>
-<td align="left">Journal Article</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="right">22</td>
 <td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">24</td>
-<td align="left">Conference Proceedings</td>
-<td align="right">3</td>
+<td align="right">262</td>
 </tr>
 <tr class="odd">
-<td align="right">34</td>
 <td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">54</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">55</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">56</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">60</td>
-<td align="left">Conference Paper</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="right">64</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">67</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">69</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">71</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">75</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">83</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">93</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">96</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">97</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">98</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">100</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">105</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">106</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">111</td>
-<td align="left">Conference Paper</td>
-<td align="right">9</td>
-</tr>
-<tr class="even">
-<td align="right">112</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">120</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">121</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">133</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">138</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">141</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">144</td>
-<td align="left">Conference Proceedings</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="right">148</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">149</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">150</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">162</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">168</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">187</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">188</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">190</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
 <td align="right">191</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="right">192</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">194</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">195</td>
 <td align="left">Thesis</td>
-<td align="right">1</td>
+<td align="right">70</td>
 </tr>
 <tr class="odd">
-<td align="right">196</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
+<td align="left">Generic</td>
+<td align="right">41</td>
 </tr>
 <tr class="even">
-<td align="right">197</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">198</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">199</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">203</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">206</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">213</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">214</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">215</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">216</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">218</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">219</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">220</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">223</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">236</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">237</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">240</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">242</td>
-<td align="left">Journal Article</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="right">243</td>
-<td align="left">Journal Article</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="right">244</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">246</td>
-<td align="left">Journal Article</td>
-<td align="right">7</td>
-</tr>
-<tr class="even">
-<td align="right">248</td>
-<td align="left">Journal Article</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="right">254</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">264</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">265</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">267</td>
 <td align="left">Conference Proceedings</td>
-<td align="right">1</td>
+<td align="right">27</td>
 </tr>
 <tr class="odd">
-<td align="right">268</td>
-<td align="left">Conference Proceedings</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">280</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">281</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">282</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">283</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">284</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">289</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">290</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">314</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">325</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">327</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">345</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">376</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">377</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">378</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">383</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">384</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">403</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">412</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">416</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">417</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">425</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">429</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">437</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">457</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">459</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">460</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">461</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">464</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">465</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">466</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">469</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">474</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">476</td>
-<td align="left">Report</td>
-<td align="right">23</td>
-</tr>
-<tr class="odd">
-<td align="right">477</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">478</td>
-<td align="left">Thesis</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="right">484</td>
-<td align="left">Conference Paper</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="right">485</td>
-<td align="left">Conference Paper</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="right">486</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">491</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">492</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">493</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">495</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">503</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">506</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">507</td>
-<td align="left">Thesis</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="right">508</td>
-<td align="left">Report</td>
-<td align="right">7</td>
-</tr>
-<tr class="even">
-<td align="right">510</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">512</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">513</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">514</td>
-<td align="left">Thesis</td>
-<td align="right">5</td>
-</tr>
-<tr class="even">
-<td align="right">515</td>
-<td align="left">Journal Article</td>
-<td align="right">7</td>
-</tr>
-<tr class="odd">
-<td align="right">519</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">520</td>
-<td align="left">Report</td>
-<td align="right">33</td>
-</tr>
-<tr class="odd">
-<td align="right">523</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">527</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">529</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">531</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">532</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">533</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">534</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">535</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">537</td>
-<td align="left">Report</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="right">541</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">542</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">543</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">544</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">552</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">554</td>
-<td align="left">Conference Paper</td>
-<td align="right">11</td>
-</tr>
-<tr class="even">
-<td align="right">557</td>
-<td align="left">Report</td>
-<td align="right">13</td>
-</tr>
-<tr class="odd">
-<td align="right">559</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">560</td>
-<td align="left">Journal Article</td>
-<td align="right">7</td>
-</tr>
-<tr class="odd">
-<td align="right">561</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">564</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">565</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">566</td>
-<td align="left">Conference Paper</td>
-<td align="right">9</td>
-</tr>
-<tr class="odd">
-<td align="right">570</td>
-<td align="left">Thesis</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">571</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">572</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">573</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">579</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">582</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">583</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">585</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">586</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">587</td>
-<td align="left">Report</td>
-<td align="right">25</td>
-</tr>
-<tr class="odd">
-<td align="right">588</td>
-<td align="left">Conference Paper</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="right">590</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">591</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">592</td>
-<td align="left">Journal Article</td>
-<td align="right">35</td>
-</tr>
-<tr class="odd">
-<td align="right">593</td>
-<td align="left">Journal Article</td>
-<td align="right">29</td>
-</tr>
-<tr class="even">
-<td align="right">629</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">642</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">658</td>
 <td align="left">Book Section</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">685</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
+<td align="right">20</td>
 </tr>
 <tr class="even">
-<td align="right">688</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">692</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">709</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">712</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">716</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">719</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">720</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">722</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">724</td>
-<td align="left">Report</td>
-<td align="right">7</td>
-</tr>
-<tr class="odd">
-<td align="right">728</td>
-<td align="left">Report</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="right">736</td>
 <td align="left">Book</td>
 <td align="right">7</td>
 </tr>
 <tr class="odd">
-<td align="right">741</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">742</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">746</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">751</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">752</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">755</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">756</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">759</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">763</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">768</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">769</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">774</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">777</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">785</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">786</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">787</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">795</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">797</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">798</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">801</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">802</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">803</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">804</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">805</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">806</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">807</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">808</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">809</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">810</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">811</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">814</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">817</td>
-<td align="left">Conference Paper</td>
-<td align="right">7</td>
-</tr>
-<tr class="odd">
-<td align="right">819</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">820</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">823</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">824</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">825</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">827</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">828</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">829</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">831</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">832</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">833</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">839</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">841</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">842</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">844</td>
-<td align="left">Conference Paper</td>
-<td align="right">13</td>
-</tr>
-<tr class="even">
-<td align="right">848</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">849</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">851</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">853</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">856</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">857</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">859</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">860</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">861</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">862</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">863</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">866</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">868</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">870</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">873</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">877</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">878</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">880</td>
-<td align="left">Report</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="right">881</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">882</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">883</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">884</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">885</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">886</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">892</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">893</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">894</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">896</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">897</td>
-<td align="left">Conference Paper</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">899</td>
-<td align="left">Journal Article</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">900</td>
-<td align="left">Report</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">902</td>
-<td align="left">Report</td>
+<td align="left">Unpublished Work</td>
 <td align="right">1</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">### Percent of Publications with Abstracts</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_abstract)<span class="op">/</span>n_publications </a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; [1] 28.65044</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">## Group references by "custom3" (confidential or not?)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">refs_with_accessability_level &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom3"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(refs_with_accessability_level)</a></code></pre></div>
+</div>
+<div id="has-an-abstract" class="section level2">
+<h2 class="hasAnchor">
+<a href="#has-an-abstract" class="anchor"></a>Has an Abstract?</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">refs_with_abstract &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "abstract"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>record_id, .data<span class="op">$</span>ref_type_name) </a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">n_pubs_with_abstract &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_abstract) </a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">### Percent of Publications with Abstracts</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">percent_pubs_with_abstracts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_abstract)<span class="op">/</span>n_publications,<span class="dv">1</span>) </a></code></pre></div>
+<p>28.7 percent (i.e. 259 / 904 publications) have an abstract. However there are some line breaks for</p>
+</div>
+<div id="by-accessibility-level" class="section level2">
+<h2 class="hasAnchor">
+<a href="#by-accessibility-level" class="anchor"></a>By Accessibility Level</h2>
+<p>Is the accessibility level for the referenc defined in the fiel“custom3” (confidential or not?)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">refs_with_accessability_level &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom3"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">n_pubs_with_accessability_level &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_accessability_level) </a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">percent_with_accessibility_level &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span>n_pubs_with_accessability_level<span class="op">/</span>n_publications, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(refs_with_accessability_level)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">value</th>
@@ -1478,36 +236,35 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">is_confidential &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(refs_with_accessability_level<span class="op">$</span>value, </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                         stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"conf|PU|intern|private"</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">                                        <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [1] 88</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">### in percent</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])<span class="op">/</span>n_publications </a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; [1] 9.734513</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">## Group references by "custom2" (i.e. "project names")</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">refs_with_project &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom2"</span>) </a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_project)</a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; [1] 706</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">### in percent</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_project)<span class="op">/</span>n_publications</a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; [1] 78.09735</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">unique_project_names &lt;-<span class="st"> </span>refs_with_project  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
-<a class="sourceLine" id="cb3-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb3-30" data-line-number="30">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(unique_project_names)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">is_confidential &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(refs_with_accessability_level<span class="op">$</span>value, </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                         stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"conf|PU|intern|private"</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">                                        <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">n_pubs_confidential &lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">### in percent</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">percent_confidential &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])<span class="op">/</span>n_publications </a></code></pre></div>
+<p>Only for 8 (i.e. 0.9 percent) meta information on the accessibility level is explicitly defined, out of which 88 are defined as confidential.</p>
+</div>
+<div id="by-project" class="section level2">
+<h2 class="hasAnchor">
+<a href="#by-project" class="anchor"></a>By Project</h2>
+<p>Group references by “custom2” (i.e. “project names”)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">refs_with_project &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom2"</span>) </a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">n_pubs_with_project_meta &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_project)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">### in percent</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">percent_pubs_with_project_meta &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span>n_pubs_with_project_meta<span class="op">/</span>n_publications,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">unique_project_names &lt;-<span class="st"> </span>refs_with_project  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(unique_project_names)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">value</th>
@@ -1944,6 +701,52 @@
 </tr>
 </tbody>
 </table>
+<p>In total 78.1 percent (i.e. 706 / 904 publications) contain meta-information on the project. However, the spelling of project names does not follow a controlled vocabulary yet as can be seen in the table above.</p>
+<p>Thus it is recommended to establish a controlled vocabulary for <a href="https://kwb-r.github.io/fakin.doc/best-practices.html#acronyms">project acroyms</a> according to the best-practices defined in the FAKIN project (see <a href="https://kwb-r.github.io/fakin.doc/best-practices.html#acronyms">here</a>)</p>
+</div>
+<div id="by-author" class="section level2">
+<h2 class="hasAnchor">
+<a href="#by-author" class="anchor"></a>By Author</h2>
+</div>
+<div id="lastnamefirstname" class="section level2">
+<h2 class="hasAnchor">
+<a href="#lastnamefirstname" class="anchor"></a>Lastname/Firstname</h2>
+<p>Quite messy. Names should be entered in Endnote in the following format:</p>
+<p><strong>Lastname, Firstname</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">refs_by_author_lastfirst &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">==</span><span class="st"> "authors"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">g &lt;-<span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(refs_by_author_lastfirst[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, ],</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">                ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> forcats<span class="op">::</span><span class="kw"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span>(value, n), <span class="dt">y =</span> n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>()</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">g</a></code></pre></div>
+<p><img src="analyse-endnote_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+</div>
+<div id="lastname" class="section level2">
+<h2 class="hasAnchor">
+<a href="#lastname" class="anchor"></a>Lastname</h2>
+<p>Better if</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">refs_by_author_last &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">==</span><span class="st"> "authors"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span>(.data<span class="op">$</span>value, <span class="st">",.*"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span>(.data<span class="op">$</span>value, <span class="st">"^</span><span class="ch">\\</span><span class="st">w+</span><span class="ch">\\</span><span class="st">.?</span><span class="ch">\\</span><span class="st">s+"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">g &lt;-<span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(refs_by_author_last[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, ],</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">                ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> forcats<span class="op">::</span><span class="kw"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span>(value, n), <span class="dt">y =</span> n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>()</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#plotly::ggplotly(g)</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(g)</a></code></pre></div>
+<p><img src="analyse-endnote_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+</div>
 </div>
   </div>
 
@@ -1952,7 +755,18 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#first-results">First results</a></li>
+<li><a href="#import-endote-xml-as-data-frame">Import Endote XML As Data Frame</a></li>
+      <li>
+<a href="#analysis-of-publications">Analysis of Publications</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#by-type">By Type</a></li>
+      <li><a href="#has-an-abstract">Has an Abstract?</a></li>
+      <li><a href="#by-accessibility-level">By Accessibility Level</a></li>
+      <li><a href="#by-project">By Project</a></li>
+      <li><a href="#by-author">By Author</a></li>
+      <li><a href="#lastnamefirstname">Lastname/Firstname</a></li>
+      <li><a href="#lastname">Lastname</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>

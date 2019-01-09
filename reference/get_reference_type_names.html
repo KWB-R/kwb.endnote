@@ -125,33 +125,35 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_reference_type_names</span>(<span class='no'>endnote_xml</span>)</pre>
+    <pre class="usage"><span class='fu'>get_reference_type_names</span>(<span class='kw'>endnote_xml</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata/KWB_documents.xml"</span>,
+  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"kwb.endnote"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>endnote_xml</th>
-      <td><p>path to Endnote library exported as .xml</p></td>
+      <td><p>path to Endnote library exported as .xml (default:
+system.file("extdata/KWB_documents.xml", package = "kwb.endnote")</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame with columns record_id, ref_type_id, ref_type_name</p>
+    <p>data.frame with columns record_id, rec_number, ref_type_id, ref_type_name</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>endnote_xml</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata/KWB_documents.xml"</span>,
 <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"kwb.endnote"</span>)
 <span class='no'>ref_type_names</span> <span class='kw'>&lt;-</span> <span class='fu'>get_reference_type_names</span>(<span class='no'>endnote_xml</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>ref_type_names</span>)</div><div class='output co'>#&gt;   record_id ref_type_id    ref_type_name
-#&gt; 1         1          17  Journal Article
-#&gt; 2         2           5     Book Section
-#&gt; 3         3          17  Journal Article
-#&gt; 4         4          17  Journal Article
-#&gt; 5         5          47 Conference Paper
-#&gt; 6         6          17  Journal Article</div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>ref_type_names</span>)</div><div class='output co'>#&gt;   record_id rec_number ref_type_id    ref_type_name
+#&gt; 1         1        865          17  Journal Article
+#&gt; 2         2        876           5     Book Section
+#&gt; 3         3       1051          17  Journal Article
+#&gt; 4         4       1059          17  Journal Article
+#&gt; 5         5       1050          47 Conference Paper
+#&gt; 6         6       1052          17  Journal Article</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
