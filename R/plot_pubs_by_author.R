@@ -4,6 +4,8 @@
 #' number of publications (in column "n")
 #' @return plot of number of publications per author
 #' @export
+#' @import ggplot2
+#' @importFrom forcats fct_reorder
 #' @examples
 #' refs_by_author_lastfirst <- references_df %>%
 #' dplyr::filter(.data$key2 == "authors") %>%

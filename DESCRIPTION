@@ -20,13 +20,13 @@ Imports:
     kwb.fakin,
     kwb.read,
     stringr,
-    xml2
+    xml2,
+    ggplot2,
+    forcats
 Suggests: 
     covr,
     knitr,
-    rmarkdown,
-    ggplot2, 
-    forcats
+    rmarkdown
 Remotes:
     github::kwb-r/kwb.fakin,
     github::kwb-r/kwb.read
