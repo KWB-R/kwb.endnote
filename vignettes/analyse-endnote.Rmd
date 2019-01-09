@@ -202,3 +202,56 @@ kwb.endnote::plot_pubs_by_author(refs_by_author_last[1:50, ])
 
 
 ```
+
+## Journal Articles
+
+### By Journal
+
+Journal names need to be harmonised. Also needs to be checked what the differences
+between **full-title** and **secondary-title** of journal are.
+
+#### Journal full-title
+
+```{r echo=TRUE}
+
+pubs_in_journals <- references_df %>%  
+  dplyr::filter(.data$ref_type_name == "Journal Article")
+
+n_pubs_in_journals <- nrow(pubs_in_journals)
+
+  
+pubs_in_journals %>%  
+  dplyr::filter(.data$key2 %in% c("full-title")) %>% 
+  dplyr::count(.data$value) %>% 
+  knitr::kable()
+
+
+```
+
+#### Journal secondary-title 
+
+```{r echo=TRUE}
+pubs_in_journals %>%  
+  dplyr::filter(.data$key2 %in% c("secondary-title")) %>% 
+  dplyr::count(.data$value) %>% 
+  knitr::kable()
+```
+
+#### Journal DOI
+
+All `r n_pubs_in_journals` journal articles should have an DOI. Let`s check 
+for how many we have this metadata:
+
+
+```{r echo=TRUE}
+has_doi <- stringr::str_detect(pubs_in_journals$value, "doi")
+pubs_in_journals_with_doi <- pubs_in_journals[has_doi, ]
+
+n_pubs_in_journals_with_doi <- nrow(pubs_in_journals_with_doi)
+
+knitr::kable(pubs_in_journals_with_doi)
+```
+
+Only `r n_pubs_in_journals_with_doi` journal publications have a DOI which is 
+either encoded in the field **electronic-resource-num** and **urls**.
+  
