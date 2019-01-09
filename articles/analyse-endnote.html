@@ -1036,6 +1036,1210 @@
 <a class="sourceLine" id="cb10-8" data-line-number="8">kwb.endnote<span class="op">::</span><span class="kw">plot_pubs_by_author</span>(refs_by_author_last[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, ])</a></code></pre></div>
 <p><img src="analyse-endnote_files/figure-html/unnamed-chunk-9-1.png" width="768"></p>
 </div>
+<div id="journal-articles" class="section level2">
+<h2 class="hasAnchor">
+<a href="#journal-articles" class="anchor"></a>Journal Articles</h2>
+<div id="by-journal" class="section level3">
+<h3 class="hasAnchor">
+<a href="#by-journal" class="anchor"></a>By Journal</h3>
+<p>Journal names need to be harmonised. Also needs to be checked what the differences between <strong>full-title</strong> and <strong>secondary-title</strong> of journal are.</p>
+<div id="journal-full-title" class="section level4">
+<h4 class="hasAnchor">
+<a href="#journal-full-title" class="anchor"></a>Journal full-title</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">pubs_in_journals &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>ref_type_name <span class="op">==</span><span class="st"> "Journal Article"</span>)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">n_pubs_in_journals &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(pubs_in_journals)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">pubs_in_journals <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"full-title"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>()</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">value</th>
+<th align="right">n</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Acta hydrochim. et hydrobiol.</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Acta hydrochimica et hydrobiologica</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">AMBIO. A Journal of the Human Environment</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Applied and Environmental Microbiology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Applied Geochemistry</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Aquatic Geochemistry</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">bbr</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">bbr Fachmagazin für Brunnen- und Leitungsbau</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">BfN Skripten</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Blue Facts</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">bluefacts</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Bornimer Agrartechnische Berichte, Heft 86</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bundesgesundheitsblatt - Gesundheitsforschung - Gesundheitsschutz 2007</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Cemie Ingenieur Technik</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Chemical Engineering Transactions</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Chemie Ingenieur Technik, Mai 2003</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Chemosphere</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Chemosphere 73 (2008) 451–460</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Computers &amp; Geosciences</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Desalination</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Desalination and Water Treatment</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">DVGW Energie | Wasser-Praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">DVGW Energie Wasser Praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">DVGW energie wasser-praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ecological Engineering</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">energie wasser-praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Envionmental Science &amp; Technology 2010</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Environ Toxicology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Environmental Earth Sciences</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Engineering Science</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Environmental Geology</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Science &amp; Technology</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Ernst &amp; Sohn Special 2017 - Regenwasser-Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">fbr-Wasserspiegel</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">FEMS Microbiology</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Fertilizer International</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Filtration+Separation</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Gebäudegrün</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">German American Water Technology Magazine</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">green facts</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ground Water</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ground Water Monitoring &amp; Remediation</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Grundwasser - Zeitschrift der Fachsektion hydrogeologie</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">GWF Wasser Abwasser</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">GWF Wasser/Abwasser</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Harmful Algae</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Humuswirtschaft &amp; Kompost aktuell</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Hydrogeology Journal</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Hydrological Processes</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Hydroplus</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">HyWa Hydrologie und Wasserbewirtschaftung</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">ICUD</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IGB Jahresforschungsbericht 2003</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IGB Jahresforschungsbericht 2006</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">International Journal of Systematic and Evolutionary Microbiology</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IWA Specialist group on diffuse pollution. Newsletter</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IWA Water Research</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">IWA Water Research 45 (2011) 1481-1489</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IWA Water Reuse Newsletter July 2011</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Environmental Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Environmental Sciences</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Hazardous Materials</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Hydroinformatics</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Hydrology</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Plankton Research</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Soils and Sediments</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Water and Climate Change</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of water and health</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">KA - Abwasser, Abfall</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">KA Abwasser Abfall</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">KA Abwasser Abfall (Accepted)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">KA Abwasser, Abfall</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">KA Korrespondenz Abwasser, Abfall</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Korrespondenz Abwasser</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Korrespondenz Abwasser, Abfall</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lake and Reservoir Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Limnol. Oceanogr</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Mitt Umweltchem Ökotox</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mittendrin</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Neue Landschaft</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Oecologia</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Phycologia</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">ReSource</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Science of the Total Environment</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sustainability</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sustainable Water Resources Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Toxicology letters</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Toxicon</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Umweltmagazin</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Urban Water Journal</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">VDI Nachrichten</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Vom Wasser</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Wasser und Abfall</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Wasserwirtschaft Wassertechnik (wwt)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Water &amp; Wastewater International</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Water and Wastewater International</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Environmental Research</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water Practice &amp; Technology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Practice and Technology</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water Research</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Resources Management</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Water Resources Research</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Science &amp; Technology</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">Water Science &amp; Technology: Water Supply</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Science and Technology</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Water science and technology : a journal of the International Association on Water Pollution Research</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">World of Mining</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">wwt</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">wwt - Wasserwirtschaft Wassertechnik</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">wwt - Wasserwirtschaft Wassertechnik: Modernisierungsreport 2013</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">wwt Special Rohre und Kanäle</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">wwt wasserwirtschaft wassertechnik</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="journal-secondary-title" class="section level4">
+<h4 class="hasAnchor">
+<a href="#journal-secondary-title" class="anchor"></a>Journal secondary-title</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">pubs_in_journals <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"secondary-title"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>()</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">value</th>
+<th align="right">n</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Acta hydrochim. et hydrobiol.</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Acta hydrochimica et hydrobiologica</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">AMBIO. A Journal of the Human Environment</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Applied and Environmental Microbiology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Applied Geochemistry</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Aquatic Geochemistry</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">bbr</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">bbr Fachmagazin für Brunnen- und Leitungsbau</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">BfN Skripten</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">blue facts</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Blue Facts</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">bluefacts</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Bornimer Agrartechnische Berichte, Heft 86</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Bundesgesundheitsblatt - Gesundheitsforschung - Gesundheitsschutz 2007</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Cemie Ingenieur Technik</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Chemical Engineering Transactions</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Chemie Ingenieur Technik, Mai 2003</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Chemosphere</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Chemosphere 73 (2008) 451–460</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Computers &amp; Geosciences</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Desalination</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Desalination and Water Treatment</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">DVGW Energie | Wasser-Praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">DVGW Energie Wasser Praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">DVGW energie wasser-praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ecological Engineering</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">energie wasser-praxis</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Envionmental Science &amp; Technology 2010</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Environ Toxicology</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Earth Sciences</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Environmental Engineering Science</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Geology</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Environmental Science &amp; Technology</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Science &amp; Technology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ernst &amp; Sohn Special 2017 - Regenwasser-Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">fbr-Wasserspiegel</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">FEMS Microbiology</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Fertilizer International</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Filtration+Separation</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Gebäudegrün</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">German American Water Technology Magazine</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">green facts</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ground Water</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ground Water Monitoring &amp; Remediation</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Grundwasser - Zeitschrift der Fachsektion Hydrogeologie</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">gwf wasser Abwasser</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">gwf Wasser Abwasser</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">GWF Wasser Abwasser</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">GWF Wasser/Abwasser</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Harmful Algae</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Humuswirtschaft &amp; Kompost aktuell</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Humuswirtschaft &amp; Kompost aktuell</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Hydrogeology Journal</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Hydrological Processes</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Hydroplus</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">HyWa Hydrologie und Wasserbewirtschaftung</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">ICUD</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IGB Jahresforschungsbericht 2003</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IGB Jahresforschungsbericht 2006</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">International Journal of Systematic and Evolutionary Microbiology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IWA Specialist group on diffuse pollution. Newsletter</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IWA Water Research</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">IWA Water Research 45 (2011) 1481-1489</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IWA Water Reuse Newsletter July 2011</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Environmental Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Environmental Sciences</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Hazardous Materials</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Hydroinformatics</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Hydrology</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Plankton Research</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of Soils and Sediments</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Journal of Water and Climate Change</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journal of water and health</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">KA - Abwasser, Abfall</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">KA Abwasser Abfall</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">KA Abwasser Abfall (Accepted)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">KA Abwasser, Abfall</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">KA Korrespondenz Abwasser, Abfall</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Korrespondenz Abwasser</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Korrespondenz Abwasser, Abfall</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lake and Reservoir Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Limnol. Oceanogr</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mitt Umweltchem Ökotox</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Mittendrin</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Neue Landschaft</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Oecologia</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Phycologia</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">ReSource</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Science of the Total Environment</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sustainability</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sustainable Water Resources Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Toxicology letters</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Toxicon</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Umweltmagazin</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Urban Water Journal</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">VDI Nachrichten</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Vom Wasser</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Wasser und Abfall</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Wasserwirtschaft Wassertechnik (wwt)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water &amp; Wastewater International</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Water and Wastewater International</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water Environmental Research</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Practice &amp; Technology</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water Practice and Technology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Water research</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water Research</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Research</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water Resources Management</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Resources Research</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Water Science &amp; Technology</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">Water Science &amp; Technology: Water Supply</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Water Science and Technology</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Water science and technology : a journal of the International Association on Water Pollution Research</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">World of Mining</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">wwt</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">wwt - Wasserwirtschaft Wassertechnik</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">wwt - Wasserwirtschaft Wassertechnik: Modernisierungsreport 2013</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">wwt Special Rohre und Kanäle</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">wwt wasserwirtschaft wassertechnik</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="journal-doi" class="section level4">
+<h4 class="hasAnchor">
+<a href="#journal-doi" class="anchor"></a>Journal DOI</h4>
+<p>All 4229 journal articles should have an DOI. Let`s check for how many we have this metadata:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">has_doi &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(pubs_in_journals<span class="op">$</span>value, <span class="st">"doi"</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">pubs_in_journals_with_doi &lt;-<span class="st"> </span>pubs_in_journals[has_doi, ]</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">n_pubs_in_journals_with_doi &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(pubs_in_journals_with_doi)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(pubs_in_journals_with_doi)</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th></th>
+<th align="right">record_id</th>
+<th align="left">key1</th>
+<th align="left">key2</th>
+<th align="left">key3</th>
+<th align="left">key4</th>
+<th align="left">value</th>
+<th align="right">rec_number</th>
+<th align="right">ref_type_id</th>
+<th align="left">ref_type_name</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>39</td>
+<td align="right">3</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://doi.org/10.1016/j.watres.2018.06.057" class="uri">https://doi.org/10.1016/j.watres.2018.06.057</a></td>
+<td align="right">1051</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>97</td>
+<td align="right">11</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://doi.org/10.3390/su10051482" class="uri">https://doi.org/10.3390/su10051482</a></td>
+<td align="right">1057</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>149</td>
+<td align="right">15</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://dx.doi.org/10.1016/j.jes.2016.04.010" class="uri">http://dx.doi.org/10.1016/j.jes.2016.04.010</a></td>
+<td align="right">1001</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>430</td>
+<td align="right">71</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://dx.doi.org/10.1016/j.watres.2016.08.017" class="uri">http://dx.doi.org/10.1016/j.watres.2016.08.017</a></td>
+<td align="right">873</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>487</td>
+<td align="right">83</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://dx.doi.org/10.1016/j.watres.2016.05.070" class="uri">http://dx.doi.org/10.1016/j.watres.2016.05.070</a></td>
+<td align="right">956</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>581</td>
+<td align="right">100</td>
+<td align="left">urls</td>
+<td align="left">related-urls</td>
+<td align="left">url</td>
+<td align="left">style</td>
+<td align="left"><a href="http://dx.doi.org/10.1007/s12665-015-4911-8" class="uri">http://dx.doi.org/10.1007/s12665-015-4911-8</a></td>
+<td align="right">973</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>806</td>
+<td align="right">182</td>
+<td align="left">urls</td>
+<td align="left">related-urls</td>
+<td align="left">url</td>
+<td align="left">style</td>
+<td align="left"><a href="http://dx.doi.org/10.1007/s11269-015-0985-z" class="uri">http://dx.doi.org/10.1007/s11269-015-0985-z</a></td>
+<td align="right">916</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>845</td>
+<td align="right">183</td>
+<td align="left">urls</td>
+<td align="left">related-urls</td>
+<td align="left">url</td>
+<td align="left">style</td>
+<td align="left"><a href="http://dx.doi.org/10.1007/s11269-015-0985-z" class="uri">http://dx.doi.org/10.1007/s11269-015-0985-z</a></td>
+<td align="right">856</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>961</td>
+<td align="right">194</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://dx.doi.org/10.1016/j.watres.2015.03.031" class="uri">http://dx.doi.org/10.1016/j.watres.2015.03.031</a></td>
+<td align="right">919</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>1829</td>
+<td align="right">436</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">dx.doi.org/10.1021/es301422r</td>
+<td align="right">512</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>2062</td>
+<td align="right">503</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">doi: 10.2166/wst.2011.672</td>
+<td align="right">435</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>2321</td>
+<td align="right">542</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="http://dx.doi.org/10.3303/CET1023000" class="uri">http://dx.doi.org/10.3303/CET1023000</a></td>
+<td align="right">353</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>2470</td>
+<td align="right">565</td>
+<td align="left">urls</td>
+<td align="left">related-urls</td>
+<td align="left">url</td>
+<td align="left">style</td>
+<td align="left"><a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1745-6584.2010.00771.x/abstract" class="uri">http://onlinelibrary.wiley.com/doi/10.1111/j.1745-6584.2010.00771.x/abstract</a></td>
+<td align="right">383</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>2732</td>
+<td align="right">593</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="doi:10.1128/AEM.02285-09" class="uri">doi:10.1128/AEM.02285-09</a></td>
+<td align="right">382</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>2918</td>
+<td align="right">629</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="doi:10.1029/2007WR006746" class="uri">doi:10.1029/2007WR006746</a></td>
+<td align="right">433</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="even">
+<td>3065</td>
+<td align="right">686</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="doi:10.1016/j.chemosphere.2007.12.017" class="uri">doi:10.1016/j.chemosphere.2007.12.017</a></td>
+<td align="right">131</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+<tr class="odd">
+<td>3107</td>
+<td align="right">694</td>
+<td align="left">electronic-resource-num</td>
+<td align="left">style</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="doi:10.1016/j.chemosphere.2008.06.056" class="uri">doi:10.1016/j.chemosphere.2008.06.056</a></td>
+<td align="right">434</td>
+<td align="right">17</td>
+<td align="left">Journal Article</td>
+</tr>
+</tbody>
+</table>
+<p>Only 17 journal publications have a DOI which is either encoded in the field <strong>electronic-resource-num</strong> and <strong>urls</strong>.</p>
+</div>
+</div>
+</div>
 </div>
   </div>
 
@@ -1054,6 +2258,7 @@
       <li><a href="#by-author">By Author</a></li>
       <li><a href="#lastnamefirstname">Lastname/Firstname</a></li>
       <li><a href="#lastname">Lastname</a></li>
+      <li><a href="#journal-articles">Journal Articles</a></li>
       </ul>
 </li>
       </ul>
