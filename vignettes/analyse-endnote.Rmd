@@ -134,25 +134,23 @@ Quite messy. Names should be entered in Endnote in the following format:
 **Lastname, Firstname**
 
 
-```{r echo=TRUE}
+```{r echo=TRUE, fig.height=10, fig.width=8}
+
 refs_by_author_lastfirst <- references_df %>%
   dplyr::filter(.data$key2 == "authors") %>%
   dplyr::count(.data$value)  %>%
   dplyr::arrange(dplyr::desc(.data$n))
 
-g <- ggplot2::ggplot(refs_by_author_lastfirst[1:30, ],
-                ggplot2::aes(x = forcats::fct_reorder(value, n), y = n)) +
-  ggplot2::geom_col() +
-  ggplot2::coord_flip() +
-  ggplot2::theme_minimal()
-g
+kwb.endnote::plot_pubs_by_author(refs_by_author_lastfirst[1:50, ])
+
 ```
 
 ## Lastname
 
-Better if 
+For now data-munging is needed to just use the authors` lastname for aggregating 
+the data
 
-```{r echo=TRUE}
+```{r echo=TRUE, fig.height=10, fig.width=8}
 refs_by_author_last <- references_df %>%
   dplyr::filter(.data$key2 == "authors") %>%
   dplyr::mutate(value = stringr::str_remove_all(.data$value, ",.*")) %>%
@@ -160,12 +158,8 @@ refs_by_author_last <- references_df %>%
   dplyr::count(.data$value)  %>%
   dplyr::arrange(dplyr::desc(.data$n))
 
-g <- ggplot2::ggplot(refs_by_author_last[1:30, ],
-                ggplot2::aes(x = forcats::fct_reorder(value, n), y = n)) +
-  ggplot2::geom_col() +
-  ggplot2::coord_flip() +
-  ggplot2::theme_minimal()
+kwb.endnote::plot_pubs_by_author(refs_by_author_last[1:50, ])
 
 #plotly::ggplotly(g)
-print(g)
+
 ```

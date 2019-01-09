@@ -2,6 +2,7 @@
 
 export(create_df_from_endnote_xml)
 export(get_reference_type_names)
+export(plot_pubs_by_author)
 importFrom(dplyr,left_join)
 importFrom(kwb.fakin,toSubdirMatrix)
 importFrom(kwb.read,read_xml_as_path_value)
