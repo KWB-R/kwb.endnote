@@ -20,7 +20,8 @@ knitr::opts_chunk$set(
 # First results
 
 ```{r echo=TRUE}
-endnote_xml <- "KWB_documents.xml"
+endnote_xml <- system.file("extdata/KWB_documents.xml", 
+                           package = "kwb.endnote")
 
 references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml)
 

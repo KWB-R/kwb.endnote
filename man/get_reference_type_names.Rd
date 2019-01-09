@@ -15,3 +15,9 @@ data.frame with columns record_id, ref_type_id, ref_type_name
 \description{
 Helper function: get reference type names
 }
+\examples{
+endnote_xml <- system.file("extdata/KWB_documents.xml",
+package = "kwb.endnote")
+ref_type_names <- get_reference_type_names(endnote_xml)
+head(ref_type_names)
+}

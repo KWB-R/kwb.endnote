@@ -4,6 +4,11 @@
 #' @return data.frame with columns record_id, ref_type_id, ref_type_name
 #' @export
 #' @importFrom xml2 as_list
+#' @examples
+#' endnote_xml <- system.file("extdata/KWB_documents.xml",
+#' package = "kwb.endnote")
+#' ref_type_names <- get_reference_type_names(endnote_xml)
+#' head(ref_type_names)
 get_reference_type_names <- function(endnote_xml) {
 
 references_list <- xml2::as_list(xml2::read_xml(endnote_xml))
@@ -38,6 +43,11 @@ data.frame(record_id = 1:n_records,
 #' @importFrom kwb.fakin toSubdirMatrix
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr left_join
+#' @examples
+#' endnote_xml <- system.file("extdata/KWB_documents.xml",
+#' package = "kwb.endnote")
+#' references_df <- create_df_from_endnote_xml(endnote_xml)
+#' head(references_df)
 create_df_from_endnote_xml <- function(endnote_xml) {
 
 references <- kwb.read::read_xml_as_path_value(endnote_xml)

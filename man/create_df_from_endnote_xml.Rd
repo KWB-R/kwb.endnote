@@ -16,3 +16,9 @@ get_reference_type_names()
 \description{
 Create dataframe from Endnote XML file
 }
+\examples{
+endnote_xml <- system.file("extdata/KWB_documents.xml",
+package = "kwb.endnote")
+references_df <- create_df_from_endnote_xml(endnote_xml)
+head(references_df)
+}
