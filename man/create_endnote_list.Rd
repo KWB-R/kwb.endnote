@@ -9,7 +9,8 @@
   package = "kwb.endnote"))
 }
 \arguments{
-\item{endnote_xml}{}
+\item{endnote_xml}{path to Endnote library exported as .xml (default:
+system.file("extdata/KWB_documents.xml", package = "kwb.endnote")}
 }
 \value{
 list of imported endnote_xml

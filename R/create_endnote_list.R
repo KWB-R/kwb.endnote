@@ -1,7 +1,7 @@
 #' Create List From Endnote XML
 #'
-#' @param endnote_xml
-#'
+#' @param endnote_xml path to Endnote library exported as .xml (default:
+#' system.file("extdata/KWB_documents.xml", package = "kwb.endnote")
 #' @return list of imported endnote_xml
 #' @export
 #' @importFrom xml2 as_list
