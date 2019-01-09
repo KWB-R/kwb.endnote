@@ -25,7 +25,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    ggplot2
+    ggplot2, 
+    forcats
 Remotes:
     github::kwb-r/kwb.fakin,
     github::kwb-r/kwb.read
