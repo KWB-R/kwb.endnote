@@ -177,25 +177,248 @@
 <a href="#has-an-abstract" class="anchor"></a>Has an Abstract?</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">refs_with_abstract &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "abstract"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>record_id, .data<span class="op">$</span>ref_type_name) </a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>record_id, .data<span class="op">$</span>rec_number, .data<span class="op">$</span>ref_type_name) </a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">n_pubs_with_abstract &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_abstract) </a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">### Percent of Publications with Abstracts</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">percent_pubs_with_abstracts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_abstract)<span class="op">/</span>n_publications,<span class="dv">1</span>) </a></code></pre></div>
-<p>28.7 percent (i.e. 259 / 904 publications) have an abstract. However there are some line breaks for</p>
+<p>28.7 percent (i.e. 259 / 904 publications) have an abstract.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">refs_with_abstract_and_linebreaks &lt;-<span class="st"> </span>refs_with_abstract <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">n_pubs_with_abstract_and_linebreaks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_abstract_and_linebreaks)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(refs_with_abstract_and_linebreaks)</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">record_id</th>
+<th align="right">rec_number</th>
+<th align="left">ref_type_name</th>
+<th align="right">n</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">592</td>
+<td align="right">381</td>
+<td align="left">Journal Article</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="right">520</td>
+<td align="right">430</td>
+<td align="left">Report</td>
+<td align="right">33</td>
+</tr>
+<tr class="odd">
+<td align="right">593</td>
+<td align="right">382</td>
+<td align="left">Journal Article</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="right">587</td>
+<td align="right">377</td>
+<td align="left">Report</td>
+<td align="right">25</td>
+</tr>
+<tr class="odd">
+<td align="right">476</td>
+<td align="right">467</td>
+<td align="left">Report</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="right">557</td>
+<td align="right">333</td>
+<td align="left">Report</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="right">844</td>
+<td align="right">327</td>
+<td align="left">Conference Paper</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="right">554</td>
+<td align="right">375</td>
+<td align="left">Conference Paper</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="right">242</td>
+<td align="right">934</td>
+<td align="left">Journal Article</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">243</td>
+<td align="right">720</td>
+<td align="left">Journal Article</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">111</td>
+<td align="right">768</td>
+<td align="left">Conference Paper</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">566</td>
+<td align="right">393</td>
+<td align="left">Conference Paper</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">246</td>
+<td align="right">935</td>
+<td align="left">Journal Article</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">508</td>
+<td align="right">450</td>
+<td align="left">Report</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="right">515</td>
+<td align="right">379</td>
+<td align="left">Journal Article</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">560</td>
+<td align="right">380</td>
+<td align="left">Journal Article</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="right">724</td>
+<td align="right">277</td>
+<td align="left">Report</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">736</td>
+<td align="right">172</td>
+<td align="left">Book</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="right">817</td>
+<td align="right">328</td>
+<td align="left">Conference Paper</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">485</td>
+<td align="right">449</td>
+<td align="left">Conference Paper</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="right">1044</td>
+<td align="left">Conference Paper</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">19</td>
+<td align="right">997</td>
+<td align="left">Journal Article</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">144</td>
+<td align="right">798</td>
+<td align="left">Conference Proceedings</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">514</td>
+<td align="right">468</td>
+<td align="left">Thesis</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">60</td>
+<td align="right">993</td>
+<td align="left">Conference Paper</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">484</td>
+<td align="right">447</td>
+<td align="left">Conference Paper</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">728</td>
+<td align="right">282</td>
+<td align="left">Report</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">24</td>
+<td align="right">1031</td>
+<td align="left">Conference Proceedings</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">248</td>
+<td align="right">695</td>
+<td align="left">Journal Article</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">478</td>
+<td align="right">460</td>
+<td align="left">Thesis</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">507</td>
+<td align="right">448</td>
+<td align="left">Thesis</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">537</td>
+<td align="right">388</td>
+<td align="left">Report</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">880</td>
+<td align="right">7</td>
+<td align="left">Report</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">588</td>
+<td align="right">339</td>
+<td align="left">Conference Paper</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>However there are some line breaks for these abstracts for in total 34 publications as shown in the table above.</p>
+<p>These need to be corrected manually!</p>
 </div>
 <div id="by-accessibility-level" class="section level2">
 <h2 class="hasAnchor">
 <a href="#by-accessibility-level" class="anchor"></a>By Accessibility Level</h2>
 <p>Is the accessibility level for the referenc defined in the fiel“custom3” (confidential or not?)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">refs_with_accessability_level &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom3"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">n_pubs_with_accessability_level &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_accessability_level) </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">percent_with_accessibility_level &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span>n_pubs_with_accessability_level<span class="op">/</span>n_publications, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(refs_with_accessability_level)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">refs_with_accessability_level &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom3"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">n_pubs_with_accessability_level &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_accessability_level) </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">percent_with_accessibility_level &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span>n_pubs_with_accessability_level<span class="op">/</span>n_publications, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(refs_with_accessability_level)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">value</th>
@@ -236,35 +459,35 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">is_confidential &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(refs_with_accessability_level<span class="op">$</span>value, </a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">                         stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"conf|PU|intern|private"</span>,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">                                        <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">n_pubs_confidential &lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">### in percent</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">percent_confidential &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])<span class="op">/</span>n_publications </a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">is_confidential &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(refs_with_accessability_level<span class="op">$</span>value, </a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">                         stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"conf|PU|intern|private"</span>,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">                                        <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">n_pubs_confidential &lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">### in percent</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">percent_confidential &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(refs_with_accessability_level<span class="op">$</span>n[is_confidential])<span class="op">/</span>n_publications </a></code></pre></div>
 <p>Only for 8 (i.e. 0.9 percent) meta information on the accessibility level is explicitly defined, out of which 88 are defined as confidential.</p>
 </div>
 <div id="by-project" class="section level2">
 <h2 class="hasAnchor">
 <a href="#by-project" class="anchor"></a>By Project</h2>
 <p>Group references by “custom2” (i.e. “project names”)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">refs_with_project &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom2"</span>) </a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">n_pubs_with_project_meta &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_project)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">### in percent</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">percent_pubs_with_project_meta &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span>n_pubs_with_project_meta<span class="op">/</span>n_publications,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">unique_project_names &lt;-<span class="st"> </span>refs_with_project  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(unique_project_names)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">refs_with_project &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key1 <span class="op">==</span><span class="st"> "custom2"</span>) </a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">n_pubs_with_project_meta &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(refs_with_project)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">### in percent</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">percent_pubs_with_project_meta &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dv">100</span><span class="op">*</span>n_pubs_with_project_meta<span class="op">/</span>n_publications,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">unique_project_names &lt;-<span class="st"> </span>refs_with_project  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value) </a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(unique_project_names)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">value</th>
@@ -713,39 +936,30 @@
 <a href="#lastnamefirstname" class="anchor"></a>Lastname/Firstname</h2>
 <p>Quite messy. Names should be entered in Endnote in the following format:</p>
 <p><strong>Lastname, Firstname</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">refs_by_author_lastfirst &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">==</span><span class="st"> "authors"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value)  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">g &lt;-<span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(refs_by_author_lastfirst[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, ],</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">                ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> forcats<span class="op">::</span><span class="kw"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span>(value, n), <span class="dt">y =</span> n)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>()</a>
-<a class="sourceLine" id="cb7-11" data-line-number="11">g</a></code></pre></div>
-<p><img src="analyse-endnote_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">refs_by_author_lastfirst &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">==</span><span class="st"> "authors"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">kwb.endnote<span class="op">::</span><span class="kw">plot_pubs_by_author</span>(refs_by_author_lastfirst[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, ])</a></code></pre></div>
+<p><img src="analyse-endnote_files/figure-html/unnamed-chunk-7-1.png" width="768"></p>
 </div>
 <div id="lastname" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lastname" class="anchor"></a>Lastname</h2>
-<p>Better if</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">refs_by_author_last &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">==</span><span class="st"> "authors"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span>(.data<span class="op">$</span>value, <span class="st">",.*"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span>(.data<span class="op">$</span>value, <span class="st">"^</span><span class="ch">\\</span><span class="st">w+</span><span class="ch">\\</span><span class="st">.?</span><span class="ch">\\</span><span class="st">s+"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value)  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">g &lt;-<span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(refs_by_author_last[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, ],</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9">                ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> forcats<span class="op">::</span><span class="kw"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span>(value, n), <span class="dt">y =</span> n)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>()</a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#plotly::ggplotly(g)</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(g)</a></code></pre></div>
-<p><img src="analyse-endnote_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p>For now data-munging is needed to just use the authors` lastname for aggregating the data</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">refs_by_author_last &lt;-<span class="st"> </span>references_df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key2 <span class="op">==</span><span class="st"> "authors"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span>(.data<span class="op">$</span>value, <span class="st">",.*"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span>(.data<span class="op">$</span>value, <span class="st">"^</span><span class="ch">\\</span><span class="st">w+</span><span class="ch">\\</span><span class="st">.?</span><span class="ch">\\</span><span class="st">s+"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.data<span class="op">$</span>value)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">kwb.endnote<span class="op">::</span><span class="kw">plot_pubs_by_author</span>(refs_by_author_last[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, ])</a></code></pre></div>
+<p><img src="analyse-endnote_files/figure-html/unnamed-chunk-8-1.png" width="768"></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#plotly::ggplotly(g)</span></a></code></pre></div>
 </div>
 </div>
   </div>

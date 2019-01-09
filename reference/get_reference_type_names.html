@@ -115,7 +115,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Helper function: get reference type names</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/KWB_documents.R'><code>R/KWB_documents.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/helper.R'><code>R/helper.R</code></a></small>
     <div class="hidden name"><code>get_reference_type_names.Rd</code></div>
     </div>
 
@@ -144,9 +144,7 @@ system.file("extdata/KWB_documents.xml", package = "kwb.endnote")</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>endnote_xml</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata/KWB_documents.xml"</span>,
-<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"kwb.endnote"</span>)
-<span class='no'>ref_type_names</span> <span class='kw'>&lt;-</span> <span class='fu'>get_reference_type_names</span>(<span class='no'>endnote_xml</span>)
+    <pre class="examples"><div class='input'><span class='no'>ref_type_names</span> <span class='kw'>&lt;-</span> <span class='fu'>get_reference_type_names</span>()
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>ref_type_names</span>)</div><div class='output co'>#&gt;   record_id rec_number ref_type_id    ref_type_name
 #&gt; 1         1        865          17  Journal Article
 #&gt; 2         2        876           5     Book Section
