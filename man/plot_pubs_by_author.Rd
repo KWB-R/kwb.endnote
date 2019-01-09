@@ -17,7 +17,7 @@ plot of number of publications per author
 Plot Number of Publications by Author
 }
 \examples{
-refs_by_author_lastfirst <- references_df \%>\%
+refs_by_author_lastfirst <- create_df_from_endnote_xml() \%>\%
 dplyr::filter(.data$key2 == "authors") \%>\%
 dplyr::count(.data$value)  \%>\%
 dplyr::arrange(dplyr::desc(.data$n))

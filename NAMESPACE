@@ -2,6 +2,7 @@
 
 export("%>%")
 export(create_df_from_endnote_xml)
+export(create_endnote_list)
 export(get_reference_type_names)
 export(plot_pubs_by_author)
 import(ggplot2)

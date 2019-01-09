@@ -52,7 +52,7 @@ knitr::kable(refs_by_type)
 ```{r echo=TRUE}
 refs_with_abstract <- references_df %>% 
   dplyr::filter(.data$key1 == "abstract") %>%
-  dplyr::count(.data$rec_number, .data$ref_type_name) 
+  dplyr::count(.data$record_id, .data$rec_number, .data$ref_type_name) 
 
 n_pubs_with_abstract <- nrow(refs_with_abstract) 
 ### Percent of Publications with Abstracts
