@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 
-# Import Endote XML As Data Frame
+# Import Endnote XML As Data Frame
 
 ```{r echo=TRUE}
 endnote_xml <- system.file("extdata/KWB_documents.xml", 
@@ -145,9 +145,6 @@ according to the best-practices defined in the FAKIN project (see [here](https:/
 
 ## Lastname/Firstname
 
-Quite messy. Names should be entered in Endnote in the following format:
-
-**Lastname, Firstname**
 
 
 ```{r echo=TRUE, fig.height=10, fig.width=8}
@@ -160,6 +157,33 @@ refs_by_author_lastfirst <- references_df %>%
 kwb.endnote::plot_pubs_by_author(refs_by_author_lastfirst[1:50, ])
 
 ```
+
+Quite messy the figure above. Thus names should be entered in Endnote in the 
+following format:
+
+**Lastname, Firstname**
+
+Also note the **,** also is an author! This is due to entering a wrong semicolon 
+in the Endnote database and needs to be fixed here for at least the following 
+entries:
+
+
+```{r echo=TRUE}
+
+pubs_with_semicolon_as_author <- references_df %>%
+  dplyr::filter(.data$key2 == "authors",
+                .data$value == ",") %>% 
+  dplyr::count(.data$rec_number) %>% 
+  dplyr::arrange(dplyr::desc(.data$n)) 
+
+
+n_pubs_with_semicolon_as_author <- nrow(pubs_with_semicolon_as_author)
+
+knitr::kable(pubs_with_semicolon_as_author)
+```
+
+In total `r n_pubs_with_semicolon_as_author` publications contain one or more 
+**semicolon** authors. This needs to be fixed manually in the Endnote DB. 
 
 ## Lastname
 
@@ -176,6 +200,5 @@ refs_by_author_last <- references_df %>%
 
 kwb.endnote::plot_pubs_by_author(refs_by_author_last[1:50, ])
 
-#plotly::ggplotly(g)
 
 ```
