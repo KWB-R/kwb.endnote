@@ -52,7 +52,7 @@ knitr::kable(refs_by_type)
 ```{r echo=TRUE}
 refs_with_abstract <- references_df %>% 
   dplyr::filter(.data$key1 == "abstract") %>%
-  dplyr::count(.data$record_id, .data$ref_type_name) 
+  dplyr::count(.data$rec_number, .data$ref_type_name) 
 
 n_pubs_with_abstract <- nrow(refs_with_abstract) 
 ### Percent of Publications with Abstracts
@@ -62,7 +62,23 @@ percent_pubs_with_abstracts <- round(100*nrow(refs_with_abstract)/n_publications
 
 `r percent_pubs_with_abstracts` percent (i.e. 
 `r sprintf("%d / %d", n_pubs_with_abstract, n_publications)` 
-publications) have an abstract. However there are some line breaks for 
+publications) have an abstract. 
+
+```{r echo=TRUE}
+refs_with_abstract_and_linebreaks <- refs_with_abstract %>%  
+  dplyr::filter(.data$n > 1) %>% 
+  dplyr::arrange(dplyr::desc(.data$n))
+
+n_pubs_with_abstract_and_linebreaks <- nrow(refs_with_abstract_and_linebreaks)
+
+knitr::kable(refs_with_abstract_and_linebreaks)
+
+```
+
+However there are some line breaks for these abstracts for in total 
+`r n_pubs_with_abstract_and_linebreaks` publications as shown in the table above. 
+
+These need to be corrected manually!
 
 
 ## By Accessibility Level 
