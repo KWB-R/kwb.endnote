@@ -6,7 +6,7 @@
 #' @export
 #' @import ggplot2
 #' @examples
-#' endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
+#' endnote_list <- kwb.endnote::create_endnote_list()
 #' refs_df <- kwb.endnote::create_references_df(endnote_list)
 #' plot_pubs_by_year(refs_df)
 #'
