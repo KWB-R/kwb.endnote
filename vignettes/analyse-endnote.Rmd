@@ -50,45 +50,25 @@ knitr::kable(refs_by_type)
 
 ```{r echo=TRUE}
 endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
-  refs_df <- kwb.endnote::create_references_df(endnote_list)
+refs_df <- kwb.endnote::create_references_df(endnote_list)
 
-  refs_by_year <- refs_df %>%
-  dplyr::count(ref_type_name, dates_year)
+refs_by_year <- refs_df %>%
+dplyr::count(ref_type_name, dates_year)
   
-  knitr::kable(refs_by_year)
+knitr::kable(refs_by_year)
 ```  
   
 ```{r echo=TRUE, fig.width=8, fig.height=9}
-  refs_df %>%
-  ggplot2::ggplot(ggplot2::aes(x = dates_year,
-                               fill = ref_type_name)) +
-  ggplot2::geom_bar() +
-  ggplot2::theme_minimal() +
-  ggplot2::labs(x = "Year",
-                y = "Number Of Publications") +
-  ggplot2::coord_flip() +
-  ggplot2::theme(legend.position = "right",
-                 legend.title = ggplot2::element_blank())
+
+kwb.endnote::plot_pubs_by_year(refs_df)
+
 ```
 
 ## By Keywords
 
 ```{r echo=TRUE}
-  keywords <- references_df %>%
-    dplyr::filter(.data$key1 == "keywords") %>%
-    dplyr::select(.data$record_id,
-                    .data$rec_number,
-                    .data$ref_type_id,
-                    .data$ref_type_name,
-                    .data$key1,
-                    .data$value) %>%
-    tidyr::separate_rows(.data$value, sep = ",\\s++")
 
-
-keywords_df <- keywords %>%
-  dplyr::mutate(value = tolower(.data$value)) %>% 
-  dplyr::count(.data$value) %>%
-  dplyr::arrange(dplyr::desc(.data$n)) 
+  keywords_df <- kwb.endnote::create_keywords_df(references_df) 
  
   keywords_df %>% 
   dplyr::filter(.data$n > 1) %>% 
@@ -97,11 +77,9 @@ keywords_df <- keywords %>%
 
 Create a word cloud for the keywords
 
-```{r echo=TRUE, fig.width=8, fig.height=8}
-  keywords_df  %>%
-  dplyr::rename(word = value,
-                freq = n) %>% 
-  wordcloud2::wordcloud2()
+```{r echo=TRUE, fig.width=7, fig.height=7}
+
+kwb.endote::plot_wordcloud_keywords(keywords_df)
 ```
 
 ## Which fields are filled?
