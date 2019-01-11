@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • kwb.endnote</title>
+<title>Plot Publications By Year — plot_pubs_by_year • kwb.endnote</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Plot Publications By Year — plot_pubs_by_year" />
+
+<meta property="og:description" content="Plot Publications By Year" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -47,7 +50,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -109,102 +112,52 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Plot Publications By Year</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/plot_pubs_by_year.R'><code>R/plot_pubs_by_year.R</code></a></small>
+    <div class="hidden name"><code>plot_pubs_by_year.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Plot Publications By Year</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="create_df_from_endnote_xml.html">create_df_from_endnote_xml()</a></code> </p>
-        </td>
-        <td><p>Create dataframe from Endnote XML file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_endnote_list.html">create_endnote_list()</a></code> </p>
-        </td>
-        <td><p>Create List From Endnote XML</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_keywords_df.html">create_keywords_df()</a></code> </p>
-        </td>
-        <td><p>Create Keywords Dataframe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_references_df.html">create_references_df()</a></code> </p>
-        </td>
-        <td><p>Create References Dataframe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_authors.html">get_authors()</a></code> </p>
-        </td>
-        <td><p>Helper function: get authors from list for a reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_pdfurls.html">get_pdfurls()</a></code> </p>
-        </td>
-        <td><p>Helper function: get pdfurls from list for a reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_reference_type_names.html">get_reference_type_names()</a></code> </p>
-        </td>
-        <td><p>Helper function: get reference type names</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_pubs_by_author.html">plot_pubs_by_author()</a></code> </p>
-        </td>
-        <td><p>Plot Number of Publications by Author</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_pubs_by_year.html">plot_pubs_by_year()</a></code> </p>
-        </td>
-        <td><p>Plot Publications By Year</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_wordcloud_keywords.html">plot_wordcloud_keywords()</a></code> </p>
-        </td>
-        <td><p>Plot Wordcloud Keywords</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="record_list_to_df.html">record_list_to_df()</a></code> </p>
-        </td>
-        <td><p>Reference List to Data Frame</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>plot_pubs_by_year</span>(<span class='no'>refs_df</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>refs_df</th>
+      <td><p>reference dataframe as retrieved by
+kwb.endnote::create_references_df()</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>plot with publications by year</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>kwb.endnote</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/kwb.endnote/topics/create_endnote_list'>create_endnote_list</a></span>()
+<span class='no'>refs_df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>kwb.endnote</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/kwb.endnote/topics/create_references_df'>create_references_df</a></span>(<span class='no'>endnote_list</span>)
+<span class='fu'>plot_pubs_by_year</span>(<span class='no'>refs_df</span>)</div><div class='img'><img src='plot_pubs_by_year-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
