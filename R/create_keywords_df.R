@@ -14,12 +14,14 @@
 create_keywords_df <- function(references_df) {
   keywords <- references_df %>%
     dplyr::filter(.data$key1 == "keywords") %>%
-    dplyr::select(.data$record_id,
-                  .data$rec_number,
-                  .data$ref_type_id,
-                  .data$ref_type_name,
-                  .data$key1,
-                  .data$value) %>%
+    dplyr::select(
+      .data$record_id,
+      .data$rec_number,
+      .data$ref_type_id,
+      .data$ref_type_name,
+      .data$key1,
+      .data$value
+    ) %>%
     tidyr::separate_rows(.data$value, sep = ",\\s++")
 
 

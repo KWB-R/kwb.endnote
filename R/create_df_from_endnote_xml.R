@@ -11,7 +11,7 @@
 #' @importFrom dplyr left_join
 #' @examples
 #' references_df <- create_df_from_endnote_xml()
-#' head(references_df)
+#' head(references_df
 create_df_from_endnote_xml <- function(endnote_xml = default_xml()) {
 
   references <- kwb.read::read_xml_as_path_value(endnote_xml)
