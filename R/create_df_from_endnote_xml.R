@@ -34,3 +34,26 @@ references_df <- dplyr::left_join(references_df,
 return(references_df)
 }
 
+if(FALSE) {
+  abstracts <- references_df %>%
+    dplyr::filter(.data$key1 == "abstract") %>%
+    dplyr::group_by(.data$record_id,
+                    .data$rec_number,
+                    .data$ref_type_id,
+                    .data$ref_type_name,
+                    .data$key1) %>%
+    dplyr::summarise(value = paste(value, collapse = ""))
+
+  authors <- references_df %>%
+    dplyr::filter(.data$key1 == "contributors") %>%
+    dplyr::group_by(.data$record_id,
+                    .data$rec_number,
+                    .data$ref_type_id,
+                    .data$ref_type_name,
+                    .data$key1,
+                    .data$key2,
+                    .data$key3) %>%
+    dplyr::summarise(value = paste(value, collapse = ""))
+
+
+}

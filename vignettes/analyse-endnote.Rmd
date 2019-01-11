@@ -46,6 +46,88 @@ refs_by_type <- kwb.endnote::get_reference_type_names(endnote_xml) %>%
 knitr::kable(refs_by_type)
 ```
 
+## By Year
+
+```{r echo=TRUE}
+endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
+  refs_df <- kwb.endnote::create_references_df(endnote_list)
+
+  refs_by_year <- refs_df %>%
+  dplyr::count(ref_type_name, dates_year)
+  
+  knitr::kable(refs_by_year)
+```  
+  
+```{r echo=TRUE, fig.width=8, fig.height=9}
+  refs_df %>%
+  ggplot2::ggplot(ggplot2::aes(x = dates_year,
+                               fill = ref_type_name)) +
+  ggplot2::geom_bar() +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(x = "Year",
+                y = "Number Of Publications") +
+  ggplot2::coord_flip() +
+  ggplot2::theme(legend.position = "right",
+                 legend.title = ggplot2::element_blank())
+```
+
+## By Keywords
+
+```{r echo=TRUE}
+  keywords <- references_df %>%
+    dplyr::filter(.data$key1 == "keywords") %>%
+    dplyr::select(.data$record_id,
+                    .data$rec_number,
+                    .data$ref_type_id,
+                    .data$ref_type_name,
+                    .data$key1,
+                    .data$value) %>%
+    tidyr::separate_rows(.data$value, sep = ",\\s++")
+
+
+keywords_df <- keywords %>%
+  dplyr::mutate(value = tolower(.data$value)) %>% 
+  dplyr::count(.data$value) %>%
+  dplyr::arrange(dplyr::desc(.data$n)) 
+ 
+  keywords_df %>% 
+  dplyr::filter(.data$n > 1) %>% 
+  knitr::kable()
+```
+
+Create a word cloud for the keywords
+
+```{r echo=TRUE, fig.width=8, fig.height=8}
+  keywords_df  %>%
+  dplyr::rename(word = value,
+                freq = n) %>% 
+  wordcloud2::wordcloud2()
+```
+
+## Which fields are filled?
+
+## Ordered Alphabetically
+```{r echo=TRUE}
+references_df %>%  
+dplyr::count(key1, key2, key3, key4) %>%  
+knitr::kable()
+```
+
+## Ordered By Frequency
+```{r echo=TRUE}
+references_df %>%  
+dplyr::count(key1, key2, key3, key4) %>%  
+dplyr::arrange(dplyr::desc(n)) %>% 
+knitr::kable()
+```
+## Ordered By Ref Type Name and Frequency
+```{r echo=TRUE}
+references_df %>%  
+dplyr::count(ref_type_name, key1, key2, key3, key4) %>%  
+dplyr::arrange(ref_type_name, dplyr::desc(n)) %>% 
+knitr::kable()
+```
+
 
 ## Has an Abstract?
 
@@ -91,24 +173,36 @@ refs_with_accessability_level <- references_df %>%
   dplyr::filter(.data$key1 == "custom3") %>%
   dplyr::count(.data$value) 
 
-n_pubs_with_accessability_level <- nrow(refs_with_accessability_level) 
+n_pubs_with_accessability_level <- sum(refs_with_accessability_level$n) 
 
 percent_with_accessibility_level <- round(100*n_pubs_with_accessability_level/n_publications, 1)
 knitr::kable(refs_with_accessability_level)
 
-is_confidential <- stringr::str_detect(refs_with_accessability_level$value, 
-                         stringr::regex("conf|PU|intern|private",
-                                        ignore_case = TRUE))
+
+is_confidential <- grepl(paste(c("conf", "PU", "intern", "private"), collapse="|"), 
+                        refs_with_accessability_level$value)
 
 n_pubs_confidential <-sum(refs_with_accessability_level$n[is_confidential])
 
 ### in percent
-percent_confidential <- 100*sum(refs_with_accessability_level$n[is_confidential])/n_publications 
+percent_confidential <- 100*sum(refs_with_accessability_level$n[is_confidential])/n_pubs_with_accessability_level
 ```
 
 Only for `r n_pubs_with_accessability_level` (i.e. `r percent_with_accessibility_level` percent) 
 meta information on the accessibility level is explicitly defined, out of which 
-`r n_pubs_confidential` are defined as confidential.
+`r n_pubs_confidential` are defined as confidential (i.e. 
+`r round(percent_confidential,1)` of the publications with metadata on the 
+accessibility level).
+
+**Recommendation:**
+
+Fill the field **custom3** for all publications with either: 
+
+- **public** or 
+
+- **confidential** 
+
+
 
 
 ## By Project 
@@ -212,29 +306,41 @@ between **full-title** and **secondary-title** of journal are.
 
 #### Journal full-title
 
+Defined in: *$`record`$periodical$`full-title`$`style`[[1]]*
+
 ```{r echo=TRUE}
 
 pubs_in_journals <- references_df %>%  
   dplyr::filter(.data$ref_type_name == "Journal Article")
 
-n_pubs_in_journals <- nrow(pubs_in_journals)
+n_pubs_in_journals <- length(unique(pubs_in_journals$record_id))
 
   
-pubs_in_journals %>%  
+journal_title_full <- pubs_in_journals %>%  
   dplyr::filter(.data$key2 %in% c("full-title")) %>% 
-  dplyr::count(.data$value) %>% 
-  knitr::kable()
+  dplyr::mutate("source_field" = sprintf("%s_%s",.data$key1, 
+                                           .data$key2))  %>% 
+  dplyr::count(.data$value, .data$source_field) 
+
+knitr::kable(journal_title_full)
 
 
 ```
 
 #### Journal secondary-title 
 
+Defined in: *$`record`$titles$`secondary-title`$`style`[[1]]*
+
 ```{r echo=TRUE}
-pubs_in_journals %>%  
+journal_title_secondary <- pubs_in_journals %>%  
   dplyr::filter(.data$key2 %in% c("secondary-title")) %>% 
-  dplyr::count(.data$value) %>% 
-  knitr::kable()
+  dplyr::mutate("source_field" = sprintf("%s_%s",.data$key1, 
+                                           .data$key2))  %>% 
+  dplyr::count(.data$value, .data$source_field)
+
+knitr::kable(journal_title_secondary)
+
+
 ```
 
 #### Journal DOI
@@ -254,4 +360,9 @@ knitr::kable(pubs_in_journals_with_doi)
 
 Only `r n_pubs_in_journals_with_doi` journal publications have a DOI which is 
 either encoded in the field **electronic-resource-num** and **urls**.
+
+All DOIs should be entered in the field **electronic-resource-num** in the 
+following format, i.e.:
+
+**https://doi.org/10.6084/m9.figshare.828487**
   

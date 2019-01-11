@@ -14,18 +14,18 @@ get_reference_type_names <- function(
   references_list <- create_endnote_list(endnote_xml)
 
 
-  n_records <- length(references_list$xml$records)
+  n_records <- length(references_list)
   ref_type_names <- sapply(1:n_records, function(i) {
-    attr(references_list$xml$records[i]$record$`ref-type`, which = "name")
+    attr(references_list[i]$record$`ref-type`, which = "name")
   })
 
   ref_type_ids <- as.numeric(sapply(1:n_records, function(i) {
-    references_list$xml$records[i]$record$`ref-type`[[1]]
+    references_list[i]$record$`ref-type`[[1]]
   }
   ))
 
   rec_number <- as.numeric(sapply(1:n_records, function(i) {
-    references_list$xml$records[i]$record$`rec-number`[[1]]
+    references_list[i]$record$`rec-number`[[1]]
   }
   ))
 

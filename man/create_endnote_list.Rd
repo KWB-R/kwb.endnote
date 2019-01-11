@@ -19,6 +19,6 @@ list of imported endnote_xml
 Create List From Endnote XML
 }
 \examples{
-references_list <- create_endnote_list()
-str(references_list$xml$records[1]$record)
+endnote_list <- create_endnote_list()
+str(endnote_list[1]$record)
 }

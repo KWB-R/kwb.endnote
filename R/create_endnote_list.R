@@ -6,12 +6,12 @@
 #' @export
 #' @importFrom xml2 as_list
 #' @examples
-#' references_list <- create_endnote_list()
-#' str(references_list$xml$records[1]$record)
+#' endnote_list <- create_endnote_list()
+#' str(endnote_list[1]$record)
 create_endnote_list <- function(
   endnote_xml = system.file("extdata/KWB_documents.xml",
                             package = "kwb.endnote")) {
 
-  xml2::as_list(xml2::read_xml(endnote_xml))
+  xml2::as_list(xml2::read_xml(endnote_xml))$xml$records
 
 }

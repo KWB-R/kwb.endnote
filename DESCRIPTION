@@ -28,12 +28,14 @@ Imports:
 Suggests: 
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    tidyr,
+    wordcloud2
+VignetteBuilder: 
+    knitr
 Remotes:
     github::kwb-r/kwb.fakin,
     github::kwb-r/kwb.read
-VignetteBuilder: 
-    knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
