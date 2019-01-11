@@ -24,6 +24,7 @@ Imports:
     ggplot2,
     forcats,
     magrittr,
+    openxlsx,
     rlang,
     tibble,
     tidyr,
