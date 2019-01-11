@@ -79,7 +79,7 @@ Create a word cloud for the keywords
 
 ```{r echo=TRUE, fig.width=7, fig.height=7}
 
-kwb.endote::plot_wordcloud_keywords(keywords_df)
+kwb.endnote::plot_wordcloud_keywords(keywords_df)
 ```
 
 ## Which fields are filled?
