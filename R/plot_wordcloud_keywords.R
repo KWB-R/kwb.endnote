@@ -9,7 +9,7 @@
 #' @importFrom wordcloud2 wordcloud2
 plot_wordcloud_keywords <- function(keywords_df, ...) {
   keywords_df  %>%
-  dplyr::rename(word = value,
-                freq = n) %>%
+  dplyr::rename(word = .data$value,
+                freq = .data$n) %>%
   wordcloud2::wordcloud2(...)
 }
