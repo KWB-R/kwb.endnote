@@ -4,7 +4,7 @@
 \alias{get_pdfurls}
 \title{Helper function: get pdfurls from list for a reference}
 \usage{
-get_pdfurls(record_list, col_name = "url_pdfurls")
+get_pdfurls(record_list, col_name = "urls_pdf")
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}

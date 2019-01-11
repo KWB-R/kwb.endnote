@@ -4,12 +4,15 @@
 \alias{get_authors}
 \title{Helper function: get authors from list for a reference}
 \usage{
-get_authors(record_list, col_name = "contributors_author")
+get_authors(record_list, col_name = "author",
+  extract_value = "authors")
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
 
-\item{col_name}{default: "contributors_author"}
+\item{col_name}{default: "author"}
+
+\item{extract_value}{extract_value = "authors"}
 }
 \value{
 one row authors data frame

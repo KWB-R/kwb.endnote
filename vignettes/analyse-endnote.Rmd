@@ -53,7 +53,7 @@ endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
 refs_df <- kwb.endnote::create_references_df(endnote_list)
 
 refs_by_year <- refs_df %>%
-dplyr::count(ref_type_name, dates_year)
+dplyr::count(ref_type_name, year)
   
 knitr::kable(refs_by_year)
 ```  
@@ -343,4 +343,15 @@ All DOIs should be entered in the field **electronic-resource-num** in the
 following format, i.e.:
 
 **https://doi.org/10.6084/m9.figshare.828487**
+
+
+# Export References To XLSX
+
+Write references dataframe to xlsx with one sheet for each **publication type**
+to `references.xlsx`
+
+```{r echo=TRUE, eval=FALSE}
+kwb.endnote::write_references_df_to_xlsx(refs_df)
+```
+
   

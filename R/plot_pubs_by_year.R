@@ -13,9 +13,9 @@
 #'
 plot_pubs_by_year <- function(refs_df) {
   refs_df %>%
-  dplyr::mutate(dates_year = stringr::str_trim(.data$dates_year)) %>%
-  dplyr::count(.data$ref_type_name, .data$dates_year) %>%
-  ggplot2::ggplot(ggplot2::aes(x = .data$dates_year,
+  dplyr::mutate(year = stringr::str_trim(.data$year)) %>%
+  dplyr::count(.data$ref_type_name, .data$year) %>%
+  ggplot2::ggplot(ggplot2::aes(x = .data$year,
                                y = .data$n,
                                fill = .data$ref_type_name)) +
   ggplot2::geom_col() +
