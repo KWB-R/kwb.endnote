@@ -4,13 +4,11 @@
 \alias{create_df_from_endnote_xml}
 \title{Create dataframe from Endnote XML file}
 \usage{
-
-  create_df_from_endnote_xml(endnote_xml = system.file("extdata/KWB_documents.xml",
-  package = "kwb.endnote"))
+create_df_from_endnote_xml(endnote_xml = default_xml())
 }
 \arguments{
 \item{endnote_xml}{path to Endnote library exported as .xml (default:
-system.file("extdata/KWB_documents.xml", package = "kwb.endnote")}
+\code{\link{default_xml()}})}
 }
 \value{
 data.frame with all information from Endnote XML joined with data from

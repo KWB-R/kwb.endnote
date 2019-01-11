@@ -1,15 +1,13 @@
 #' Helper function: get reference type names
 #'
 #' @param endnote_xml path to Endnote library exported as .xml (default:
-#' system.file("extdata/KWB_documents.xml", package = "kwb.endnote")
+#'   \code{\link{default_xml()}})
 #' @return data.frame with columns record_id, rec_number, ref_type_id, ref_type_name
 #' @export
 #' @examples
 #' ref_type_names <- get_reference_type_names()
 #' head(ref_type_names)
-get_reference_type_names <- function(
-  endnote_xml = system.file("extdata/KWB_documents.xml",
-                            package = "kwb.endnote"))  {
+get_reference_type_names <- function(endnote_xml = default_xml()) {
 
   references_list <- create_endnote_list(endnote_xml)
 
@@ -34,4 +32,18 @@ get_reference_type_names <- function(
              ref_type_id = ref_type_ids,
              ref_type_name = ref_type_names,
              stringsAsFactors = FALSE)
+}
+
+# default_xml ------------------------------------------------------------------
+
+#' Path to Default XML File
+#'
+#' @return path to xml file stored in this package, containing references from
+#'   KWB Endnote database
+#'
+#' @export
+#'
+default_xml <- function() {
+
+  system.file("extdata/KWB_documents.xml", package = "kwb.endnote")
 }
