@@ -144,34 +144,35 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_endnote_list.html'>create_endnote_list</a></span>()
 <span class='no'>refs_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_references_df</span>(<span class='no'>endnote_list</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>refs_df</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 45
-#&gt;   rec_number ref_type ref_type_name contributors_au… contributors_au…
-#&gt;   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;           
-#&gt; 1 865              17 Journal Arti… Sprenger, C.     Hartog, N.      
-#&gt; 2 876               5 Book Section  Sprenger, C.     Monninkhoff, B. 
-#&gt; 3 1051             17 Journal Arti… Seis, W.         Zamzow, M.      
-#&gt; 4 1059             17 Journal Arti… Riechel, M.      Caradot, N.     
-#&gt; 5 1050             47 Conference P… Matzinger, A.    Zamzow, M.      
-#&gt; 6 1052             17 Journal Arti… Matzinger, A.    Reichmann, B.   
-#&gt; # … with 40 more variables: contributors_author03 &lt;chr&gt;,
-#&gt; #   contributors_author04 &lt;chr&gt;, contributors_author05 &lt;chr&gt;,
-#&gt; #   contributors_author06 &lt;chr&gt;, contributors_author07 &lt;chr&gt;,
-#&gt; #   database_name &lt;chr&gt;, database_path &lt;chr&gt;, titles_title &lt;chr&gt;,
-#&gt; #   titles_secondary_title &lt;chr&gt;, periodical_full_title &lt;chr&gt;,
-#&gt; #   dates_year &lt;chr&gt;, urls_pdf_urls &lt;list&gt;, urls_related_urls &lt;chr&gt;,
-#&gt; #   electronic_resource_num &lt;chr&gt;, custom2 &lt;chr&gt;, custom3 &lt;chr&gt;,
-#&gt; #   contributors_author08 &lt;chr&gt;, contributors_author09 &lt;chr&gt;,
-#&gt; #   contributors_author10 &lt;chr&gt;, contributors_author11 &lt;chr&gt;,
-#&gt; #   contributors_author12 &lt;chr&gt;, contributors_author13 &lt;chr&gt;,
-#&gt; #   contributors_author14 &lt;chr&gt;, contributors_author15 &lt;chr&gt;,
-#&gt; #   contributors_author16 &lt;chr&gt;, contributors_author17 &lt;chr&gt;,
-#&gt; #   contributors_author18 &lt;chr&gt;, contributors_author19 &lt;chr&gt;,
-#&gt; #   contributors_author20 &lt;chr&gt;, contributors_author21 &lt;chr&gt;,
-#&gt; #   contributors_author22 &lt;chr&gt;, contributors_author23 &lt;chr&gt;,
-#&gt; #   contributors_author24 &lt;chr&gt;, contributors_author25 &lt;chr&gt;,
-#&gt; #   contributors_author26 &lt;chr&gt;, contributors_author27 &lt;chr&gt;,
-#&gt; #   contributors_author28 &lt;chr&gt;, contributors_author29 &lt;chr&gt;,
-#&gt; #   contributors_author30 &lt;chr&gt;, contributors_author31 &lt;chr&gt;</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>refs_df</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 74
+#&gt;   rec_number ref_type ref_type_name year  title title_secondary title_tertiary
+#&gt;   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;         
+#&gt; 1 865              17 Journal Arti… subm… Inve… Sustainable Wa… &lt;NA&gt;          
+#&gt; 2 876               5 Book Section  in p… "Num… Natural Water … &lt;NA&gt;          
+#&gt; 3 1051             17 Journal Arti… 2018  On t… Water Research  &lt;NA&gt;          
+#&gt; 4 1059             17 Journal Arti… 2018  Bewe… Korrespondenz … &lt;NA&gt;          
+#&gt; 5 1050             47 Conference P… 2018  Quan… Regenwasser in… &lt;NA&gt;          
+#&gt; 6 1052             17 Journal Arti… 2018  Erge… fbr-Wasserspie… &lt;NA&gt;          
+#&gt; # … with 67 more variables: abstract &lt;chr&gt;, author01 &lt;chr&gt;, author02 &lt;chr&gt;,
+#&gt; #   author03 &lt;chr&gt;, author04 &lt;chr&gt;, author05 &lt;chr&gt;, author06 &lt;chr&gt;,
+#&gt; #   author07 &lt;chr&gt;, author_secondary1 &lt;chr&gt;, author_tertiary1 &lt;chr&gt;,
+#&gt; #   author_secondary01 &lt;chr&gt;, author_secondary02 &lt;chr&gt;,
+#&gt; #   author_secondary03 &lt;chr&gt;, author_secondary04 &lt;chr&gt;, author08 &lt;chr&gt;,
+#&gt; #   author09 &lt;chr&gt;, author10 &lt;chr&gt;, author11 &lt;chr&gt;, author12 &lt;chr&gt;,
+#&gt; #   author_tertiary01 &lt;chr&gt;, author13 &lt;chr&gt;, author14 &lt;chr&gt;, author15 &lt;chr&gt;,
+#&gt; #   author16 &lt;chr&gt;, author17 &lt;chr&gt;, author18 &lt;chr&gt;, author19 &lt;chr&gt;,
+#&gt; #   author20 &lt;chr&gt;, author21 &lt;chr&gt;, author22 &lt;chr&gt;, author23 &lt;chr&gt;,
+#&gt; #   author24 &lt;chr&gt;, author25 &lt;chr&gt;, author26 &lt;chr&gt;, author1 &lt;chr&gt;,
+#&gt; #   author_tertiary02 &lt;chr&gt;, author_secondary05 &lt;chr&gt;,
+#&gt; #   author_secondary06 &lt;chr&gt;, author_secondary07 &lt;chr&gt;,
+#&gt; #   author_secondary08 &lt;chr&gt;, author_secondary09 &lt;chr&gt;,
+#&gt; #   author_secondary10 &lt;chr&gt;, author27 &lt;chr&gt;, author28 &lt;chr&gt;, author29 &lt;chr&gt;,
+#&gt; #   author30 &lt;chr&gt;, author31 &lt;chr&gt;, periodical_title_full &lt;chr&gt;,
+#&gt; #   periodical_title_secondary &lt;chr&gt;, pages &lt;chr&gt;, volume &lt;chr&gt;, section &lt;chr&gt;,
+#&gt; #   publisher &lt;chr&gt;, urls_pdf1 &lt;chr&gt;, urls_related &lt;chr&gt;, urls_pdf2 &lt;chr&gt;,
+#&gt; #   urls_pdf3 &lt;chr&gt;, electronic_resource_num &lt;chr&gt;, custom1 &lt;chr&gt;,
+#&gt; #   custom2 &lt;chr&gt;, custom3 &lt;chr&gt;, custom7 &lt;chr&gt;, isbn &lt;chr&gt;, language &lt;chr&gt;,
+#&gt; #   database_name &lt;chr&gt;, database_path &lt;chr&gt;, pubdates &lt;chr&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
