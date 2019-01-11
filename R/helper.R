@@ -8,9 +8,9 @@
 #' ref_type_names <- get_reference_type_names()
 #' head(ref_type_names)
 get_reference_type_names <- function(
-  endnote_xml = system.file("extdata/KWB_documents.xml",
-                            package = "kwb.endnote"))  {
-
+                                     endnote_xml = system.file("extdata/KWB_documents.xml",
+                                       package = "kwb.endnote"
+                                     )) {
   references_list <- create_endnote_list(endnote_xml)
 
 
@@ -21,17 +21,17 @@ get_reference_type_names <- function(
 
   ref_type_ids <- as.numeric(sapply(1:n_records, function(i) {
     references_list[i]$record$`ref-type`[[1]]
-  }
-  ))
+  }))
 
   rec_number <- as.numeric(sapply(1:n_records, function(i) {
     references_list[i]$record$`rec-number`[[1]]
-  }
-  ))
+  }))
 
-  data.frame(record_id = 1:n_records,
-             rec_number = rec_number,
-             ref_type_id = ref_type_ids,
-             ref_type_name = ref_type_names,
-             stringsAsFactors = FALSE)
+  data.frame(
+    record_id = 1:n_records,
+    rec_number = rec_number,
+    ref_type_id = ref_type_ids,
+    ref_type_name = ref_type_names,
+    stringsAsFactors = FALSE
+  )
 }

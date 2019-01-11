@@ -9,9 +9,8 @@
 #' endnote_list <- create_endnote_list()
 #' str(endnote_list[1]$record)
 create_endnote_list <- function(
-  endnote_xml = system.file("extdata/KWB_documents.xml",
-                            package = "kwb.endnote")) {
-
+                                endnote_xml = system.file("extdata/KWB_documents.xml",
+                                  package = "kwb.endnote"
+                                )) {
   xml2::as_list(xml2::read_xml(endnote_xml))$xml$records
-
 }

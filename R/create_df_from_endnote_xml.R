@@ -13,47 +13,59 @@
 #' references_df <- create_df_from_endnote_xml()
 #' head(references_df)
 create_df_from_endnote_xml <- function(
-  endnote_xml = system.file("extdata/KWB_documents.xml",
-                            package = "kwb.endnote")) {
-references <- kwb.read::read_xml_as_path_value(endnote_xml)
+                                       endnote_xml = system.file("extdata/KWB_documents.xml",
+                                         package = "kwb.endnote"
+                                       )) {
+  references <- kwb.read::read_xml_as_path_value(endnote_xml)
 
-references_df <- as.data.frame(cbind(kwb.fakin::toSubdirMatrix(
-  stringr::str_remove_all(references$path,
-                      pattern = "^/xml/records/record")),
-                           references[, -1]),
-  stringsAsFactors = FALSE)
-references_df[,1] <- as.numeric(stringr::str_remove_all(references_df[,1],
-                                             "\\[|\\]"))
+  references_df <- as.data.frame(cbind(
+    kwb.fakin::toSubdirMatrix(
+      stringr::str_remove_all(references$path,
+        pattern = "^/xml/records/record"
+      )
+    ),
+    references[, -1]
+  ),
+  stringsAsFactors = FALSE
+  )
+  references_df[, 1] <- as.numeric(stringr::str_remove_all(
+    references_df[, 1],
+    "\\[|\\]"
+  ))
 
-n_col <- ncol(references_df)
-colnames(references_df) <- c("record_id", paste0("key", 1:(n_col-2)), "value")
+  n_col <- ncol(references_df)
+  colnames(references_df) <- c("record_id", paste0("key", 1:(n_col - 2)), "value")
 
-references_df <- dplyr::left_join(references_df,
-                 get_reference_type_names(endnote_xml))
+  references_df <- dplyr::left_join(
+    references_df,
+    get_reference_type_names(endnote_xml)
+  )
 
-return(references_df)
+  return(references_df)
 }
 
-if(FALSE) {
+if (FALSE) {
   abstracts <- references_df %>%
     dplyr::filter(.data$key1 == "abstract") %>%
-    dplyr::group_by(.data$record_id,
-                    .data$rec_number,
-                    .data$ref_type_id,
-                    .data$ref_type_name,
-                    .data$key1) %>%
+    dplyr::group_by(
+      .data$record_id,
+      .data$rec_number,
+      .data$ref_type_id,
+      .data$ref_type_name,
+      .data$key1
+    ) %>%
     dplyr::summarise(value = paste(value, collapse = ""))
 
   authors <- references_df %>%
     dplyr::filter(.data$key1 == "contributors") %>%
-    dplyr::group_by(.data$record_id,
-                    .data$rec_number,
-                    .data$ref_type_id,
-                    .data$ref_type_name,
-                    .data$key1,
-                    .data$key2,
-                    .data$key3) %>%
+    dplyr::group_by(
+      .data$record_id,
+      .data$rec_number,
+      .data$ref_type_id,
+      .data$ref_type_name,
+      .data$key1,
+      .data$key2,
+      .data$key3
+    ) %>%
     dplyr::summarise(value = paste(value, collapse = ""))
-
-
 }

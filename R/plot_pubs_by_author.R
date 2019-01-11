@@ -15,14 +15,22 @@
 #' plot_pubs_by_author(refs_by_author_lastfirst[1:30, ])
 
 plot_pubs_by_author <- function(pubs_by_author_df) {
-  g <- ggplot2::ggplot(pubs_by_author_df,
-                       ggplot2::aes(x = forcats::fct_reorder(.data$value,
-                                                             .data$n),
-                                    y = .data$n)) +
+  g <- ggplot2::ggplot(
+    pubs_by_author_df,
+    ggplot2::aes(
+      x = forcats::fct_reorder(
+        .data$value,
+        .data$n
+      ),
+      y = .data$n
+    )
+  ) +
     ggplot2::geom_col() +
     ggplot2::coord_flip() +
     ggplot2::theme_minimal() +
-    ggplot2::labs(y = "Number of Publications",
-                  x = "Author")
+    ggplot2::labs(
+      y = "Number of Publications",
+      x = "Author"
+    )
   g
 }
