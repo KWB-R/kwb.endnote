@@ -12,7 +12,7 @@
 #'
 plot_pubs_by_year <- function(refs_df) {
   refs_df %>%
-  dplyr::count(.data$ref_type_name, .data$dates_year)
+  dplyr::count(.data$ref_type_name, .data$dates_year) %>%
   ggplot2::ggplot(ggplot2::aes(x = .data$dates_year,
                                fill = .data$ref_type_name)) +
   ggplot2::geom_bar() +

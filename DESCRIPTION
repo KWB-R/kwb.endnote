@@ -25,13 +25,13 @@ Imports:
     forcats,
     magrittr,
     rlang,
-    tibble
+    tibble,
+    tidyr,
+    wordcloud2
 Suggests: 
     covr,
     knitr,
-    rmarkdown,
-    tidyr,
-    wordcloud2
+    rmarkdown
 VignetteBuilder: 
     knitr
 Remotes:
