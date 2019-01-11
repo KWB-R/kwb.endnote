@@ -55,6 +55,7 @@ get_pdfurls <- function(record_list, col_name = "url_pdfurls") {
 #' @return data frame for record
 #' @export
 #' @importFrom dplyr bind_cols
+#' @importFrom tibble tibble
 record_list_to_df <- function(record_list) {
 
   authors_df <- get_authors(record_list)

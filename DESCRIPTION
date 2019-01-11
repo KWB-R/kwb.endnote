@@ -24,7 +24,8 @@ Imports:
     ggplot2,
     forcats,
     magrittr,
-    rlang
+    rlang,
+    tibble
 Suggests: 
     covr,
     knitr,
