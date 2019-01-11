@@ -1,7 +1,7 @@
 #' Create dataframe from Endnote XML file
 #'
 #' @param endnote_xml path to Endnote library exported as .xml (default:
-#'   \code{\link{default_xml()}})
+#'   \code{default_xml()})
 #' @return data.frame with all information from Endnote XML joined with data from
 #' get_reference_type_names()
 #' @export

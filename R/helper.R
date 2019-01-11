@@ -1,7 +1,7 @@
 #' Helper function: get reference type names
 #'
 #' @param endnote_xml path to Endnote library exported as .xml (default:
-#'   \code{\link{default_xml()}})
+#'   \code{default_xml()})
 #' @return data.frame with columns record_id, rec_number, ref_type_id, ref_type_name
 #' @export
 #' @examples

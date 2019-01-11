@@ -8,7 +8,7 @@ create_df_from_endnote_xml(endnote_xml = default_xml())
 }
 \arguments{
 \item{endnote_xml}{path to Endnote library exported as .xml (default:
-\code{\link{default_xml()}})}
+\code{default_xml()})}
 }
 \value{
 data.frame with all information from Endnote XML joined with data from

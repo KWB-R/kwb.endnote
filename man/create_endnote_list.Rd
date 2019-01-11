@@ -8,7 +8,7 @@ create_endnote_list(endnote_xml = default_xml())
 }
 \arguments{
 \item{endnote_xml}{path to Endnote library exported as .xml (default:
-\code{\link{default_xml()}})}
+\code{default_xml()})}
 }
 \value{
 list of imported endnote_xml
