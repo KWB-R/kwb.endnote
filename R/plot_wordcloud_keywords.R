@@ -11,5 +11,5 @@ plot_wordcloud_keywords <- function(keywords_df, ...) {
   keywords_df  %>%
   dplyr::rename(word = value,
                 freq = n) %>%
-  wordcloud2::wordcloud2(keywords_word, ...)
+  wordcloud2::wordcloud2(...)
 }
