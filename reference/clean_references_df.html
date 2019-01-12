@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create dataframe from Endnote XML file — create_df_from_endnote_xml • kwb.endnote</title>
+<title>Clean References Dataframe — clean_references_df • kwb.endnote</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Create dataframe from Endnote XML file — create_df_from_endnote_xml" />
+<meta property="og:title" content="Clean References Dataframe — clean_references_df" />
 
-<meta property="og:description" content="Create dataframe from Endnote XML file" />
+<meta property="og:description" content="Clean References Dataframe" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,52 +114,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create dataframe from Endnote XML file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/create_df_from_endnote_xml.R'><code>R/create_df_from_endnote_xml.R</code></a></small>
-    <div class="hidden name"><code>create_df_from_endnote_xml.Rd</code></div>
+    <h1>Clean References Dataframe</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/create_references_df_from_list.R'><code>R/create_references_df_from_list.R</code></a></small>
+    <div class="hidden name"><code>clean_references_df.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create dataframe from Endnote XML file</p>
+    <p>Clean References Dataframe</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>create_df_from_endnote_xml</span>(<span class='kw'>endnote_xml</span> <span class='kw'>=</span> <span class='fu'><a href='default_xml.html'>default_xml</a></span>())</pre>
+    <pre class="usage"><span class='fu'>clean_references_df</span>(<span class='no'>references_df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>endnote_xml</th>
-      <td><p>path to Endnote library exported as .xml (default:
-<code><a href='default_xml.html'>default_xml()</a></code>)</p></td>
+      <th>references_df</th>
+      <td><p>as retrieved by create_references_df()</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame with all information from Endnote XML joined with data
-  from get_reference_type_names()</p>
+    <p>cleaned references_df</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>references_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_df_from_endnote_xml</span>()</div><div class='output co'>#&gt; Reading 'KWB_documents.xml' in folder
-#&gt;   '/home/travis/build/KWB-R/kwb.endnote/inst/extdata' ... ok.
-#&gt; Splitting paths ... ok. </div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>references_df</span>)</div><div class='output co'>#&gt;   record_id         key1    key2      key3  key4             value rec_number
-#&gt; 1         1     database                         KWB documents.enl        865
-#&gt; 2         1   source-app                                   EndNote        865
-#&gt; 3         1   rec-number                                       865        865
-#&gt; 4         1 foreign-keys     key                               865        865
-#&gt; 5         1     ref-type                                        17        865
-#&gt; 6         1 contributors authors author[1] style      Sprenger, C.        865
-#&gt;   ref_type_id   ref_type_name
-#&gt; 1          17 Journal Article
-#&gt; 2          17 Journal Article
-#&gt; 3          17 Journal Article
-#&gt; 4          17 Journal Article
-#&gt; 5          17 Journal Article
-#&gt; 6          17 Journal Article</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -167,9 +148,7 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
