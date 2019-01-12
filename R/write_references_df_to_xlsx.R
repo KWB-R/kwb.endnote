@@ -24,7 +24,9 @@ write_references_df_to_xlsx <- function(refs_df,
       dplyr::arrange(dplyr::desc(.data$rec_number))
   })
 
-  refs_df_list <- stats::setNames(refs_df_list, pub_types)
+  refs_df_list <- c(list(refs_df),refs_df_list)
+
+  refs_df_list <- stats::setNames(refs_df_list, c("ALL", pub_types))
 
   openxlsx::write.xlsx(refs_df_list, file, ...)
 }

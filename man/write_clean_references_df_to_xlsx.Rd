@@ -4,11 +4,11 @@
 \alias{write_clean_references_df_to_xlsx}
 \title{Write Clean References Dataframe to XLSX}
 \usage{
-write_clean_references_df_to_xlsx(refs_cleaned_df,
+write_clean_references_df_to_xlsx(refs_df,
   file = "references_clean.xlsx", ...)
 }
 \arguments{
-\item{refs_cleaned_df}{references dataframe as retrieved by clean_references_df()}
+\item{refs_df}{references dataframe as retrieved by create_references_df()}
 
 \item{file}{file where to save (default: "references_clean.xlsx")}
 
@@ -21,7 +21,6 @@ Write Clean References Dataframe to XLSX
 \examples{
 \dontrun{endnote_list <- create_endnote_list()
 refs_df <- create_references_df(endnote_list)
-refs_clean_df <- clean_references_df(refs_df)
-write_clean_references_df_to_xlsx(refs_clean_df)
+write_clean_references_df_to_xlsx(refs_df)
 }
 }
