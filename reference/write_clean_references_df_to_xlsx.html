@@ -125,15 +125,15 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>write_clean_references_df_to_xlsx</span>(<span class='no'>refs_cleaned_df</span>,
+    <pre class="usage"><span class='fu'>write_clean_references_df_to_xlsx</span>(<span class='no'>refs_df</span>,
   <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"references_clean.xlsx"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>refs_cleaned_df</th>
-      <td><p>references dataframe as retrieved by clean_references_df()</p></td>
+      <th>refs_df</th>
+      <td><p>references dataframe as retrieved by create_references_df()</p></td>
     </tr>
     <tr>
       <th>file</th>
@@ -151,8 +151,7 @@ publication type</p></td>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_endnote_list.html'>create_endnote_list</a></span>()
 <span class='no'>refs_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_references_df.html'>create_references_df</a></span>(<span class='no'>endnote_list</span>)
-<span class='no'>refs_clean_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clean_references_df.html'>clean_references_df</a></span>(<span class='no'>refs_df</span>)
-<span class='fu'>write_clean_references_df_to_xlsx</span>(<span class='no'>refs_clean_df</span>)
+<span class='fu'>write_clean_references_df_to_xlsx</span>(<span class='no'>refs_df</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
