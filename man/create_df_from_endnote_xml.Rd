@@ -11,8 +11,8 @@ create_df_from_endnote_xml(endnote_xml = default_xml())
 \code{default_xml()})}
 }
 \value{
-data.frame with all information from Endnote XML joined with data from
-get_reference_type_names()
+data.frame with all information from Endnote XML joined with data
+  from get_reference_type_names()
 }
 \description{
 Create dataframe from Endnote XML file
