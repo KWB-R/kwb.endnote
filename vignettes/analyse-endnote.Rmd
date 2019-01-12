@@ -352,4 +352,9 @@ to `references.xlsx`
 kwb.endnote::write_references_df_to_xlsx(refs_df)
 ```
 
-  
+And also writting a **cleaned** version after automatically running 
+`kwb.endnote::clean_references_df()` to `references_cleaned.xlsx`.
+
+```{r echo=TRUE, eval=FALSE}
+kwb.endnote::write_clean_references_df_to_xlsx(refs_df)
+```
