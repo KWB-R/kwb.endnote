@@ -16,5 +16,5 @@ write_clean_references_df_to_xlsx <- function(refs_df,
                                               file = "references_clean.xlsx",
                                               ...) {
   refs_clean_df <- clean_references_df(refs_df)
-  write_references_df_to_xlsx(refs_cleaned_df, file, ...)
+  write_references_df_to_xlsx(refs_clean_df, file, ...)
 }

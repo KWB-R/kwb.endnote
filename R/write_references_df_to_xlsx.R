@@ -20,7 +20,7 @@ write_references_df_to_xlsx <- function(refs_df,
   refs_df_list <- lapply(pub_types, function(x) {
     refs_df[refs_df$ref_type_name == x, ] %>%
       dplyr::select_if(~sum(!is.na(.)) > 0) %>%
-      dplyr::mutate(rec_number = as.numeric(rec_number)) %>%
+      dplyr::mutate(rec_number = as.numeric(.data$rec_number)) %>%
       dplyr::arrange(dplyr::desc(.data$rec_number))
   })
 
