@@ -28,3 +28,4 @@ write_references_df_to_xlsx <- function(refs_df,
 
   openxlsx::write.xlsx(refs_df_list, file, ...)
 }
+
