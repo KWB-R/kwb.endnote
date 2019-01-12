@@ -4,13 +4,11 @@
 \alias{create_endnote_list}
 \title{Create List From Endnote XML}
 \usage{
-
-  create_endnote_list(endnote_xml = system.file("extdata/KWB_documents.xml",
-  package = "kwb.endnote"))
+create_endnote_list(endnote_xml = default_xml())
 }
 \arguments{
 \item{endnote_xml}{path to Endnote library exported as .xml (default:
-system.file("extdata/KWB_documents.xml", package = "kwb.endnote")}
+\code{default_xml()})}
 }
 \value{
 list of imported endnote_xml

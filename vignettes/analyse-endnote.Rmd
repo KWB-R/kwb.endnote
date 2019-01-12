@@ -20,13 +20,11 @@ knitr::opts_chunk$set(
 # Import Endnote XML As Data Frame
 
 ```{r echo=TRUE}
-endnote_xml <- system.file("extdata/KWB_documents.xml", 
-                           package = "kwb.endnote")
+endnote_xml <- kwb.endnote::default_xml()
 
 references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml)
 
 n_publications <- length(unique(references_df$record_id))
-
 ```
 
 # Analysis of Publications
