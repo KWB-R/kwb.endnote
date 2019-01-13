@@ -34,26 +34,29 @@ get_abstract <- function(record_list) {
 #' @return one row authors data frame
 #' @export
 #' @importFrom dplyr bind_cols
-get_authors <- function(record_list, col_name = "author",
-                        extract_value = "authors") {
+get_authors <- function(
+  record_list, col_name = "author", extract_value = "authors"
+) {
+
   authors <- record_list$record$contributors[[extract_value]]
 
-  if (is.null(authors)) {
-    authors_df <- tibble::tibble(author = NA_character_)
-    names(authors_df) <- sprintf("%s1", col_name)
-  } else {
-    authors_list <- lapply(seq_along(authors), function(i) {
-      tmp <- tibble(author = null_to_na(authors[[i]]$style))
-      names(tmp) <- sprintf("%s%02d", col_name, i)
-      tmp
-    })
+  # Helper function to generate column name with index as suffix
+  colname_i <- function(name, i) sprintf("%s%02d", name, i)
 
-    authors_df <- dplyr::bind_cols(authors_list)
+  if (is.null(authors)) {
+
+    return(stats::setNames(nm = colname_i(col_name, 1), tibble::tibble(
+      author = NA_character_
+    )))
   }
 
-  return(authors_df)
-}
+  dplyr::bind_cols(lapply(seq_along(authors), function(i) {
 
+    stats::setNames(nm = colname_i(col_name, i), tibble(
+      author = null_to_na(authors[[i]]$style)
+    ))
+  }))
+}
 
 #' Helper function: get secondary authors from list for a reference
 #'
