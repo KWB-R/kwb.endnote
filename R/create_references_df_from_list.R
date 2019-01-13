@@ -38,19 +38,36 @@ get_authors <- function(
   record_list, col_name = "author", extract_value = "authors"
 ) {
 
-  authors <- record_list$record$contributors[[extract_value]]
+  get_multi_entry(
+    entries = record_list$record$contributors[[extract_value]],
+    col_name = col_name,
+    element = "style"
+  )
+}
 
-  if (is.null(authors)) {
+# get_multi_entry --------------------------------------------------------------
+get_multi_entry <- function(entries, col_name, element = NULL) {
+
+  if (is.null(entries)) {
 
     return(stats::setNames(nm = colname_i(col_name, 1), tibble::tibble(
-      author = NA_character_
+      value = NA_character_
     )))
   }
 
-  dplyr::bind_cols(lapply(seq_along(authors), function(i) {
+  dplyr::bind_cols(lapply(seq_along(entries), function(i) {
 
-    stats::setNames(nm = colname_i(col_name, i), tibble(
-      author = null_to_na(authors[[i]]$style)
+    entry <- if (is.null(element)) {
+
+      entries[[i]]
+
+    } else {
+
+      entries[[i]][[element]]
+    }
+
+    stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
+      value = null_to_na(entry)
     ))
   }))
 }
@@ -87,21 +104,10 @@ get_tertiary_authors <- function(record_list) {
 #' @importFrom tibble tibble
 get_pdfurls <- function(record_list, col_name = "urls_pdf") {
 
-  pdfurls <- record_list$record$urls$`pdf-urls`
-
-  if (is.null(pdfurls)) {
-
-    return(stats::setNames(nm = colname_i(col_name, 1), tibble::tibble(
-      pdfurl = NA_character_
-    )))
-  }
-
-  dplyr::bind_cols(lapply(seq_along(pdfurls), function(i) {
-
-    stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
-      pdfurl = null_to_na(pdfurls[[i]])
-    ))
-  }))
+  get_multi_entry(
+    entries = record_list$record$urls$`pdf-urls`,
+    col_name = col_name
+  )
 }
 
 #' Reference List to Data Frame
