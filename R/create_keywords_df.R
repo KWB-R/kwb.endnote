@@ -12,6 +12,7 @@
 #' head(keywords_df)
 #'
 create_keywords_df <- function(references_df) {
+
   keywords <- references_df %>%
     dplyr::filter(.data$key1 == "keywords") %>%
     dplyr::select(
@@ -24,11 +25,8 @@ create_keywords_df <- function(references_df) {
     ) %>%
     tidyr::separate_rows(.data$value, sep = ",\\s++")
 
-
-  keywords_df <- keywords %>%
+  keywords %>%
     dplyr::mutate(value = tolower(.data$value)) %>%
     dplyr::count(.data$value) %>%
     dplyr::arrange(dplyr::desc(.data$n))
-
-  return(keywords_df)
 }

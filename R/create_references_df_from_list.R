@@ -1,6 +1,7 @@
 #' @noRd
 #' @keywords internal
 null_to_na <- function(x, na_fill = NA_character_) {
+
   if (is.null(x[[1]])) na_fill else x[[1]]
 }
 
@@ -11,17 +12,18 @@ null_to_na <- function(x, na_fill = NA_character_) {
 #' @export
 #' @importFrom dplyr bind_cols
 get_abstract <- function(record_list) {
+
   abstract <- record_list$record$abstract
 
   if (is.null(abstract)) {
-    abstract_vector <- NA_character_
-  } else {
-    abstract_vector <- lapply(seq_along(abstract), function(i) {
-      null_to_na(abstract[[i]][[1]])
-    })
+
+    return(NA_character_)
   }
 
-  paste(abstract_vector, collapse = "")
+  paste(collapse = "", lapply(seq_along(abstract), function(i) {
+
+    null_to_na(abstract[[i]][[1]])
+  }))
 }
 
 #' Helper function: get authors from list for a reference
@@ -56,29 +58,24 @@ get_authors <- function(record_list, col_name = "author",
 #' Helper function: get secondary authors from list for a reference
 #'
 #' @param record_list list with one record of create_endnote_list()
-#' @param col_name default: "author_secondary"
 #' @return one row authors data frame
 #' @export
 #' @inheritParams get_authors
-get_secondary_authors <- function(record_list,
-                                  col_name = "author_secondary",
-                                  extract_value = "secondary-authors") {
-  get_authors(record_list, col_name, extract_value)
+get_secondary_authors <- function(record_list) {
+
+  get_authors(record_list, "author_secondary", "secondary-authors")
 }
 
 #' Helper function: get tertiary authors from list for a reference
 #'
 #' @param record_list list with one record of create_endnote_list()
-#' @param col_name default: "author_tertiary"
 #' @return one row authors data frame
 #' @export
 #' @inheritParams get_authors
-get_tertiary_authors <- function(record_list,
-                                 col_name = "author_tertiary",
-                                 extract_value = "tertiary-authors") {
-  get_authors(record_list, col_name, extract_value)
-}
+get_tertiary_authors <- function(record_list) {
 
+  get_authors(record_list, "author_tertiary", "tertiary-authors")
+}
 
 #' Helper function: get pdfurls from list for a reference
 #'

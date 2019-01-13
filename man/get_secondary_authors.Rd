@@ -4,15 +4,10 @@
 \alias{get_secondary_authors}
 \title{Helper function: get secondary authors from list for a reference}
 \usage{
-get_secondary_authors(record_list, col_name = "author_secondary",
-  extract_value = "secondary-authors")
+get_secondary_authors(record_list)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
-
-\item{col_name}{default: "author_secondary"}
-
-\item{extract_value}{extract_value = "authors"}
 }
 \value{
 one row authors data frame
