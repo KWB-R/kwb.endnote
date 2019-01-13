@@ -119,12 +119,16 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf") {
 #' @importFrom tibble tibble
 record_list_to_df <- function(record_list) {
 
-  record <- record_list$record
+  get_record_entry <- function(path) get_list_entry(record_list$record, path)
+  get_style <- function(path) null_to_na(get_record_entry(path)$style)
+  get_titles_style <- function(path) get_style(c("titles", path))
+  get_period_style <- function(path) get_style(c("periodical", path))
+  get_dates_style <- function(path) get_style(c("dates", path))
 
-  tibble::tibble(
-    rec_number = null_to_na(record$`rec-number`),
-    ref_type = as.numeric(null_to_na(record$`ref-type`)),
-    ref_type_name = attr(record$`ref-type`, which = "name"),
+  result <- tibble::tibble(
+    rec_number = null_to_na(get_record_entry("rec-number")),
+    ref_type = as.numeric(null_to_na(get_record_entry("ref-type"))),
+    ref_type_name = attr(get_record_entry("ref-type"), which = "name"),
     abstract = get_abstract(record_list)
   ) %>%
     dplyr::bind_cols(get_authors(record_list)) %>%
@@ -132,34 +136,33 @@ record_list_to_df <- function(record_list) {
     dplyr::bind_cols(get_tertiary_authors(record_list)) %>%
     dplyr::bind_cols(
       tibble::tibble(
-        database_name = record$database[[1]],
-        database_path = attr(record$database, which = "path"),
-        title = null_to_na(record$titles$title$style),
-        title_secondary = null_to_na(record$titles$`secondary-title`$style),
-        title_tertiary = null_to_na(record$titles$`tertiary-title`$style),
-        periodical_title_full = null_to_na(record$periodical$`full-title`$style),
-        periodical_title_secondary = null_to_na(record$periodical$`secondary-title`$style),
-        year = null_to_na(record$dates$year$style),
-        pubdates = null_to_na(record$dates$`pub_dates`$date$style),
-        pages = null_to_na(record$pages$style),
-        volume = null_to_na(record$volume$style),
-        section = null_to_na(record$section$style),
-        publisher = null_to_na(record$publisher$style),
-        isbn = null_to_na(record$isbn$style),
-        language = null_to_na(record$language$style)
+        database_name = get_record_entry("database")[[1]],
+        database_path = attr(get_record_entry("database"), which = "path"),
+        title = get_titles_style("title"),
+        title_secondary = get_titles_style("secondary-title"),
+        title_tertiary = get_titles_style("tertiary-title"),
+        periodical_title_full = get_period_style("full-title"),
+        periodical_title_secondary = get_period_style("secondary-title"),
+        year = get_dates_style("year"),
+        pubdates = get_dates_style(c("pub_dates", "date")),
+        pages = get_style("pages"),
+        volume = get_style("volume"),
+        section = get_style("section"),
+        publisher = get_style("publisher"),
+        isbn = get_style("isbn"),
+        language = get_style("language")
       )
     ) %>%
     dplyr::bind_cols(get_pdfurls(record_list)) %>%
     dplyr::bind_cols(tibble::tibble(
-      urls_related = null_to_na(record$urls$`related-urls`$style),
-      electronic_resource_num = null_to_na(record$`electronic-resource-num`$style),
-      custom1 = null_to_na(record$custom1$style),
-      custom2 = null_to_na(record$custom2$style),
-      custom3 = null_to_na(record$custom3$style),
-      custom7 = null_to_na(record$custom7$style)
+      urls_related = get_style(c("urls", "related-urls")),
+      electronic_resource_num = get_style("electronic-resource-num"),
+      custom1 = get_style("custom1"),
+      custom2 = get_style("custom2"),
+      custom3 = get_style("custom3"),
+      custom7 = get_style("custom7")
     ))
 }
-
 
 #' Create References Dataframe
 #'
