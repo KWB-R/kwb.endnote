@@ -7,7 +7,7 @@
 clean_project_names(project_names)
 }
 \arguments{
-\item{vector}{with project names to clean}
+\item{project_names}{with project names to clean}
 }
 \value{
 vector with cleaned project names

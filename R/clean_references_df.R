@@ -18,7 +18,7 @@ clean_dois <- function(dois) {
 
 #' Helper function: clean project names
 #'
-#' @param  vector with project names to clean
+#' @param project_names with project names to clean
 #' @return vector with cleaned project names
 #' @export
 #' @importFrom stringr str_remove_all str_replace_all regex str_trim
