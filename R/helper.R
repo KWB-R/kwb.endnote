@@ -32,6 +32,21 @@ first_of_element <- function(x, element) {
   x[[element]][[1]]
 }
 
+# get_list_entry ---------------------------------------------------------------
+get_list_entry <- function(x, path) {
+
+  while(length(path)) {
+
+    p <- path[1]
+
+    path <- path[-1]
+
+    x <- x[[p]]
+  }
+
+  x
+}
+
 #' Helper function: get reference type names
 #'
 #' @param endnote_xml path to Endnote library exported as .xml (default:
