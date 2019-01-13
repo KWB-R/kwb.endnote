@@ -34,26 +34,43 @@ get_abstract <- function(record_list) {
 #' @return one row authors data frame
 #' @export
 #' @importFrom dplyr bind_cols
-get_authors <- function(record_list, col_name = "author",
-                        extract_value = "authors") {
-  authors <- record_list$record$contributors[[extract_value]]
+get_authors <- function(
+  record_list, col_name = "author", extract_value = "authors"
+) {
 
-  if (is.null(authors)) {
-    authors_df <- tibble::tibble(author = NA_character_)
-    names(authors_df) <- sprintf("%s1", col_name)
-  } else {
-    authors_list <- lapply(seq_along(authors), function(i) {
-      tmp <- tibble(author = null_to_na(authors[[i]]$style))
-      names(tmp) <- sprintf("%s%02d", col_name, i)
-      tmp
-    })
-
-    authors_df <- dplyr::bind_cols(authors_list)
-  }
-
-  return(authors_df)
+  get_multi_entry(
+    entries = record_list$record$contributors[[extract_value]],
+    col_name = col_name,
+    element = "style"
+  )
 }
 
+# get_multi_entry --------------------------------------------------------------
+get_multi_entry <- function(entries, col_name, element = NULL) {
+
+  if (is.null(entries)) {
+
+    return(stats::setNames(nm = colname_i(col_name, 1), tibble::tibble(
+      value = NA_character_
+    )))
+  }
+
+  dplyr::bind_cols(lapply(seq_along(entries), function(i) {
+
+    entry <- if (is.null(element)) {
+
+      entries[[i]]
+
+    } else {
+
+      entries[[i]][[element]]
+    }
+
+    stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
+      value = null_to_na(entry)
+    ))
+  }))
+}
 
 #' Helper function: get secondary authors from list for a reference
 #'
@@ -86,24 +103,12 @@ get_tertiary_authors <- function(record_list) {
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
 get_pdfurls <- function(record_list, col_name = "urls_pdf") {
-  pdfurls <- record_list$record$urls$`pdf-urls`
 
-  if (is.null(pdfurls)) {
-    pdfurls_df <- tibble::tibble(pdfurl = NA_character_)
-    names(pdfurls_df) <- sprintf("%s1", col_name)
-  } else {
-    pdfurls_list <- lapply(seq_along(pdfurls), function(i) {
-      tmp <- tibble::tibble(pdfurl = null_to_na(pdfurls[[i]]))
-      names(tmp) <- sprintf("%s%d", col_name, i)
-      tmp
-    })
-
-    pdfurls_df <- dplyr::bind_cols(pdfurls_list)
-  }
-
-  return(pdfurls_df)
+  get_multi_entry(
+    entries = record_list$record$urls$`pdf-urls`,
+    col_name = col_name
+  )
 }
-
 
 #' Reference List to Data Frame
 #'
@@ -113,11 +118,6 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf") {
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
 record_list_to_df <- function(record_list) {
-  abstract_vector <- get_abstract(record_list)
-  authors_df <- get_authors(record_list)
-  authors_secondary_df <- get_secondary_authors(record_list)
-  authors_tertiary_df <- get_tertiary_authors(record_list)
-  urls_pdf_df <- get_pdfurls(record_list)
 
   record <- record_list$record
 
@@ -125,11 +125,11 @@ record_list_to_df <- function(record_list) {
     rec_number = null_to_na(record$`rec-number`),
     ref_type = as.numeric(null_to_na(record$`ref-type`)),
     ref_type_name = attr(record$`ref-type`, which = "name"),
-    abstract = abstract_vector
+    abstract = get_abstract(record_list)
   ) %>%
-    dplyr::bind_cols(authors_df) %>%
-    dplyr::bind_cols(authors_secondary_df) %>%
-    dplyr::bind_cols(authors_tertiary_df) %>%
+    dplyr::bind_cols(get_authors(record_list)) %>%
+    dplyr::bind_cols(get_secondary_authors(record_list)) %>%
+    dplyr::bind_cols(get_tertiary_authors(record_list)) %>%
     dplyr::bind_cols(
       tibble::tibble(
         database_name = record$database[[1]],
@@ -149,7 +149,7 @@ record_list_to_df <- function(record_list) {
         language = null_to_na(record$language$style)
       )
     ) %>%
-    dplyr::bind_cols(urls_pdf_df) %>%
+    dplyr::bind_cols(get_pdfurls(record_list)) %>%
     dplyr::bind_cols(tibble::tibble(
       urls_related = null_to_na(record$urls$`related-urls`$style),
       electronic_resource_num = null_to_na(record$`electronic-resource-num`$style),
