@@ -26,27 +26,50 @@ get_abstract <- function(record_list) {
   }))
 }
 
-#' Helper function: get authors from list for a reference
+#' Helper function: get keywords from list for a reference
 #'
 #' @param record_list list with one record of create_endnote_list()
-#' @param col_name default: "author"
-#' @param extract_value extract_value = "authors"
-#' @return one row authors data frame
+#' @param col_name default: "keyword"
+#' @param extract_value extract_value = "keyword"
+#' @return one row keywords data frame
 #' @export
 #' @importFrom dplyr bind_cols
-get_authors <- function(
-  record_list, col_name = "author", extract_value = "authors"
+get_keywords <- function(
+  record_list, col_name = "keyword", extract_value = "keywords"
 ) {
 
   get_multi_entry(
-    entries = record_list$record$contributors[[extract_value]],
+    entries = record_list$record[[extract_value]],
     col_name = col_name,
     element = "style"
   )
 }
 
+
+#' Helper function: get authors from list for a reference
+#'
+#' @param record_list list with one record of create_endnote_list()
+#' @param col_name default: "author"
+#' @param extract_value extract_value = "authors"
+#' @param collapse should separate fields in "style" be collapsed to one field?
+#' (default: FALSE)
+#' @return one row authors data frame
+#' @export
+#' @importFrom dplyr bind_cols
+get_authors <- function(
+  record_list, col_name = "author", extract_value = "authors", collapse = FALSE
+) {
+
+  get_multi_entry(
+    entries = record_list$record$contributors[[extract_value]],
+    col_name = col_name,
+    element = 1,
+    collapse = collapse
+  )
+}
+
 # get_multi_entry --------------------------------------------------------------
-get_multi_entry <- function(entries, col_name, element = NULL) {
+get_multi_entry <- function(entries, col_name, element = NULL, collapse = FALSE) {
 
   if (is.null(entries)) {
 
@@ -63,7 +86,8 @@ get_multi_entry <- function(entries, col_name, element = NULL) {
 
     } else {
 
-      entries[[i]][[element]]
+      collapse_fields(entries[[i]], collapse, element)
+
     }
 
     stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
@@ -72,15 +96,27 @@ get_multi_entry <- function(entries, col_name, element = NULL) {
   }))
 }
 
+collapse_fields <- function(entries, collapse = TRUE, element ) {
+
+  if(is.list(entries) & collapse == TRUE) {
+    paste0(get_multi_entry(entries,
+                         col_name = "tmp",
+                         element),
+         collapse =  "")
+} else {
+  null_to_na(entries[[element]])
+}
+}
+
 #' Helper function: get secondary authors from list for a reference
 #'
 #' @param record_list list with one record of create_endnote_list()
 #' @return one row authors data frame
 #' @export
 #' @inheritParams get_authors
-get_secondary_authors <- function(record_list) {
+get_secondary_authors <- function(record_list, collapse = FALSE) {
 
-  get_authors(record_list, "author_secondary", "secondary-authors")
+  get_authors(record_list, "author_secondary", "secondary-authors", collapse)
 }
 
 #' Helper function: get tertiary authors from list for a reference
@@ -89,9 +125,9 @@ get_secondary_authors <- function(record_list) {
 #' @return one row authors data frame
 #' @export
 #' @inheritParams get_authors
-get_tertiary_authors <- function(record_list) {
+get_tertiary_authors <- function(record_list, collapse = FALSE) {
 
-  get_authors(record_list, "author_tertiary", "tertiary-authors")
+  get_authors(record_list, "author_tertiary", "tertiary-authors", collapse)
 }
 
 #' Helper function: get pdfurls from list for a reference
@@ -110,14 +146,18 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf") {
   )
 }
 
+
 #' Reference List to Data Frame
 #'
 #' @param record_list list with one record of create_endnote_list()
+#' @param collapse should separate fields in "style" be collapsed to one field?
+#' (default: FALSE)
 #' @return data frame for record
 #' @export
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
-record_list_to_df <- function(record_list) {
+record_list_to_df <- function(record_list,
+                              collapse = FALSE) {
 
   get_record_entry <- function(path) get_list_entry(record_list$record, path)
   get_style <- function(path) null_to_na(get_record_entry(path)$style)
@@ -125,15 +165,16 @@ record_list_to_df <- function(record_list) {
   get_period_style <- function(path) get_style(c("periodical", path))
   get_dates_style <- function(path) get_style(c("dates", path))
 
-  result <- tibble::tibble(
+  tibble::tibble(
     rec_number = null_to_na(get_record_entry("rec-number")),
     ref_type = as.numeric(null_to_na(get_record_entry("ref-type"))),
     ref_type_name = attr(get_record_entry("ref-type"), which = "name"),
     abstract = get_abstract(record_list)
   ) %>%
-    dplyr::bind_cols(get_authors(record_list)) %>%
-    dplyr::bind_cols(get_secondary_authors(record_list)) %>%
-    dplyr::bind_cols(get_tertiary_authors(record_list)) %>%
+    dplyr::bind_cols(get_keywords(record_list)) %>%
+    dplyr::bind_cols(get_authors(record_list,collapse = collapse)) %>%
+    dplyr::bind_cols(get_secondary_authors(record_list, collapse = collapse)) %>%
+    dplyr::bind_cols(get_tertiary_authors(record_list, collapse = collapse)) %>%
     dplyr::bind_cols(
       tibble::tibble(
         database_name = get_record_entry("database")[[1]],
@@ -147,8 +188,17 @@ record_list_to_df <- function(record_list) {
         pubdates = get_dates_style(c("pub_dates", "date")),
         pages = get_style("pages"),
         volume = get_style("volume"),
+        numvols  = get_style("num-vols"),
+        notes = get_style("notes"),
         section = get_style("section"),
         publisher = get_style("publisher"),
+        publocation = get_style("pub-location"),
+        puborig = get_style("orig-pub"),
+        caption = get_style("caption"),
+        authaddress = get_style("auth-address"),
+        edition = get_style("edition"),
+        worktype = get_style("work-type"),
+        label = get_style("label"),
         isbn = get_style("isbn"),
         language = get_style("language")
       )
@@ -167,6 +217,8 @@ record_list_to_df <- function(record_list) {
 #' Create References Dataframe
 #'
 #' @param endnote_list list created with create_endnote_list()
+#' @param collapse should separate fields in "style" be collapsed to one field?
+#' (default: FALSE)
 #' @return data.frame with columns record_id, rec_number, ref_type_id, ref_type_name
 #' @export
 #' @importFrom dplyr everything starts_with
@@ -175,9 +227,9 @@ record_list_to_df <- function(record_list) {
 #' refs_df <- create_references_df(endnote_list)
 #' head(refs_df)
 #'
-create_references_df <- function(endnote_list) {
+create_references_df <- function(endnote_list, collapse = FALSE) {
   extract_values_from_list <- lapply(seq_along(endnote_list), function(rec_id) {
-    record_list_to_df(record_list = endnote_list[rec_id])
+    record_list_to_df(record_list = endnote_list[rec_id], collapse)
   })
 
   dplyr::bind_rows(extract_values_from_list) %>%
@@ -187,16 +239,23 @@ create_references_df <- function(endnote_list) {
       dplyr::starts_with("year"),
       dplyr::starts_with("title"),
       dplyr::starts_with("abstract"),
-      dplyr::starts_with("author"),
-      dplyr::starts_with("author_sec"),
       dplyr::starts_with("author_ter"),
+      dplyr::starts_with("author_sec"),
+      dplyr::starts_with("author"),
+      dplyr::starts_with("authaddress"),
       dplyr::starts_with("periodical"),
       dplyr::starts_with("pages"),
       dplyr::starts_with("volume"),
+      dplyr::starts_with("num"),
       dplyr::starts_with("section"),
-      dplyr::starts_with("publisher"),
+      dplyr::starts_with("edition"),
+      dplyr::starts_with("pub"),
       dplyr::starts_with("urls_"),
       dplyr::starts_with("electronic"),
+      dplyr::starts_with("work"),
+      dplyr::starts_with("label"),
+      dplyr::starts_with("keyword"),
+      dplyr::starts_with("notes"),
       dplyr::starts_with("custom"),
       dplyr::starts_with("isbn"),
       dplyr::starts_with("language"),

@@ -4,10 +4,13 @@
 \alias{record_list_to_df}
 \title{Reference List to Data Frame}
 \usage{
-record_list_to_df(record_list)
+record_list_to_df(record_list, collapse = FALSE)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
+
+\item{collapse}{should separate fields in "style" be collapsed to one field?
+(default: FALSE)}
 }
 \value{
 data frame for record
