@@ -40,9 +40,6 @@ get_authors <- function(
 
   authors <- record_list$record$contributors[[extract_value]]
 
-  # Helper function to generate column name with index as suffix
-  colname_i <- function(name, i) sprintf("%s%02d", name, i)
-
   if (is.null(authors)) {
 
     return(stats::setNames(nm = colname_i(col_name, 1), tibble::tibble(
@@ -89,24 +86,23 @@ get_tertiary_authors <- function(record_list) {
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
 get_pdfurls <- function(record_list, col_name = "urls_pdf") {
+
   pdfurls <- record_list$record$urls$`pdf-urls`
 
   if (is.null(pdfurls)) {
-    pdfurls_df <- tibble::tibble(pdfurl = NA_character_)
-    names(pdfurls_df) <- sprintf("%s1", col_name)
-  } else {
-    pdfurls_list <- lapply(seq_along(pdfurls), function(i) {
-      tmp <- tibble::tibble(pdfurl = null_to_na(pdfurls[[i]]))
-      names(tmp) <- sprintf("%s%d", col_name, i)
-      tmp
-    })
 
-    pdfurls_df <- dplyr::bind_cols(pdfurls_list)
+    return(stats::setNames(nm = colname_i(col_name, 1), tibble::tibble(
+      pdfurl = NA_character_
+    )))
   }
 
-  return(pdfurls_df)
-}
+  dplyr::bind_cols(lapply(seq_along(pdfurls), function(i) {
 
+    stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
+      pdfurl = null_to_na(pdfurls[[i]])
+    ))
+  }))
+}
 
 #' Reference List to Data Frame
 #'

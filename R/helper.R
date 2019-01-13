@@ -4,6 +4,14 @@ attr_of_element <- function(x, element, which) {
   attr(x[[element]], which)
 }
 
+# colname_i --------------------------------------------------------------------
+
+# Helper function to generate column name with index as suffix
+colname_i <- function(name, i) {
+
+  sprintf("%s%02d", name, i)
+}
+
 # default_xml ------------------------------------------------------------------
 
 #' Path to Default XML File
