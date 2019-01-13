@@ -56,29 +56,24 @@ get_authors <- function(record_list, col_name = "author",
 #' Helper function: get secondary authors from list for a reference
 #'
 #' @param record_list list with one record of create_endnote_list()
-#' @param col_name default: "author_secondary"
 #' @return one row authors data frame
 #' @export
 #' @inheritParams get_authors
-get_secondary_authors <- function(record_list,
-                                  col_name = "author_secondary",
-                                  extract_value = "secondary-authors") {
-  get_authors(record_list, col_name, extract_value)
+get_secondary_authors <- function(record_list) {
+
+  get_authors(record_list, "author_secondary", "secondary-authors")
 }
 
 #' Helper function: get tertiary authors from list for a reference
 #'
 #' @param record_list list with one record of create_endnote_list()
-#' @param col_name default: "author_tertiary"
 #' @return one row authors data frame
 #' @export
 #' @inheritParams get_authors
-get_tertiary_authors <- function(record_list,
-                                 col_name = "author_tertiary",
-                                 extract_value = "tertiary-authors") {
-  get_authors(record_list, col_name, extract_value)
-}
+get_tertiary_authors <- function(record_list) {
 
+  get_authors(record_list, "author_tertiary", "tertiary-authors")
+}
 
 #' Helper function: get pdfurls from list for a reference
 #'

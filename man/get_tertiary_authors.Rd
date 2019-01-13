@@ -4,15 +4,10 @@
 \alias{get_tertiary_authors}
 \title{Helper function: get tertiary authors from list for a reference}
 \usage{
-get_tertiary_authors(record_list, col_name = "author_tertiary",
-  extract_value = "tertiary-authors")
+get_tertiary_authors(record_list)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
-
-\item{col_name}{default: "author_tertiary"}
-
-\item{extract_value}{extract_value = "authors"}
 }
 \value{
 one row authors data frame
