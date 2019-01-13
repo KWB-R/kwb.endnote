@@ -118,11 +118,6 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf") {
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
 record_list_to_df <- function(record_list) {
-  abstract_vector <- get_abstract(record_list)
-  authors_df <- get_authors(record_list)
-  authors_secondary_df <- get_secondary_authors(record_list)
-  authors_tertiary_df <- get_tertiary_authors(record_list)
-  urls_pdf_df <- get_pdfurls(record_list)
 
   record <- record_list$record
 
@@ -130,11 +125,11 @@ record_list_to_df <- function(record_list) {
     rec_number = null_to_na(record$`rec-number`),
     ref_type = as.numeric(null_to_na(record$`ref-type`)),
     ref_type_name = attr(record$`ref-type`, which = "name"),
-    abstract = abstract_vector
+    abstract = get_abstract(record_list)
   ) %>%
-    dplyr::bind_cols(authors_df) %>%
-    dplyr::bind_cols(authors_secondary_df) %>%
-    dplyr::bind_cols(authors_tertiary_df) %>%
+    dplyr::bind_cols(get_authors(record_list)) %>%
+    dplyr::bind_cols(get_secondary_authors(record_list)) %>%
+    dplyr::bind_cols(get_tertiary_authors(record_list)) %>%
     dplyr::bind_cols(
       tibble::tibble(
         database_name = record$database[[1]],
@@ -154,7 +149,7 @@ record_list_to_df <- function(record_list) {
         language = null_to_na(record$language$style)
       )
     ) %>%
-    dplyr::bind_cols(urls_pdf_df) %>%
+    dplyr::bind_cols(get_pdfurls(record_list)) %>%
     dplyr::bind_cols(tibble::tibble(
       urls_related = null_to_na(record$urls$`related-urls`$style),
       electronic_resource_num = null_to_na(record$`electronic-resource-num`$style),
