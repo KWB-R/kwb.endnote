@@ -1,6 +1,7 @@
 #' @noRd
 #' @keywords internal
 null_to_na <- function(x, na_fill = NA_character_) {
+
   if (is.null(x[[1]])) na_fill else x[[1]]
 }
 
@@ -11,17 +12,18 @@ null_to_na <- function(x, na_fill = NA_character_) {
 #' @export
 #' @importFrom dplyr bind_cols
 get_abstract <- function(record_list) {
+
   abstract <- record_list$record$abstract
 
   if (is.null(abstract)) {
-    abstract_vector <- NA_character_
-  } else {
-    abstract_vector <- lapply(seq_along(abstract), function(i) {
-      null_to_na(abstract[[i]][[1]])
-    })
+
+    return(NA_character_)
   }
 
-  paste(abstract_vector, collapse = "")
+  paste(collapse = "", lapply(seq_along(abstract), function(i) {
+
+    null_to_na(abstract[[i]][[1]])
+  }))
 }
 
 #' Helper function: get authors from list for a reference
