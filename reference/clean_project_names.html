@@ -125,7 +125,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>clean_project_names</span>(<span class='no'>project_names</span>)</pre>
+    <pre class="usage"><span class='fu'>clean_project_names</span>(<span class='no'>project_names</span>, <span class='kw'>replace_na</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>replace_na_text</span> <span class='kw'>=</span> <span class='st'>"add_project_name"</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +134,19 @@
     <tr>
       <th>project_names</th>
       <td><p>with project names to clean</p></td>
+    </tr>
+    <tr>
+      <th>replace_na</th>
+      <td><p>if TRUE NAs are replaced with 'replace_na_text' (
+default: FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>replace_na_text</th>
+      <td><p>text for replacing NAs (default: "add_project_name")</p></td>
+    </tr>
+    <tr>
+      <th>dbg</th>
+      <td><p>show debug messages (default: TRUE)</p></td>
     </tr>
     </table>
     
