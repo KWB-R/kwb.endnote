@@ -175,7 +175,7 @@ record_list_to_df <- function(record_list,
 
 
   tibble::tibble(
-    rec_number = null_to_na(get_record_entry("rec-number")),
+    rec_number = as.numeric(null_to_na(get_record_entry("rec-number"))),
     ref_type = as.numeric(null_to_na(get_record_entry("ref-type"))),
     ref_type_name = attr(get_record_entry("ref-type"), which = "name"),
     abstract = get_abstract(record_list, collapse)
