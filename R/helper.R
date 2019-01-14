@@ -35,7 +35,7 @@ first_of_element <- function(x, element) {
 # get_list_entry ---------------------------------------------------------------
 get_list_entry <- function(x, path) {
 
-  while(length(path)) {
+  while (! is.null(x) && length(path)) {
 
     p <- path[1]
 

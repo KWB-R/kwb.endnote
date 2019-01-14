@@ -4,10 +4,10 @@
 \alias{write_references_df_to_xlsx}
 \title{Write References Dataframe to XLSX}
 \usage{
-write_references_df_to_xlsx(refs_df, file = "references.xlsx", ...)
+write_references_df_to_xlsx(endnote_list, file = "references.xlsx", ...)
 }
 \arguments{
-\item{refs_df}{references dataframe as retrieved by create_references_df()}
+\item{endnote_list}{list created with create_endnote_list()}
 
 \item{file}{file where to save (default: "references.xlsx")}
 
@@ -22,7 +22,6 @@ Write References Dataframe to XLSX
 }
 \examples{
 \dontrun{endnote_list <- create_endnote_list()
-refs_df <- create_references_df(endnote_list)
-write_references_df_to_xlsx(refs_df)
+write_references_df_to_xlsx(endnote_list)
 }
 }

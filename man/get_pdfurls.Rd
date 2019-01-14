@@ -4,12 +4,15 @@
 \alias{get_pdfurls}
 \title{Helper function: get pdfurls from list for a reference}
 \usage{
-get_pdfurls(record_list, col_name = "urls_pdf")
+get_pdfurls(record_list, col_name = "urls_pdf", collapse = FALSE)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
 
 \item{col_name}{default: "url_pdfurls"}
+
+\item{collapse}{should separate fields in "style" be collapsed to one field?
+(default: FALSE)}
 }
 \value{
 one row pdfurls data frame

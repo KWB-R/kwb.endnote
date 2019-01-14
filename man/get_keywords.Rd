@@ -5,7 +5,7 @@
 \title{Helper function: get keywords from list for a reference}
 \usage{
 get_keywords(record_list, col_name = "keyword",
-  extract_value = "keywords")
+  extract_value = "keywords", collapse = FALSE)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
@@ -13,6 +13,9 @@ get_keywords(record_list, col_name = "keyword",
 \item{col_name}{default: "keyword"}
 
 \item{extract_value}{extract_value = "keyword"}
+
+\item{collapse}{should separate fields in "style" be collapsed to one field?
+(default: FALSE)}
 }
 \value{
 one row keywords data frame
