@@ -28,7 +28,7 @@ create_list_with_unique_entries <- function(refs_df) {
   tidy_df <- function(columns) {
     refs_df[,columns] %>%
     tidyr::gather(key = "key", value = "value") %>%
-    dplyr::filter(!is.na(.data$value)) %>%
+    dplyr::filter(!is.na(.data$key)) %>%
     dplyr::count(.data$value)
 
   }

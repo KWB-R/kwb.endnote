@@ -31,5 +31,5 @@ write_clean_references_df_to_xlsx <- function(endnote_list,
   refs_list <- c(refs_list_by_pubtype, unique_entries_list)
 
 
-  write_references_df_to_xlsx(refs_list, file, ...)
+  openxlsx::write.xlsx(refs_list, file, ...)
 }

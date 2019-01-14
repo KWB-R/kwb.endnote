@@ -38,7 +38,7 @@ clean_project_names <- function(project_names, replace_na = FALSE,
                                 replace_na_text = "add_project_name",
                                 dbg = TRUE) {
 
-  kwb.utils::catAndRun("Clean 'Project Names'", expr = {
+kwb.utils::catAndRun("Clean 'Project Names'", expr = {
 
   project_names <- project_names %>%
     stringr::str_replace_all("\\s+?/", ",") %>%
@@ -56,6 +56,7 @@ clean_project_names <- function(project_names, replace_na = FALSE,
   project_names
 },
  dbg = dbg)
+
 }
 
 
@@ -107,6 +108,8 @@ kwb.utils::catAndRun("Clean and Check 'Author Names'", expr = {
   author_names
 },
 dbg = dbg)
+
+
 }
 
 #' Helper function: clean access information
@@ -123,7 +126,7 @@ clean_accessibility <- function(access,  replace_na = FALSE,
                                 replace_na_text = "add_public_or_confidential",
                                 dbg = TRUE) {
 
-kwb.utils::catAndRun("Clean and Check 'Author Names'", expr = {
+kwb.utils::catAndRun("Clean 'Accessibility'", expr = {
 
   access <- access %>%
     stringr::str_replace_all(stringr::regex("PU.*",ignore_case = TRUE),
@@ -144,6 +147,7 @@ kwb.utils::catAndRun("Clean and Check 'Author Names'", expr = {
 
 },
 dbg = dbg)
+
 }
 
 
@@ -169,7 +173,8 @@ clean_references_df <- function(endnote_list,
 
   refs_df <- create_references_df(endnote_list,collapse = TRUE)
 
-  refs_df <- kwb.utils::catAndRun("\nClean and Check 'Author Names'", expr = {
+  refs_df <- kwb.utils::catAndRun("\nClean and Check 'Author Names'",
+  expr = {
   col_authors <- names(refs_df)[stringr::str_detect(names(refs_df), "author")]
   for(col_author in col_authors) {
     replace_author_na <- if(col_author == "author01") { TRUE } else { FALSE }
