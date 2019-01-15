@@ -35,10 +35,8 @@ Check two Dataframes for Differences
 ### Check differences between two different versions of "KWB_documents.xml"
 ############################################################################
 
-old_xml <- system.file("extdata/2019-01-07_KWB_documents.xml",
-package = "kwb.endnote")
-new_xml <- system.file("extdata/2019-01-14_KWB_documents.xml",
-package = "kwb.endnote")
+old_xml <- extdata_file("2019-01-07_KWB_documents.xml")
+new_xml <- extdata_file("2019-01-14_KWB_documents.xml")
 old_list <- kwb.endnote::create_endnote_list(old_xml)
 new_list <- kwb.endnote::create_endnote_list(new_xml)
 old_df <- kwb.endnote::create_references_df(old_list)

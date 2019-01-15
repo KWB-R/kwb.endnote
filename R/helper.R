@@ -23,7 +23,7 @@ colname_i <- function(name, i) {
 #'
 default_xml <- function() {
 
-  system.file("extdata/2019-01-07_KWB_documents.xml", package = "kwb.endnote")
+  extdata_file("2019-01-07_KWB_documents.xml")
 }
 
 # first_of_element -------------------------------------------------------------
@@ -73,4 +73,15 @@ get_reference_type_names <- function(endnote_xml = default_xml()) {
 numeric_first_elements <- function(x, element) {
 
   as.numeric(sapply(x, first_of_element, element))
+}
+
+# extdata_file -----------------------------------------------------------------
+
+#' Get Path to File in This Package
+#'
+#' @param \dots parts of path passed to \code{\link{system.file}}
+#' @export
+extdata_file <- function(...) {
+
+  system.file("extdata", ..., package = "kwb.endnote")
 }
