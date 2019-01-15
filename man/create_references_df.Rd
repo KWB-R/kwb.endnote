@@ -4,10 +4,13 @@
 \alias{create_references_df}
 \title{Create References Dataframe}
 \usage{
-create_references_df(endnote_list)
+create_references_df(endnote_list, collapse = FALSE)
 }
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}
+
+\item{collapse}{should separate fields in "style" be collapsed to one field?
+(default: FALSE)}
 }
 \value{
 data.frame with columns record_id, rec_number, ref_type_id, ref_type_name

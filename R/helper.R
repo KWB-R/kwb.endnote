@@ -23,7 +23,7 @@ colname_i <- function(name, i) {
 #'
 default_xml <- function() {
 
-  system.file("extdata/KWB_documents.xml", package = "kwb.endnote")
+  system.file("extdata/2019-01-07_KWB_documents.xml", package = "kwb.endnote")
 }
 
 # first_of_element -------------------------------------------------------------
@@ -35,7 +35,7 @@ first_of_element <- function(x, element) {
 # get_list_entry ---------------------------------------------------------------
 get_list_entry <- function(x, path) {
 
-  while(length(path)) {
+  while (! is.null(x) && length(path)) {
 
     p <- path[1]
 

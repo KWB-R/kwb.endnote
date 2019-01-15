@@ -4,10 +4,12 @@
 \alias{clean_dois}
 \title{Helper function: clean DOIs}
 \usage{
-clean_dois(dois)
+clean_dois(dois, dbg = TRUE)
 }
 \arguments{
 \item{dois}{vectors with DOIs to clean}
+
+\item{dbg}{show debug messages (default: TRUE)}
 }
 \value{
 cleaned DOIs

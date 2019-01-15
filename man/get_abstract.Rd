@@ -4,10 +4,13 @@
 \alias{get_abstract}
 \title{Helper function: get abstract from list for a reference}
 \usage{
-get_abstract(record_list)
+get_abstract(record_list, collapse = FALSE)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
+
+\item{collapse}{should separate fields in "style" be collapsed to one field?
+(default: FALSE)}
 }
 \value{
 one row abstract data frame

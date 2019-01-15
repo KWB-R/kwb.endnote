@@ -4,10 +4,15 @@
 \alias{clean_references_df}
 \title{Clean References Dataframe}
 \usage{
-clean_references_df(references_df)
+clean_references_df(endnote_list, replace_na = FALSE, dbg = TRUE)
 }
 \arguments{
-\item{references_df}{as retrieved by create_references_df()}
+\item{endnote_list}{list created with create_endnote_list()}
+
+\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
+default: FALSE) defined in relevant helper function}
+
+\item{dbg}{show debug messages (default: TRUE)}
 }
 \value{
 cleaned references_df
@@ -17,8 +22,7 @@ Clean References Dataframe
 }
 \examples{
 \dontrun{endnote_list <- create_endnote_list()
-refs_df <- create_references_df(endnote_list)
-refs_clean_df <- clean_references_df(refs_df)
+refs_clean_df <- clean_references_df(endnote_list)
 head(refs_clean_df)
 }
 }

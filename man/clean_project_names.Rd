@@ -4,10 +4,18 @@
 \alias{clean_project_names}
 \title{Helper function: clean project names}
 \usage{
-clean_project_names(project_names)
+clean_project_names(project_names, replace_na = FALSE,
+  replace_na_text = "add_project_name", dbg = TRUE)
 }
 \arguments{
-\item{vector}{with project names to clean}
+\item{project_names}{with project names to clean}
+
+\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
+default: FALSE)}
+
+\item{replace_na_text}{text for replacing NAs (default: "add_project_name")}
+
+\item{dbg}{show debug messages (default: TRUE)}
 }
 \value{
 vector with cleaned project names

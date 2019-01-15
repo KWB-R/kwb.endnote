@@ -11,3 +11,43 @@ template:
 development:
   mode: auto
 
+reference:
+  - title: "Workflow 1: Import, Clean, Check and Export"
+    desc: >
+      Functions for Standard Data Processing Workflow, for importing cleaning
+      checking and exporting Endnote data
+    contents:
+      - create_endnote_list
+      - create_references_df
+      - clean_references_df
+      - starts_with("create_list_")
+      - starts_with("check_")
+      - write_references_df_to_xlsx
+      - write_clean_references_df_to_xlsx
+
+  - title: "Workflow 2: Import and Prepare Data for Plotting"
+    desc: >
+      Functions for Alternative Data Processing Workflow. Currently this workflow
+      is used for preparing the data for the plotting functions
+    contents:
+      - create_df_from_endnote_xml
+      - create_keywords_df
+
+  - title: "Plot"
+    desc: >
+      Functions for Plotting
+    contents:
+      - starts_with("plot_")
+
+  - title: "Helper Functions"
+    desc: >
+      Helper Functions for Preparing the Data
+    contents:
+      - starts_with("clean_a")
+      - starts_with("clean_d")
+      - starts_with("clean_p")
+      - default_xml
+      - starts_with("get_")
+      - record_list_to_df
+      - tidy_df
+      - "%>%"

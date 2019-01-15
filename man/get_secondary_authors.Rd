@@ -4,10 +4,13 @@
 \alias{get_secondary_authors}
 \title{Helper function: get secondary authors from list for a reference}
 \usage{
-get_secondary_authors(record_list)
+get_secondary_authors(record_list, collapse = FALSE)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
+
+\item{collapse}{should separate fields in "style" be collapsed to one field?
+(default: FALSE)}
 }
 \value{
 one row authors data frame

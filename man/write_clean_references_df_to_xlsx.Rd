@@ -4,13 +4,19 @@
 \alias{write_clean_references_df_to_xlsx}
 \title{Write Clean References Dataframe to XLSX}
 \usage{
-write_clean_references_df_to_xlsx(refs_df,
-  file = "references_clean.xlsx", ...)
+write_clean_references_df_to_xlsx(endnote_list,
+  file = "references_clean.xlsx", replace_na = FALSE, dbg = TRUE,
+  ...)
 }
 \arguments{
-\item{refs_df}{references dataframe as retrieved by create_references_df()}
+\item{endnote_list}{list created with create_endnote_list()}
 
 \item{file}{file where to save (default: "references_clean.xlsx")}
+
+\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
+default: FALSE)}
+
+\item{dbg}{show debug messages (default: TRUE)}
 
 \item{...}{additional arguments passed to openxlsx::write.xlsx()
 publication type}
@@ -20,7 +26,6 @@ Write Clean References Dataframe to XLSX
 }
 \examples{
 \dontrun{endnote_list <- create_endnote_list()
-refs_df <- create_references_df(endnote_list)
-write_clean_references_df_to_xlsx(refs_df)
+write_clean_references_df_to_xlsx(endnote_list)
 }
 }
