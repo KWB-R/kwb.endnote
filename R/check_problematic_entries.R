@@ -12,22 +12,21 @@
 #' problematic_entries <- check_problematic_entries(endnote_list)
 #' head(problematic_entries)
 #' }
-check_problematic_entries <- function(endnote_list, replace_na = TRUE,
-                                      dbg = TRUE) {
-
+check_problematic_entries <- function(
+  endnote_list, replace_na = TRUE, dbg = TRUE) {
 
   entries_org <- kwb.utils::catAndRun(
     sprintf("Creating data frame from '%s'",
             deparse(substitute(endnote_list))),
-    create_references_df(endnote_list),
-    dbg = dbg
+    dbg = dbg,
+    expr = create_references_df(endnote_list)
   )
 
   entries_cleaned <- kwb.utils::catAndRun(
     sprintf("Creating 'cleaned' data frame from '%s' for comparison",
-    deparse(substitute(endnote_list))),
-    clean_references_df(endnote_list, replace_na, dbg),
-    dbg = dbg
+            deparse(substitute(endnote_list))),
+    dbg = dbg,
+    expr = clean_references_df(endnote_list, replace_na, dbg)
   )
 
   has_problems <- ! sapply(names(entries_org), function(col_name) {
@@ -38,17 +37,18 @@ check_problematic_entries <- function(endnote_list, replace_na = TRUE,
 
   check_list <- lapply(cols_with_problems, function(column) {
 
-    indices <- which(!sapply(seq_len(nrow(entries_org)), function (i) {
+    indices <- which(! sapply(seq_len(nrow(entries_org)), function (i) {
       identical(entries_org[[column]][i],entries_cleaned[[column]][i])}))
 
-    tibble::tibble(rec_number = entries_org[["rec_number"]][indices],
-                   key = column,
-                   value_org = entries_org[[column]][indices],
-                   value_clean = entries_cleaned[[column]][indices])
+    tibble::tibble(
+      rec_number = entries_org[["rec_number"]][indices],
+      key = column,
+      value_org = entries_org[[column]][indices],
+      value_clean = entries_cleaned[[column]][indices]
+    )
   })
 
   dplyr::bind_rows(check_list) %>%
-  dplyr::mutate(rec_number = as.numeric(.data$rec_number)) %>%
-  dplyr::arrange(.data$rec_number, .data$key)
-
+    dplyr::mutate(rec_number = as.numeric(.data$rec_number)) %>%
+    dplyr::arrange(.data$rec_number, .data$key)
 }
