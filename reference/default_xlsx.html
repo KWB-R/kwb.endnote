@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Write References Dataframe to XLSX — write_references_df_to_xlsx • kwb.endnote</title>
+<title>Helper function: default filename for XLSX — default_xlsx • kwb.endnote</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Write References Dataframe to XLSX — write_references_df_to_xlsx" />
+<meta property="og:title" content="Helper function: default filename for XLSX — default_xlsx" />
 
-<meta property="og:description" content="Write References Dataframe to XLSX" />
+<meta property="og:description" content="Helper function: default filename for XLSX" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,48 +114,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Write References Dataframe to XLSX</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/write_references_df_to_xlsx.R'><code>R/write_references_df_to_xlsx.R</code></a></small>
-    <div class="hidden name"><code>write_references_df_to_xlsx.Rd</code></div>
+    <h1>Helper function: default filename for XLSX</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/helper.R'><code>R/helper.R</code></a></small>
+    <div class="hidden name"><code>default_xlsx.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Write References Dataframe to XLSX</p>
+    <p>Helper function: default filename for XLSX</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>write_references_df_to_xlsx</span>(<span class='no'>endnote_list</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='default_xlsx.html'>default_xlsx</a></span>(<span class='no'>endnote_list</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>default_xlsx</span>(<span class='no'>endnote_list</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>endnote_list</th>
-      <td><p>list created with create_endnote_list()</p></td>
-    </tr>
-    <tr>
-      <th>file</th>
-      <td><p>file where to save (default: "references.xlsx")</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments passed to openxlsx::write.xlsx()</p></td>
+      <td><p>list as retrieved by create_endnote_list()</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>write references dataframe to xlsx with one sheet for each
-publication type</p>
+    <p>default xlsx filename</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_endnote_list.html'>create_endnote_list</a></span>()
-<span class='fu'>write_references_df_to_xlsx</span>(<span class='no'>endnote_list</span>)
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -163,9 +148,7 @@ publication type</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
