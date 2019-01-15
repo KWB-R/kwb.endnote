@@ -20,4 +20,5 @@ Create dataframe from Endnote XML file
 \examples{
 references_df <- create_df_from_endnote_xml()
 head(references_df)
+
 }

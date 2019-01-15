@@ -15,7 +15,7 @@
 #' write_clean_references_df_to_xlsx(endnote_list)
 #' }
 write_clean_references_df_to_xlsx <- function(endnote_list,
-                                              file = "references_clean.xlsx",
+   file = default_clean_xlsx(endnote_list),
                                               replace_na = FALSE,
                                               dbg = TRUE,
                                               ...) {

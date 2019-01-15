@@ -86,14 +86,14 @@ df_x_tidy <-   kwb.utils::catAndRun(
 dbg = dbg)
 
 df_y_tidy <- kwb.utils::catAndRun(
-    sprintf("Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
-            name_df_y,
-            name_value_y,
-            sprintf("%s_tidy", name_df_y)), expr = {
-              tidy_df(df_y) %>%
+  sprintf("Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
+          name_df_y,
+          name_value_y,
+          sprintf("%s_tidy", name_df_y)), expr = {
+            tidy_df(df_y) %>%
               dplyr::rename(!!rlang::quo_name(name_value_y) := .data$value)
-},
-dbg = dbg)
+          },
+  dbg = dbg)
 
 join_cols <- c("rec_number", "key")
 

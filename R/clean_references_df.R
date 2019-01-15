@@ -197,5 +197,8 @@ clean_references_df <- function(endnote_list,
                                               replace_na = replace_na,
                                               dbg = dbg))
 
+
+
+
 }
 

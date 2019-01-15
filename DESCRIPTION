@@ -23,6 +23,7 @@ BugReports: https://github.com/KWB-R/kwb.endnote/issues
 Imports: 
     dplyr,
     forcats,
+    fs,
     ggplot2,
     kwb.fakin,
     kwb.read,

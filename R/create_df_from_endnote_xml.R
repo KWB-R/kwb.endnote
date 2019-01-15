@@ -9,9 +9,11 @@
 #' @importFrom kwb.fakin toSubdirMatrix
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr left_join
+#' @importFrom fs file_info
 #' @examples
 #' references_df <- create_df_from_endnote_xml()
 #' head(references_df)
+#'
 create_df_from_endnote_xml <- function(endnote_xml = default_xml()) {
 
   references <- kwb.read::read_xml_as_path_value(endnote_xml)
@@ -34,7 +36,10 @@ create_df_from_endnote_xml <- function(endnote_xml = default_xml()) {
 
   colnames(references_df) <- c("record_id", paste0("key", 1:(n_col-2)), "value")
 
-  dplyr::left_join(references_df, get_reference_type_names(endnote_xml))
+  endnote_df <- dplyr::left_join(references_df,
+                                   get_reference_type_names(endnote_xml))
+
+  add_file_info_attributes(endnote_df, endnote_xml)
 }
 
 if (FALSE) {

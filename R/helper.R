@@ -74,3 +74,45 @@ numeric_first_elements <- function(x, element) {
 
   as.numeric(sapply(x, first_of_element, element))
 }
+
+#' Helper function: add fileinfo attributes
+#'
+#' @param obj object to write attributes to
+#' @param path path to file
+#' @importFrom fs file_info
+#' @importFrom tools file_path_sans_ext
+#' @return object with file info attributes
+#' @export
+add_file_info_attributes <- function(obj, path) {
+
+  structure(
+    obj,
+    "xml_filename_without_extension" = tools::file_path_sans_ext(basename(path)),
+    "xml_file_info" = fs::file_info(path)
+  )
+}
+
+#' Helper function: get xml filename without extension
+#' @param obj list or datafram as retrieved by create_endnote_list() or
+#' create_df_from_endnote_xml()
+#' @return xml filename without file extension
+#' @export
+get_xml_filename_without_extension <- function(obj) {
+  attr(obj, which = "xml_filename_without_extension")
+}
+
+#' Helper function: default filename for cleaned XLSX
+#' @param endnote_list list as retrieved by create_endnote_list()
+#' @return default clean xlsx filename
+#' @export
+default_clean_xlsx <- function(endnote_list) {
+  sprintf("%s_clean.xlsx", get_xml_filename_without_extension(endnote_list))
+}
+
+#' Helper function: default filename for XLSX
+#' @param endnote_list list as retrieved by create_endnote_list()
+#' @return default xlsx filename
+#' @export
+default_xlsx <- function(endnote_list) {
+  sprintf("%s.xlsx", get_xml_filename_without_extension(endnote_list))
+}

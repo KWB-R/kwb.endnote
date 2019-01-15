@@ -14,7 +14,7 @@
 #' write_references_df_to_xlsx(endnote_list)
 #' }
 write_references_df_to_xlsx <- function(endnote_list,
-                                        file = "references.xlsx",
+                                        file = default_xlsx(endnote_list),
                                         ...) {
   refs_df <- create_references_df(endnote_list) %>%
     dplyr::arrange(dplyr::desc(.data$rec_number))
