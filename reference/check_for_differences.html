@@ -171,7 +171,8 @@ clean_references_df()</p></td>
 
 <span class='no'>old_xml</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata/2019-01-07_KWB_documents.xml"</span>,
 <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"kwb.endnote"</span>)
-<span class='no'>new_xml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>kwb.endnote</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/kwb.endnote/topics/default_xml'>default_xml</a></span>()
+<span class='no'>new_xml</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata/2019-01-14_KWB_documents.xml"</span>,
+<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"kwb.endnote"</span>)
 <span class='no'>old_list</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>kwb.endnote</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/kwb.endnote/topics/create_endnote_list'>create_endnote_list</a></span>(<span class='no'>old_xml</span>)
 <span class='no'>new_list</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>kwb.endnote</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/kwb.endnote/topics/create_endnote_list'>create_endnote_list</a></span>(<span class='no'>new_xml</span>)
 <span class='no'>old_df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>kwb.endnote</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/kwb.endnote/topics/create_references_df'>create_references_df</a></span>(<span class='no'>old_list</span>)
