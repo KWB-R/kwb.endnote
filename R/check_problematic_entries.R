@@ -17,13 +17,15 @@ check_problematic_entries <- function(endnote_list, replace_na = TRUE,
 
 
   entries_org <- kwb.utils::catAndRun(
-    "Creating data frame from 'endnote_list'",
+    sprintf("Creating data frame from '%s'",
+            deparse(substitute(endnote_list))),
     create_references_df(endnote_list),
     dbg = dbg
   )
 
   entries_cleaned <- kwb.utils::catAndRun(
-    "Creating 'cleaned' data frame from 'endnote_list' for comparison",
+    sprintf("Creating 'cleaned' data frame from '%s' for comparison",
+    deparse(substitute(endnote_list))),
     clean_references_df(endnote_list, replace_na, dbg),
     dbg = dbg
   )
