@@ -34,7 +34,7 @@ tidy_df <- function(df) {
 #' @return a dataframe containing only the differences between df_x and df_y
 #' @export
 #' @importFrom dplyr rename full_join
-#' @importFrom rlang quo :=
+#' @importFrom rlang quo_name :=
 #' @examples
 #' \dontrun{
 #' ############################################################################
@@ -71,9 +71,9 @@ check_for_differences <- function(df_x,
                        dbg = TRUE) {
 
 df_x_tidy <- tidy_df(df_x) %>%
-              dplyr::rename(!!quo(name_value_x) := .data$value)
+              dplyr::rename(!!rlang::quo_name(name_value_x) := .data$value)
 df_y_tidy <- tidy_df(df_y) %>%
-               dplyr::rename(!!quo(name_value_y) := .data$value)
+              dplyr::rename(!!rlang::quo_name(name_value_y) := .data$value)
 
 
 df_xy_tidy <- dplyr::full_join(df_x_tidy,
