@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Keywords Dataframe — create_keywords_df • kwb.endnote</title>
+<title>Helper function: tidy dataframe — tidy_df • kwb.endnote</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Create Keywords Dataframe — create_keywords_df" />
+<meta property="og:title" content="Helper function: tidy dataframe — tidy_df" />
 
-<meta property="og:description" content="Create Keywords Dataframe" />
+<meta property="og:description" content="Helper function: tidy dataframe" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,48 +114,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create Keywords Dataframe</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/create_keywords_df.R'><code>R/create_keywords_df.R</code></a></small>
-    <div class="hidden name"><code>create_keywords_df.Rd</code></div>
+    <h1>Helper function: tidy dataframe</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/check_for_differences.R'><code>R/check_for_differences.R</code></a></small>
+    <div class="hidden name"><code>tidy_df.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create Keywords Dataframe</p>
+    <p>Helper function: tidy dataframe</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>create_keywords_df</span>(<span class='no'>references_df</span>)</pre>
+    <pre class="usage"><span class='fu'>tidy_df</span>(<span class='no'>df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>references_df</th>
-      <td><p>references_df as recrieved from
-kwb.endnote::create_df_from_endnote_xml()</p></td>
+      <th>df</th>
+      <td><p>data frame as retrieved by create_references_df() or
+clean_references_df()</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>keywords dataframe</p>
+    <p>a tidy dataframe with columns rec_number, key and value</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>references_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_df_from_endnote_xml.html'>create_df_from_endnote_xml</a></span>()</div><div class='output co'>#&gt; Reading '2019-01-07_KWB_documents.xml' in folder
-#&gt;   '/home/travis/build/KWB-R/kwb.endnote/inst/extdata' ... ok.
-#&gt; Splitting paths ... ok. </div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='no'>keywords_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_keywords_df</span>(<span class='no'>references_df</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>keywords_df</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 2
-#&gt;   value                 n
-#&gt;   &lt;chr&gt;             &lt;int&gt;
-#&gt; 1 bank filtration      24
-#&gt; 2 bwb                  17
-#&gt; 3 simulation           17
-#&gt; 4 stadtentwässerung    17
-#&gt; 5 ökobilanz            16
-#&gt; 6 drinking water       15</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_endnote_list.html'>create_endnote_list</a></span>()
+<span class='no'>refs_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_references_df.html'>create_references_df</a></span>(<span class='no'>endnote_list</span>)
+<span class='no'>refs_df_tidy</span> <span class='kw'>&lt;-</span> <span class='fu'>tidy_df</span>(<span class='no'>refs_df</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
