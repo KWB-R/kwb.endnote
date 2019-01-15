@@ -42,7 +42,7 @@ old_list <- kwb.endnote::create_endnote_list(old_xml)
 new_list <- kwb.endnote::create_endnote_list(new_xml)
 old_df <- kwb.endnote::create_references_df(old_list)
 new_df <- kwb.endnote::create_references_df(new_list)
-diffs_df_oldnew <- compare_df(old_df, new_df)
+diffs_df_oldnew <- check_for_differences(old_df, new_df)
 head(diffs_df_oldnew)
 
 ############################################################################
@@ -53,7 +53,7 @@ head(diffs_df_oldnew)
 endnote_list <- create_endnote_list()
 refs_df <- create_references_df(endnote_list)
 refs_df_collapse <- create_references_df(endnote_list, collapse = TRUE)
-diffs_df <- compare_df(refs_df, refs_df_collapse)
+diffs_df <- check_for_differences(refs_df, refs_df_collapse)
 head(diffs_df)
 
 }

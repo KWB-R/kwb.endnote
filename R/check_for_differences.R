@@ -49,7 +49,7 @@ tidy_df <- function(df) {
 #' new_list <- kwb.endnote::create_endnote_list(new_xml)
 #' old_df <- kwb.endnote::create_references_df(old_list)
 #' new_df <- kwb.endnote::create_references_df(new_list)
-#' diffs_df_oldnew <- compare_df(old_df, new_df)
+#' diffs_df_oldnew <- check_for_differences(old_df, new_df)
 #' head(diffs_df_oldnew)
 #'
 #' ############################################################################
@@ -60,7 +60,7 @@ tidy_df <- function(df) {
 #' endnote_list <- create_endnote_list()
 #' refs_df <- create_references_df(endnote_list)
 #' refs_df_collapse <- create_references_df(endnote_list, collapse = TRUE)
-#' diffs_df <- compare_df(refs_df, refs_df_collapse)
+#' diffs_df <- check_for_differences(refs_df, refs_df_collapse)
 #' head(diffs_df)
 #'
 #' }
@@ -70,21 +70,51 @@ check_for_differences <- function(df_x,
                        name_value_y = "value_y",
                        dbg = TRUE) {
 
-df_x_tidy <- tidy_df(df_x) %>%
+
+df_x_tidy <-   kwb.utils::catAndRun(
+    sprintf("Tidying data.frame '%s' and rename 'value' to '%s'",
+            deparse(substitute(df_x)),
+            name_value_x), expr = {tidy_df(df_x) %>%
               dplyr::rename(!!rlang::quo_name(name_value_x) := .data$value)
-df_y_tidy <- tidy_df(df_y) %>%
+},
+dbg = dbg)
+
+df_y_tidy <- kwb.utils::catAndRun(
+    sprintf("Tidying data.frame '%s' and rename 'value' to '%s'",
+            deparse(substitute(df_y)),
+            name_value_y), expr = {
+              tidy_df(df_y) %>%
               dplyr::rename(!!rlang::quo_name(name_value_y) := .data$value)
+},
+dbg = dbg)
 
+join_cols <- c("rec_number", "key")
 
-df_xy_tidy <- dplyr::full_join(df_x_tidy,
+df_xy_tidy <- kwb.utils::catAndRun(
+  sprintf("Joining data.frame '%s' and '%s' with cols '%s'",
+          deparse(substitute(df_x_tidy)),
+          deparse(substitute(df_y_tidy)),
+          paste(join_cols, collapse = ", ")),
+  expr = {dplyr::full_join(df_x_tidy,
                                  df_y_tidy,
-                                 by = c("rec_number", "key"))
+                                 by = join_cols)
+},
+dbg = dbg)
 
-
-diffs_idx <- which(!sapply(seq_len(nrow(df_xy_tidy)), function(row) {
+diffs_idx <- kwb.utils::catAndRun(
+  sprintf("Identifying indices with different content for '%s' and '%s'",
+          name_value_x,
+          name_value_y), expr = {
+            which(!sapply(seq_len(nrow(df_xy_tidy)), function(row) {
   identical(df_xy_tidy[[name_value_x]][row], df_xy_tidy[[name_value_y]][row])
 } ))
+},
+dbg = dbg)
 
 
-df_xy_tidy[diffs_idx,]
+kwb.utils::catAndRun(
+  sprintf("Content has changed for %d indices", length(diffs_idx)),
+  expr = { df_xy_tidy[diffs_idx,]},
+  dbg = dbg)
+
 }
