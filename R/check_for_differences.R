@@ -45,7 +45,8 @@ tidy_df <- function(df) {
 #'
 #' old_xml <- system.file("extdata/2019-01-07_KWB_documents.xml",
 #' package = "kwb.endnote")
-#' new_xml <- kwb.endnote::default_xml()
+#' new_xml <- system.file("extdata/2019-01-14_KWB_documents.xml",
+#' package = "kwb.endnote")
 #' old_list <- kwb.endnote::create_endnote_list(old_xml)
 #' new_list <- kwb.endnote::create_endnote_list(new_xml)
 #' old_df <- kwb.endnote::create_references_df(old_list)
@@ -71,19 +72,24 @@ check_for_differences <- function(df_x,
                        name_value_y = "value_y",
                        dbg = TRUE) {
 
+  name_df_x <- deparse(substitute(df_x))
+  name_df_y <- deparse(substitute(df_y))
+
 
 df_x_tidy <-   kwb.utils::catAndRun(
-    sprintf("Tidying data.frame '%s' and rename 'value' to '%s'",
-            deparse(substitute(df_x)),
-            name_value_x), expr = {tidy_df(df_x) %>%
+    sprintf("Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
+            name_df_x,
+            name_value_x,
+            sprintf("%s_tidy", name_df_x)), expr = {tidy_df(df_x) %>%
               dplyr::rename(!!rlang::quo_name(name_value_x) := .data$value)
 },
 dbg = dbg)
 
 df_y_tidy <- kwb.utils::catAndRun(
-    sprintf("Tidying data.frame '%s' and rename 'value' to '%s'",
-            deparse(substitute(df_y)),
-            name_value_y), expr = {
+    sprintf("Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
+            name_df_y,
+            name_value_y,
+            sprintf("%s_tidy", name_df_x)), expr = {
               tidy_df(df_y) %>%
               dplyr::rename(!!rlang::quo_name(name_value_y) := .data$value)
 },
@@ -93,8 +99,8 @@ join_cols <- c("rec_number", "key")
 
 df_xy_tidy <- kwb.utils::catAndRun(
   sprintf("Joining data.frame '%s' and '%s' with cols '%s'",
-          deparse(substitute(df_x_tidy)),
-          deparse(substitute(df_y_tidy)),
+          sprintf("%s_tidy", name_df_x),
+          sprintf("%s_tidy", name_df_y),
           paste(join_cols, collapse = ", ")),
   expr = {dplyr::full_join(df_x_tidy,
                                  df_y_tidy,
