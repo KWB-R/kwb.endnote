@@ -35,6 +35,7 @@ tidy_df <- function(df) {
 #' @export
 #' @importFrom dplyr rename full_join
 #' @importFrom rlang quo_name :=
+#' @importFrom kwb.utils catIf catAndRun
 #' @examples
 #' \dontrun{
 #' ############################################################################
@@ -112,9 +113,9 @@ diffs_idx <- kwb.utils::catAndRun(
 dbg = dbg)
 
 
-kwb.utils::catAndRun(
-  sprintf("Content has changed for %d indices", length(diffs_idx)),
-  expr = { df_xy_tidy[diffs_idx,]},
-  dbg = dbg)
+kwb.utils::catIf(dbg,
+                 sprintf("Content has changed for %d indices", length(diffs_idx)))
+
+df_xy_tidy[diffs_idx,]
 
 }
