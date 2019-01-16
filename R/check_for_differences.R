@@ -1,25 +1,3 @@
-#' Helper function: tidy dataframe
-#'
-#' @param df data frame as retrieved by create_references_df() or
-#' clean_references_df()
-#' @return a tidy dataframe with columns rec_number, key and value
-#' @export
-#' @importFrom tidyr gather
-#' @importFrom dplyr filter arrange
-#' @examples
-#' \dontrun{
-#' endnote_list <- create_endnote_list()
-#' refs_df <- create_references_df(endnote_list)
-#' refs_df_tidy <- tidy_df(refs_df)
-#' }
-
-tidy_df <- function(df) {
-  df %>%
-    tidyr::gather("key", "value", -.data$rec_number) %>%
-    dplyr::filter(!is.na(.data$value)) %>%
-    dplyr::arrange(.data$rec_number, .data$key)
-}
-
 #' Check two Dataframes for Differences
 #'
 #' @param df_x data frame as retrieved by create_references_df() or

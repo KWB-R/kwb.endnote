@@ -19,10 +19,8 @@ create_list_with_unique_entries <- function(refs_df) {
     columns[! is.na(columns)]
   }
 
-  tidy_df <- function(columns) {
-    refs_df[, columns] %>%
-      tidyr::gather(key = "key", value = "value") %>%
-      dplyr::filter(! is.na(.data$key)) %>%
+  tidy_unique_df <- function(columns) {
+    tidy_df(refs_df[, columns]) %>%
       dplyr::count(.data$value)
   }
 
@@ -34,7 +32,7 @@ create_list_with_unique_entries <- function(refs_df) {
 
   get_unique_multi_entries <- function(column) {
     select_columns(sprintf("^%s[0-9][0-9]", column)) %>%
-      tidy_df() %>%
+      tidy_unique_df() %>%
       dplyr::rename(!!rlang::quo_name(column) := .data$value)
   }
 

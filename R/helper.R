@@ -127,3 +127,28 @@ default_clean_xlsx <- function(endnote_list) {
 default_xlsx <- function(endnote_list) {
   sprintf("%s.xlsx", get_xml_filename_without_extension(endnote_list))
 }
+
+#' Helper function: tidy dataframe
+#'
+#' @param df data frame as retrieved by create_references_df() or
+#' clean_references_df()
+#' @param exclude_cols vector of column names to exclude for gathering
+#' (default: NULL)
+#' @return a tidy dataframe with columns rec_number, key and value
+#' @export
+#' @importFrom tidyr gather
+#' @importFrom dplyr filter arrange
+#' @examples
+#' \dontrun{
+#' endnote_list <- create_endnote_list()
+#' refs_df <- create_references_df(endnote_list)
+#' refs_df_tidy <- tidy_df(refs_df)
+#' }
+
+tidy_df <- function(df, exclude_cols = NULL) {
+
+  df %>%
+    tidyr::gather("key", "value", setdiff(names(df), exclude_cols)) %>%
+    dplyr::filter(!is.na(.data$value)) %>%
+    dplyr::arrange(.data$key)
+}
