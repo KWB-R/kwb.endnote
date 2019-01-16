@@ -115,7 +115,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Helper function: tidy dataframe</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/check_for_differences.R'><code>R/check_for_differences.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.endnote/blob/master/R/helper.R'><code>R/helper.R</code></a></small>
     <div class="hidden name"><code>tidy_df.Rd</code></div>
     </div>
 
@@ -125,7 +125,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>tidy_df</span>(<span class='no'>df</span>)</pre>
+    <pre class="usage"><span class='fu'>tidy_df</span>(<span class='no'>df</span>, <span class='kw'>exclude_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,6 +134,11 @@
       <th>df</th>
       <td><p>data frame as retrieved by create_references_df() or
 clean_references_df()</p></td>
+    </tr>
+    <tr>
+      <th>exclude_cols</th>
+      <td><p>vector of column names to exclude for gathering
+(default: NULL)</p></td>
     </tr>
     </table>
     
