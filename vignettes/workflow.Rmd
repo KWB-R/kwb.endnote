@@ -20,6 +20,8 @@ knitr::opts_chunk$set(
 ## Read Endnote XML
 
 ```{r echo=TRUE}
+library(kwb.endnote)
+
 ## Path to ENDNOTE XML 
 endnote_xml <- kwb.endnote::default_xml()
 endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
@@ -62,7 +64,7 @@ en_new_df <- kwb.endnote::create_references_df(en_new_list)
 
 en_diffs_df <- kwb.endnote::check_for_differences(en_old_df, en_new_df)
 
-en_diffs_df%>% 
+en_diffs_df %>% 
   dplyr::filter(.data$key != "abstract") %>% 
   dplyr::arrange(dplyr::desc(.data$rec_number), .data$key) %>% 
   knitr::kable()
@@ -72,6 +74,6 @@ n_new_entries <- length(unique(en_diffs_df$rec_number))
 ```
 
 In total `r n_new_entries` new entries where created in `r basename(en_new_xml)`
-compared to `r basename(en_old_xml)` which contain `r nrow(en_diff_df)` new 
+compared to `r basename(en_old_xml)` which contain `r nrow(en_diffs_df)` new 
 values.
 
