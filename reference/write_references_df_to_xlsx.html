@@ -88,6 +88,9 @@
     <li>
       <a href="../articles/analyse-endnote.html">Analyse Endnote Library</a>
     </li>
+    <li>
+      <a href="../articles/workflow.html">Workflow</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -126,7 +129,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>write_references_df_to_xlsx</span>(<span class='no'>endnote_list</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='default_xlsx.html'>default_xlsx</a></span>(<span class='no'>endnote_list</span>), <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='default_xlsx.html'>default_xlsx</a></span>(<span class='no'>endnote_list</span>), <span class='kw'>export_dir</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,7 +141,11 @@
     </tr>
     <tr>
       <th>file</th>
-      <td><p>file where to save (default: "references.xlsx")</p></td>
+      <td><p>name of file to save (default: default_xlsx(endnote_list))</p></td>
+    </tr>
+    <tr>
+      <th>export_dir</th>
+      <td><p>directory where to save 'file' (default: ".")</p></td>
     </tr>
     <tr>
       <th>dbg</th>
