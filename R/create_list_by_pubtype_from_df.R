@@ -14,11 +14,11 @@
 #' }
 create_list_by_pubtype_from_df <- function(refs_df) {
 
-
   refs_df <- refs_df %>%
-  dplyr::arrange(dplyr::desc(.data$rec_number))
+    dplyr::arrange(dplyr::desc(.data$rec_number))
 
   pub_types <- unique(refs_df$ref_type_name)
+
   refs_df_list <- lapply(pub_types, function(x) {
     refs_df[refs_df$ref_type_name == x, ] %>%
       dplyr::select_if(~sum(!is.na(.)) > 0) %>%
@@ -28,7 +28,5 @@ create_list_by_pubtype_from_df <- function(refs_df) {
 
   refs_df_list <- c(list(refs_df),refs_df_list)
 
-  refs_df_list <- stats::setNames(refs_df_list, c("ALL", pub_types))
-
-  refs_df_list
+  stats::setNames(refs_df_list, c("ALL", pub_types))
 }

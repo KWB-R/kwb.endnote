@@ -18,15 +18,13 @@ create_df_from_endnote_xml <- function(endnote_xml = default_xml()) {
 
   references <- kwb.read::read_xml_as_path_value(endnote_xml)
 
-  references_df <- as.data.frame(
-    cbind(
-      kwb.fakin::toSubdirMatrix(stringr::str_remove_all(
-        references$path, pattern = "^/xml/records/record"
-      )),
-      references[, -1]
-    ),
-    stringsAsFactors = FALSE
-  )
+  xml_paths <- references$path %>%
+    stringr::str_remove_all(pattern = "^/xml/records/record")
+
+  references_df <- kwb.utils::asNoFactorDataFrame(cbind(
+    kwb.fakin::toSubdirMatrix(xml_paths),
+    references[, -1]
+  ))
 
   references_df[, 1] <- as.numeric(stringr::str_remove_all(
     references_df[, 1], "\\[|\\]"
