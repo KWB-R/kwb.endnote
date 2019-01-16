@@ -4,8 +4,7 @@
 \alias{check_for_differences}
 \title{Check two Dataframes for Differences}
 \usage{
-check_for_differences(df_x, df_y, name_value_x = "value_x",
-  name_value_y = "value_y", dbg = TRUE)
+check_for_differences(df_x, df_y, dbg = TRUE)
 }
 \arguments{
 \item{df_x}{data frame as retrieved by create_references_df() or
@@ -14,13 +13,13 @@ clean_references_df()}
 \item{df_y}{data frame as retrieved by create_references_df() or
 clean_references_df()}
 
+\item{dbg}{should dbg messages be printed (default: TRUE)}
+
 \item{name_value_x}{column name for values of 'df_x' dataframe (default:
 "value_x")}
 
 \item{name_value_y}{column name for values of 'df_y' dataframe (default:
 "value_y")}
-
-\item{dbg}{should dbg messages be printed (default: TRUE)}
 }
 \value{
 a dataframe containing only the differences between df_x and df_y

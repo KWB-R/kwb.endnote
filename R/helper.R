@@ -133,7 +133,7 @@ default_xlsx <- function(endnote_list) {
 #' @param df data frame as retrieved by create_references_df() or
 #' clean_references_df()
 #' @param exclude_cols vector of column names to exclude for gathering
-#' (default: NULL)
+#' (default: "rec_number")
 #' @return a tidy dataframe with columns rec_number, key and value
 #' @export
 #' @importFrom tidyr gather
@@ -145,7 +145,7 @@ default_xlsx <- function(endnote_list) {
 #' refs_df_tidy <- tidy_df(refs_df)
 #' }
 
-tidy_df <- function(df, exclude_cols = NULL) {
+tidy_df <- function(df, exclude_cols = "rec_number") {
 
   df %>%
     tidyr::gather("key", "value", setdiff(names(df), exclude_cols)) %>%

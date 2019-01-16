@@ -20,7 +20,7 @@ create_list_with_unique_entries <- function(refs_df) {
   }
 
   tidy_unique_df <- function(columns) {
-    tidy_df(refs_df[, columns]) %>%
+    tidy_df(refs_df[, columns], exclude_cols = NULL) %>%
       dplyr::count(.data$value)
   }
 

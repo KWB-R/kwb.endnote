@@ -43,11 +43,14 @@
 #'
 #' }
 check_for_differences <- function(
-  df_x, df_y, name_value_x = "value_x", name_value_y = "value_y", dbg = TRUE
+  df_x, df_y, dbg = TRUE
 ) {
 
   name_df_x <- deparse(substitute(df_x))
   name_df_y <- deparse(substitute(df_y))
+
+  name_value_x <- sprintf("value_%s", name_df_x)
+  name_value_y <-  sprintf("value_%s", name_df_y)
 
   tidy_name <- function(name) paste0(name, "_tidy")
 

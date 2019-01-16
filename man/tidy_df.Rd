@@ -4,14 +4,14 @@
 \alias{tidy_df}
 \title{Helper function: tidy dataframe}
 \usage{
-tidy_df(df, exclude_cols = NULL)
+tidy_df(df, exclude_cols = "rec_number")
 }
 \arguments{
 \item{df}{data frame as retrieved by create_references_df() or
 clean_references_df()}
 
 \item{exclude_cols}{vector of column names to exclude for gathering
-(default: NULL)}
+(default: "rec_number")}
 }
 \value{
 a tidy dataframe with columns rec_number, key and value

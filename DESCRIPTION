@@ -40,8 +40,6 @@ Suggests:
     covr,
     knitr,
     rmarkdown
-VignetteBuilder: 
-    knitr
 Remotes:
     github::kwb-r/kwb.fakin,
     github::kwb-r/kwb.read,
@@ -49,3 +47,4 @@ Remotes:
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr

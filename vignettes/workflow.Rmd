@@ -1,0 +1,70 @@
+---
+title: "Workflow"
+author: "Michael Rustler"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Read Endnote XML
+
+```{r echo=TRUE}
+## Path to ENDNOTE XML 
+endnote_xml <- default_xml()
+endnote_list <- kwb.endnote::create_endnote_list(endnote_xml = )
+```
+
+## Check Import 
+
+### Use Case 1: Unclean/Clean Versions
+
+```{r echo=TRUE}
+## Original Endnote data
+refs_org <- kwb.endnote::create_references_df(endnote_list)
+
+## "Cleaned" Endnote data
+refs_clean <- kwb.endnote::clean_references_df(endnote_list)
+
+## Check both for differences
+diffs_df <- kwb.endnote::check_for_differences(refs_org, refs_clean)
+
+diffs_df %>%
+  dplyr::filter(.data$key != "abstract") %>% 
+  head() %>% 
+  knitr::kable()
+  
+```
+
+
+### Use Case 2: Two Different Endnote Files 
+
+```{r echo=TRUE}
+
+old_xml <- kwb.endnote::extdata_file("2019-01-07_KWB_documents.xml")
+new_xml <- kwb.endnote::extdata_file("2019-01-14_KWB_documents.xml")
+
+old_list <- kwb.endnote::create_endnote_list(old_xml)
+new_list <- kwb.endnote::create_endnote_list(new_xml)
+
+old_df <- kwb.endnote::create_references_df(old_list)
+new_df <- kwb.endnote::create_references_df(new_list)
+
+diffs_df_oldnew <- kwb.endnote::check_for_differences(old_df, new_df)
+
+diffs_df_oldnew %>% 
+  dplyr::filter(.data$key != "abstract") %>% 
+  head() %>% 
+  knitr::kable()
+  
+```
