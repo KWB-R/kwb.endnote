@@ -14,12 +14,6 @@ clean_references_df()}
 clean_references_df()}
 
 \item{dbg}{should dbg messages be printed (default: TRUE)}
-
-\item{name_value_x}{column name for values of 'df_x' dataframe (default:
-"value_x")}
-
-\item{name_value_y}{column name for values of 'df_y' dataframe (default:
-"value_y")}
 }
 \value{
 a dataframe containing only the differences between df_x and df_y

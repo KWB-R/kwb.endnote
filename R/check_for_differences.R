@@ -4,10 +4,6 @@
 #' clean_references_df()
 #' @param df_y data frame as retrieved by create_references_df() or
 #' clean_references_df()
-#' @param name_value_x column name for values of 'df_x' dataframe (default:
-#' "value_x")
-#' @param name_value_y column name for values of 'df_y' dataframe (default:
-#' "value_y")
 #' @param dbg should dbg messages be printed (default: TRUE)
 #' @return a dataframe containing only the differences between df_x and df_y
 #' @export
