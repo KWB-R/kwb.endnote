@@ -48,7 +48,6 @@ get_keywords <- function(
   )
 }
 
-
 #' Helper function: get authors from list for a reference
 #'
 #' @param record_list list with one record of create_endnote_list()
@@ -72,7 +71,9 @@ get_authors <- function(
 }
 
 # get_multi_entry --------------------------------------------------------------
-get_multi_entry <- function(entries, col_name, element = NULL, collapse = FALSE) {
+get_multi_entry <- function(
+  entries, col_name, element = NULL, collapse = FALSE
+) {
 
   if (is.null(entries)) {
 
@@ -90,7 +91,6 @@ get_multi_entry <- function(entries, col_name, element = NULL, collapse = FALSE)
     } else {
 
       collapse_fields(entries[[i]], collapse, element)
-
     }
 
     stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
@@ -99,16 +99,19 @@ get_multi_entry <- function(entries, col_name, element = NULL, collapse = FALSE)
   }))
 }
 
+# collapse_fields --------------------------------------------------------------
 collapse_fields <- function(entries, collapse = TRUE, element) {
 
   if (is.list(entries) && collapse) {
-    paste(collapse = "", lapply(seq_along(entries), function(i) {
 
+    paste(collapse = "", lapply(seq_along(entries), function(i) {
       null_to_na(entries[[i]][[element]])
     }))
-} else {
-  null_to_na(entries[[element]])
-}
+
+  } else {
+
+    null_to_na(entries[[element]])
+  }
 }
 
 #' Helper function: get secondary authors from list for a reference
@@ -152,7 +155,6 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf", collapse = FALSE) {
   )
 }
 
-
 #' Reference List to Data Frame
 #'
 #' @param record_list list with one record of create_endnote_list()
@@ -162,8 +164,7 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf", collapse = FALSE) {
 #' @export
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
-record_list_to_df <- function(record_list,
-                              collapse = FALSE) {
+record_list_to_df <- function(record_list, collapse = FALSE) {
 
   get_record_entry <- function(path) get_list_entry(record_list$record, path)
   get_style <- function(path) {
@@ -180,7 +181,7 @@ record_list_to_df <- function(record_list,
     abstract = get_abstract(record_list, collapse)
   ) %>%
     dplyr::bind_cols(get_keywords(record_list, collapse = collapse)) %>%
-    dplyr::bind_cols(get_authors(record_list,collapse = collapse)) %>%
+    dplyr::bind_cols(get_authors(record_list, collapse = collapse)) %>%
     dplyr::bind_cols(get_secondary_authors(record_list, collapse = collapse)) %>%
     dplyr::bind_cols(get_tertiary_authors(record_list, collapse = collapse)) %>%
     dplyr::bind_cols(
@@ -236,39 +237,43 @@ record_list_to_df <- function(record_list,
 #' head(refs_df)
 #'
 create_references_df <- function(endnote_list, collapse = FALSE) {
+
   extract_values_from_list <- lapply(seq_along(endnote_list), function(rec_id) {
+
     record_list_to_df(record_list = endnote_list[rec_id], collapse)
   })
 
+  starting <- dplyr::starts_with
+
   dplyr::bind_rows(extract_values_from_list) %>%
     dplyr::select(
-      dplyr::starts_with("rec_"),
-      dplyr::starts_with("ref_"),
-      dplyr::starts_with("year"),
-      dplyr::starts_with("title"),
-      dplyr::starts_with("abstract"),
-      dplyr::starts_with("author_ter"),
-      dplyr::starts_with("author_sec"),
-      dplyr::starts_with("author"),
-      dplyr::starts_with("authaddress"),
-      dplyr::starts_with("periodical"),
-      dplyr::starts_with("pages"),
-      dplyr::starts_with("volume"),
-      dplyr::starts_with("num"),
-      dplyr::starts_with("section"),
-      dplyr::starts_with("edition"),
-      dplyr::starts_with("pub"),
-      dplyr::starts_with("urls_"),
-      dplyr::starts_with("electronic"),
-      dplyr::starts_with("work"),
-      dplyr::starts_with("label"),
-      dplyr::starts_with("keyword"),
-      dplyr::starts_with("notes"),
-      dplyr::starts_with("caption"),
-      dplyr::starts_with("custom"),
-      dplyr::starts_with("isbn"),
-      dplyr::starts_with("language"),
-      dplyr::starts_with("database"),
+      starting("rec_"),
+      starting("ref_"),
+      starting("year"),
+      starting("title"),
+      starting("abstract"),
+      starting("author_ter"),
+      starting("author_sec"),
+      starting("author"),
+      starting("authaddress"),
+      starting("periodical"),
+      starting("pages"),
+      starting("volume"),
+      starting("num"),
+      starting("section"),
+      starting("edition"),
+      starting("pub"),
+      starting("urls_"),
+      starting("electronic"),
+      starting("work"),
+      starting("label"),
+      starting("keyword"),
+      starting("notes"),
+      starting("caption"),
+      starting("custom"),
+      starting("isbn"),
+      starting("language"),
+      starting("database"),
       dplyr::everything()
     )
 }
