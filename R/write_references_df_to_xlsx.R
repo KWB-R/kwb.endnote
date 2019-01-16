@@ -2,6 +2,7 @@
 #'
 #' @param endnote_list list created with create_endnote_list()
 #' @param file file where to save (default: "references.xlsx")
+#' @param dbg show debug messages (default: TRUE)
 #' @param ... additional arguments passed to openxlsx::write.xlsx()
 #' @return write references dataframe to xlsx with one sheet for each
 #' publication type
@@ -14,8 +15,8 @@
 #' write_references_df_to_xlsx(endnote_list)
 #' }
 write_references_df_to_xlsx <- function(
-  endnote_list, file = default_xlsx(endnote_list), ...
+  endnote_list, file = default_xlsx(endnote_list), dbg = TRUE, ...
 ) {
 
-  write_references(endnote_list, file, clean = FALSE, ...)
+  write_references(endnote_list, file, clean = FALSE, dbg = dbg, ...)
 }
