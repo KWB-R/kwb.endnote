@@ -43,10 +43,11 @@ reference:
     desc: >
       Helper Functions for Preparing the Data
     contents:
+      - add_file_info_attributes
       - starts_with("clean_a")
       - starts_with("clean_d")
       - starts_with("clean_p")
-      - default_xml
+      - starts_with("default_")
       - starts_with("get_")
       - record_list_to_df
       - tidy_df

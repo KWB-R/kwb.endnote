@@ -276,4 +276,6 @@ create_references_df <- function(endnote_list, collapse = FALSE) {
       starting("database"),
       dplyr::everything()
     )
+
+
 }

@@ -14,8 +14,8 @@
 #' write_references_df_to_xlsx(endnote_list)
 #' }
 write_references_df_to_xlsx <- function(
-  endnote_list, file = "references.xlsx", ...
+  endnote_list, file = default_xlsx(endnote_list), ...
 ) {
 
-  write_references(endnote_list, file, clean = FALSE, replace_na, dbg, ...)
+  write_references(endnote_list, file, clean = FALSE, ...)
 }

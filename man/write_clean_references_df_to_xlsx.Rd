@@ -5,8 +5,8 @@
 \title{Write Clean References Dataframe to XLSX}
 \usage{
 write_clean_references_df_to_xlsx(endnote_list,
-  file = "references_clean.xlsx", replace_na = FALSE, dbg = TRUE,
-  ...)
+  file = default_clean_xlsx(endnote_list), replace_na = FALSE,
+  dbg = TRUE, ...)
 }
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}

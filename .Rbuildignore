@@ -12,4 +12,4 @@
 ^appveyor\.yml$
 ^index\.Rmd$
 ^README\.md$
-^R/\\.setup\.R
+^R/\.setup\.R

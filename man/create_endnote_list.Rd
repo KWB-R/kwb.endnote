@@ -19,4 +19,6 @@ Create List From Endnote XML
 \examples{
 endnote_list <- create_endnote_list()
 str(endnote_list[1]$record)
+attr(endnote_list, "xml_file_info")
+attr(endnote_list, "xml_filename_without_extension")
 }

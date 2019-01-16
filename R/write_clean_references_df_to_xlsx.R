@@ -14,16 +14,17 @@
 #' \dontrun{endnote_list <- create_endnote_list()
 #' write_clean_references_df_to_xlsx(endnote_list)
 #' }
-write_clean_references_df_to_xlsx <- function(
-  endnote_list, file = "references_clean.xlsx", replace_na = FALSE, dbg = TRUE,
-  ...
+write_clean_references_df_to_xlsx <- function(endnote_list,
+   file = default_clean_xlsx(endnote_list), replace_na = FALSE, dbg = TRUE, ...
 ) {
 
   write_references(endnote_list, file, clean = TRUE, replace_na, dbg, ...)
 }
 
 # write_references -------------------------------------------------------------
-write_references <- function(endnote_list, file, clean, replace_na, dbg, ...)
+write_references <- function(
+  endnote_list, file, clean, replace_na = FALSE, dbg = TRUE, ...
+)
 {
   refs_df <- if (clean) {
 
