@@ -10,11 +10,13 @@ write_references_df_to_xlsx(endnote_list,
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}
 
-\item{file}{file where to save (default: "references.xlsx")}
+\item{file}{name of file to save (default: default_xlsx(endnote_list))}
 
 \item{dbg}{show debug messages (default: TRUE)}
 
 \item{...}{additional arguments passed to openxlsx::write.xlsx()}
+
+\item{export_dir}{directory where to save 'file' (default: ".")}
 }
 \value{
 write references dataframe to xlsx with one sheet for each
