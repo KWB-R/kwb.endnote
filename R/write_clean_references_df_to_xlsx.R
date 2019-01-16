@@ -14,22 +14,31 @@
 #' \dontrun{endnote_list <- create_endnote_list()
 #' write_clean_references_df_to_xlsx(endnote_list)
 #' }
-write_clean_references_df_to_xlsx <- function(endnote_list,
-                                              file = "references_clean.xlsx",
-                                              replace_na = FALSE,
-                                              dbg = TRUE,
-                                              ...) {
-  refs_clean_df <- clean_references_df(endnote_list,
-                                       replace_na = replace_na,
-                                       dbg = dbg)
+write_clean_references_df_to_xlsx <- function(
+  endnote_list, file = "references_clean.xlsx", replace_na = FALSE, dbg = TRUE,
+  ...
+) {
 
-  refs_list_by_pubtype <- create_list_by_pubtype_from_df(refs_clean_df)
+  write_references(endnote_list, file, clean = TRUE, replace_na, dbg, ...)
+}
 
-  unique_entries_list <- create_list_with_unique_entries(refs_clean_df)
+# write_references -------------------------------------------------------------
+write_references <- function(endnote_list, file, clean, replace_na, dbg, ...)
+{
+  refs_df <- if (clean) {
 
+    endnote_list %>%
+      clean_references_df(replace_na = replace_na, dbg = dbg)
 
-  refs_list <- c(refs_list_by_pubtype, unique_entries_list)
+  } else {
 
+    endnote_list %>%
+      create_references_df() %>%
+      dplyr::arrange(dplyr::desc(.data$rec_number))
+  }
 
-  openxlsx::write.xlsx(refs_list, file, ...)
+  openxlsx::write.xlsx(file = file, ..., x = c(
+    create_list_by_pubtype_from_df(refs_df),
+    create_list_with_unique_entries(refs_df)
+  ))
 }
