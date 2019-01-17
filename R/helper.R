@@ -215,14 +215,21 @@ tidy_selected_cols <- function(df,
   }
 }
 
-#' Helper Function: Tidy Multi Cols
+
+
+#' Helper Function: Tidy Multi Cols Dataframe
 #'
 #' @param df as retrieved by create_references_df() or clean_references_df()
 #' @return tidy dataframe for all multi cols in df
 #' @export
 #' @importFrom dplyr bind_rows
+#' @examples
+#' \dontrun{endnote_list <- create_endnote_list()
+#' refs_clean_df <- clean_references_df(endnote_list)
+#' multi_cols_df <- tidy_multi_cols_df(refs_clean_df)
+#' }
 
-tidy_multi_cols <- function(df) {
+tidy_multi_cols_df <- function(df) {
 
   tidy_multi_cols_list <- lapply(get_available_multi_cols(df), function(col) {
     tidy_selected_cols(df, column = col)})
@@ -230,3 +237,33 @@ tidy_multi_cols <- function(df) {
   dplyr::bind_rows(tidy_multi_cols_list)
 
 }
+
+
+#' Helper Function: Tidy Multi Cols List
+#'
+#' @param df as retrieved by create_references_df() or clean_references_df()
+#' @return tidy list with a sublist for echa multi col in df (see:
+#' get_available_multi_cols())
+#' @export
+#' @importFrom dplyr bind_rows
+#' @examples
+#' \dontrun{endnote_list <- create_endnote_list()
+#' refs_clean_df <- clean_references_df(endnote_list)
+#' multi_cols_list <- tidy_multi_cols_list(refs_clean_df)
+#' }
+
+tidy_multi_cols_list <- function(df) {
+
+  valid_multi_cols <- get_available_multi_cols(df)
+
+  list(author = tidy_selected_cols(df, valid_multi_cols[3]),
+       author_secondary = tidy_selected_cols(df, valid_multi_cols[2]),
+       author_tecondary = tidy_selected_cols(df, valid_multi_cols[1]),
+       urls_pdf = tidy_selected_cols(df, valid_multi_cols[4]),
+       keywords = tidy_selected_cols(df, valid_multi_cols[5]))
+
+}
+
+
+
+
