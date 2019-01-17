@@ -128,8 +128,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>clean_accessibility</span>(<span class='no'>access</span>, <span class='kw'>replace_na</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>replace_na_text</span> <span class='kw'>=</span> <span class='st'>"add_public_or_confidential"</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>clean_accessibility</span>(<span class='no'>access</span>, <span class='kw'>give_hints</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,13 +138,9 @@
       <td><p>vector with accessibility information</p></td>
     </tr>
     <tr>
-      <th>replace_na</th>
-      <td><p>if TRUE NAs are replaced with 'replace_na_text' (
-default: FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>replace_na_text</th>
-      <td><p>text for replacing NAs (default: "add_public_or_confidential")</p></td>
+      <th>give_hints</th>
+      <td><p>if TRUE hints will be generated, e.g.
+"add_public_or_confidential" in case of missing entries (default: FALSE)</p></td>
     </tr>
     <tr>
       <th>dbg</th>

@@ -130,7 +130,7 @@
 
     <pre class="usage"><span class='fu'>write_clean_references_df_to_xlsx</span>(<span class='no'>endnote_list</span>,
   <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='default_clean_xlsx.html'>default_clean_xlsx</a></span>(<span class='no'>endnote_list</span>), <span class='kw'>export_dir</span> <span class='kw'>=</span> <span class='st'>"."</span>,
-  <span class='kw'>replace_na</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>give_hints</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,9 +148,9 @@
       <td><p>directory where to save 'file' (default: ".")</p></td>
     </tr>
     <tr>
-      <th>replace_na</th>
-      <td><p>if TRUE NAs are replaced with 'replace_na_text' (
-default: FALSE)</p></td>
+      <th>give_hints</th>
+      <td><p>if TRUE hints will be generated, e.g.
+"add_public_or_confidential" for accessiblity data</p></td>
     </tr>
     <tr>
       <th>dbg</th>

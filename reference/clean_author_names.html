@@ -128,9 +128,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>clean_author_names</span>(<span class='no'>author_names</span>, <span class='kw'>replace_na</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>replace_na_text</span> <span class='kw'>=</span> <span class='st'>"add_author_lastname_semicolon_firstname"</span>,
-  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>clean_author_names</span>(<span class='no'>author_names</span>, <span class='kw'>give_hints</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,14 +138,9 @@
       <td><p>with author names to clean</p></td>
     </tr>
     <tr>
-      <th>replace_na</th>
-      <td><p>if TRUE NAs are replaced with 'replace_na_text' (
-default: FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>replace_na_text</th>
-      <td><p>text for replacing NAs (default:
-"add_author_lastname_semicolon_firstname"")</p></td>
+      <th>give_hints</th>
+      <td><p>if TRUE hints will be generated, e.g.
+"fix_multiple_authors_per_line" in case of missing entries (default: FALSE)</p></td>
     </tr>
     <tr>
       <th>dbg</th>
