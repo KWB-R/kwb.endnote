@@ -1,8 +1,8 @@
 #' Check Endnote for Problematic References
 #'
 #' @param endnote_list list created with create_endnote_list()
-#' @param replace_na if TRUE NAs are replaced with 'replace_na_text' (
-#' default: TRUE) defined in relevant helper function
+#' @param give_hints if TRUE hints will be generated, e.g.
+#'  "add_public_or_confidential" for accessiblity data
 #' @param dbg show debug messages (default: TRUE)
 #' @return a data frame with problematic entries
 #' @export
@@ -13,7 +13,7 @@
 #' head(problematic_entries)
 #' }
 check_problematic_entries <- function(
-  endnote_list, replace_na = TRUE, dbg = TRUE) {
+  endnote_list, give_hints = TRUE, dbg = TRUE) {
 
   entries_org <- kwb.utils::catAndRun(
     sprintf("Creating data frame from '%s'",
@@ -26,7 +26,7 @@ check_problematic_entries <- function(
     sprintf("Creating 'cleaned' data frame from '%s' for comparison",
             deparse(substitute(endnote_list))),
     dbg = dbg,
-    expr = clean_references_df(endnote_list, replace_na, dbg)
+    expr = clean_references_df(endnote_list, give_hints, dbg)
   )
 
   has_problems <- ! sapply(names(entries_org), function(col_name) {

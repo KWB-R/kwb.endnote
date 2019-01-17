@@ -152,3 +152,12 @@ tidy_df <- function(df, exclude_cols = "rec_number") {
     dplyr::filter(!is.na(.data$value)) %>%
     dplyr::arrange(.data$key)
 }
+
+
+replace_na_with_value <- function(vector, value) {
+  if(any(is.na(vector))) {
+    vector[is.na(vector)] <- value
+  }
+
+  vector
+}

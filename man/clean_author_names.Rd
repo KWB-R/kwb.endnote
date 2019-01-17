@@ -4,18 +4,13 @@
 \alias{clean_author_names}
 \title{Helper function: clean author names}
 \usage{
-clean_author_names(author_names, replace_na = FALSE,
-  replace_na_text = "add_author_lastname_semicolon_firstname",
-  dbg = TRUE)
+clean_author_names(author_names, give_hints = FALSE, dbg = TRUE)
 }
 \arguments{
 \item{author_names}{with author names to clean}
 
-\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
-default: FALSE)}
-
-\item{replace_na_text}{text for replacing NAs (default:
-"add_author_lastname_semicolon_firstname"")}
+\item{give_hints}{if TRUE hints will be generated, e.g.
+"fix_multiple_authors_per_line" in case of missing entries (default: FALSE)}
 
 \item{dbg}{show debug messages (default: TRUE)}
 }

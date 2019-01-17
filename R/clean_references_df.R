@@ -19,20 +19,34 @@ clean_dois <- function(dois, dbg = TRUE) {
   })
 }
 
+#' Helper Function: Give Hints For Project Names
+#'
+#' @param project_names vector with project names to check
+#' @param dbg should debug messages be printed (default: TRUE)
+#' @importFrom stringr str_detect
+#' @return vector with project_names with hints how to improve data quality (in
+#' case give_hints = TRUE)
+#' @export
+give_hints_project_names <- function(project_names, dbg = TRUE) {
+
+  kwb.utils::catAndRun(
+    "Generate hints for 'Project Names'",
+    expr = { replace_na_with_value(project_names, "add_project_name")}
+    )
+}
+
 #' Helper function: clean project names
 #'
 #' @param project_names with project names to clean
-#' @param replace_na if TRUE NAs are replaced with 'replace_na_text' (
-#' default: FALSE)
-#' @param replace_na_text text for replacing NAs (default: "add_project_name")
+#' @param give_hints if TRUE hints will be generated, e.g. "add_project_name"
+#' in case of missing entries (default: FALSE)
 #' @param dbg show debug messages (default: TRUE)
 #' @return vector with cleaned project names
 #' @export
 #' @importFrom stringr str_remove_all str_replace_all regex str_trim
 #' @importFrom kwb.utils catAndRun
 clean_project_names <- function(
-  project_names, replace_na = FALSE, replace_na_text = "add_project_name",
-  dbg = TRUE
+  project_names, give_hints = FALSE, dbg = TRUE
 ) {
 
   kwb.utils::catAndRun("Clean 'Project Names'", dbg = dbg, expr = {
@@ -48,12 +62,11 @@ clean_project_names <- function(
       stringr::str_trim() %>%
       tolower()
 
-    if (replace_na) {
-      project_names[is.na(project_names)] <- replace_na_text
+    if (give_hints) {
+      project_names <- give_hints_project_names(project_names, dbg)
     }
 
-    project_names
-  })
+    project_names})
 }
 
 
@@ -65,67 +78,100 @@ if (FALSE) {
     dplyr::mutate_if(is.character, list(~dplyr::na_if(., NA_character_)))
 }
 
+#' Helper Function: Give Hints For Author Names
+#'
+#' @param author_names vector with author names to check
+#' @param dbg should debug messages be printed (default: TRUE)
+#' @importFrom kwb.utils catAndRun
+#' @importFrom stringr str_detect
+#' @return vector with author_names with hints how to improve data quality (in
+#' case give_hints = TRUE)
+#' @export
+give_hints_author_names <- function(author_names, dbg = TRUE) {
+
+  kwb.utils::catAndRun(
+    "Generate hints for 'Author Names'",
+    dbg = dbg,
+    expr = {
+      multiple_authors_idx <- which(unlist(lapply(author_names, function(x)
+                             length(stringr::str_split(x, pattern = ",")[[1]])
+                           )) > 2
+                         )
+
+      firstname_lastname_idx <- which(
+        stringr::str_detect(author_names, "^\\s?\\w+\\.?\\s+\\w+") &
+          ! stringr::str_detect(author_names, ","))
+
+      if(length(multiple_authors_idx) > 0) {
+      author_names[multiple_authors_idx] <- "fix_multiple_authors_per_line"
+
+      }
+
+      if(length(firstname_lastname_idx) > 0) {
+        author_names[firstname_lastname_idx] <- paste0("fix_firstname_lastname_with_",
+                                                       "lastname_semicolon_firstname")
+      }
+
+      replace_na_with_value(author_names,"add_author_lastname_semicolon_firstname")
+      })
+}
+
 #' Helper function: clean author names
 #'
 #' @param author_names with author names to clean
-#' @param replace_na if TRUE NAs are replaced with 'replace_na_text' (
-#' default: FALSE)
-#' @param replace_na_text text for replacing NAs (default:
-#' "add_author_lastname_semicolon_firstname"")
+#' @param give_hints if TRUE hints will be generated, e.g.
+#' "fix_multiple_authors_per_line" in case of missing entries (default: FALSE)
 #' @param dbg show debug messages (default: TRUE)
 #' @return vector with cleaned author names
 #' @export
-#' @importFrom stringr str_detect
 #' @importFrom kwb.utils catAndRun
 clean_author_names <- function(
-  author_names, replace_na = FALSE,
-  replace_na_text = "add_author_lastname_semicolon_firstname", dbg = TRUE
+  author_names, give_hints = FALSE, dbg = TRUE
 ) {
 
-  kwb.utils::catAndRun("Clean and Check 'Author Names'", dbg = dbg, expr = {
-
-    multiple_authors_idx <- which(
-      unlist(lapply(author_names, function(x)
-        length(stringr::str_split(x, pattern = ",")[[1]])
-      )) > 2
+  kwb.utils::catAndRun(
+    "No cleaning of author_names implemented yet. Only hints are generated in
+    case that user defines 'give_hints = TRUE' (default: FALSE)",
+    expr = {},
+    dbg = dbg
     )
 
-    author_names[multiple_authors_idx] <- "fix_multiple_authors_per_line"
-
-    firstname_lastname_idx <- which(
-      stringr::str_detect(author_names, "^\\s?\\w+\\.?\\s+\\w+") &
-        ! stringr::str_detect(author_names, ",")
-    )
-
-    author_names[firstname_lastname_idx] <- c(
-      "fix_firstname_lastname_with_lastname_semicolon_firstname"
-    )
-
-    # author_names <- author_names %>%
-    #   stringr::str_trim()
-
-    if (replace_na) {
-
-      author_names[is.na(author_names)] <- replace_na_text
+    if (give_hints) {
+      author_names <- give_hints_author_names(author_names, dbg = dbg)
     }
 
-    author_names
-  })
+  author_names
+
+}
+
+#' Helper Function: Give Hints For Accessibility
+#'
+#' @param access vector with accessibility metadata to check
+#' @param dbg should debug messages be printed (default: TRUE)
+#' @importFrom kwb.utils catAndRun
+#' @return vector with access info with hints how to improve data quality (in
+#' case give_hints = TRUE)
+#' @export
+give_hints_accessiblity <- function(access, dbg = TRUE) {
+
+  kwb.utils::catAndRun(
+    "Generate hints for 'Accessiblity'",
+    expr = {
+      replace_na_with_value(access, "add_public_or_confidential")
+    })
 }
 
 #' Helper function: clean access information
 #'
 #' @param access vector with accessibility information
-#' @param replace_na if TRUE NAs are replaced with 'replace_na_text' (
-#' default: FALSE)
-#' @param replace_na_text text for replacing NAs (default: "add_public_or_confidential")
+#' @param give_hints if TRUE hints will be generated, e.g.
+#'  "add_public_or_confidential" in case of missing entries (default: FALSE)
 #' @param dbg show debug messages (default: TRUE)
 #' @return vector with cleaned accessibility information
 #' @export
 #' @importFrom stringr str_remove_all str_replace_all regex str_trim
 clean_accessibility <- function(
-  access, replace_na = FALSE, replace_na_text = "add_public_or_confidential",
-  dbg = TRUE
+  access, give_hints = FALSE, dbg = TRUE
 ) {
 
   replace_all <- function(string, pattern, replacement) {
@@ -146,9 +192,7 @@ clean_accessibility <- function(
       replace_all("confident.*", "confidential") %>%
       stringr::str_trim()
 
-    if (replace_na) {
-      access[is.na(access)] <- replace_na_text
-    }
+    if (give_hints) access <- give_hints_accessiblity(access, dbg)
 
     access
   })
@@ -157,8 +201,8 @@ clean_accessibility <- function(
 #' Clean References Dataframe
 #'
 #' @param endnote_list list created with create_endnote_list()
-#' @param replace_na if TRUE NAs are replaced with 'replace_na_text' (
-#' default: FALSE) defined in relevant helper function
+#' @param give_hints if TRUE hints will be generated, e.g.
+#'  "add_public_or_confidential" for accessiblity data
 #' @param dbg show debug messages (default: TRUE)
 #' @return cleaned references_df
 #' @export
@@ -168,23 +212,25 @@ clean_accessibility <- function(
 #' refs_clean_df <- clean_references_df(endnote_list)
 #' head(refs_clean_df)
 #' }
-clean_references_df <- function(endnote_list, replace_na = FALSE, dbg = TRUE) {
+clean_references_df <- function(endnote_list, give_hints = FALSE, dbg = TRUE) {
 
   refs_df <- create_references_df(endnote_list,collapse = TRUE)
 
   refs_df <- kwb.utils::catAndRun(
 
-    messageText = "\nClean and Check 'Author Names'", dbg = dbg, expr = {
+    messageText = "Check 'Author Names'", dbg = dbg, expr = {
 
       is_author <- stringr::str_detect(names(refs_df), "author")
 
       col_authors <- names(refs_df)[is_author]
 
       for (col_author in col_authors) {
-        replace_author_na <- (col_author == "author01")
+        if (give_hints && col_author == "author01") {
+          replace_na_with_value(refs_df[[col_author]],
+          "add_at_least_one_author_with_lastname_semicolon_firstname")
+        }
         refs_df[[col_author]]  <- clean_author_names(
-          refs_df[[col_author]], replace_na = replace_author_na, dbg = FALSE
-        )
+          refs_df[[col_author]], give_hints = give_hints, dbg = dbg)
       }
 
       refs_df
@@ -193,6 +239,10 @@ clean_references_df <- function(endnote_list, replace_na = FALSE, dbg = TRUE) {
 
   refs_df %>% dplyr::mutate(
     electronic_resource_num = clean_dois(.data$electronic_resource_num, dbg = dbg),
-    custom2 = clean_project_names(.data$custom2, replace_na, dbg = dbg),
-    custom3 = clean_accessibility(.data$custom3, replace_na, dbg = dbg))
+    custom2 = clean_project_names(.data$custom2,
+                                  give_hints = TRUE,
+                                  dbg = dbg),
+    custom3 = clean_accessibility(.data$custom3,
+                                  give_hints = TRUE,
+                                  dbg = dbg))
 }

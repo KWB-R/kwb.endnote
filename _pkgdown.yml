@@ -49,6 +49,7 @@ reference:
       - starts_with("clean_p")
       - starts_with("default_")
       - starts_with("get_")
+      - starts_with("give_")
       - record_list_to_df
       - tidy_df
       - "%>%"

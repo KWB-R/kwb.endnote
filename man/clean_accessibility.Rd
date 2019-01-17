@@ -4,16 +4,13 @@
 \alias{clean_accessibility}
 \title{Helper function: clean access information}
 \usage{
-clean_accessibility(access, replace_na = FALSE,
-  replace_na_text = "add_public_or_confidential", dbg = TRUE)
+clean_accessibility(access, give_hints = FALSE, dbg = TRUE)
 }
 \arguments{
 \item{access}{vector with accessibility information}
 
-\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
-default: FALSE)}
-
-\item{replace_na_text}{text for replacing NAs (default: "add_public_or_confidential")}
+\item{give_hints}{if TRUE hints will be generated, e.g.
+"add_public_or_confidential" in case of missing entries (default: FALSE)}
 
 \item{dbg}{show debug messages (default: TRUE)}
 }
