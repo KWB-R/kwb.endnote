@@ -77,3 +77,24 @@ In total `r n_new_entries` new entries where created in `r basename(en_new_xml)`
 compared to `r basename(en_old_xml)` which contain `r nrow(en_diffs_df)` new 
 values.
 
+
+
+
+### Use Case 3: Get Hints For 'Author Names'
+
+```{r echo=TRUE}
+
+multi_cols_list <- kwb.endnote::tidy_multi_cols_list(refs_clean_df)
+
+names(multi_cols_list)
+
+
+hints_author_names <- tibble::tibble(author = unique(multi_cols_list$author$value)) %>%
+  dplyr::mutate(hints = kwb.endnote::give_hints_author_names(.data$author)) %>% 
+  dplyr::filter(stringr::str_detect(.data$hints, pattern = "^fix_")) %>% 
+  dplyr::arrange(.data$author) 
+
+
+hints_author_names 
+
+```
