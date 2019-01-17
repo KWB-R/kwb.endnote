@@ -15,7 +15,6 @@
 #' head(references_df)
 #'
 create_df_from_endnote_xml <- function(endnote_xml = default_xml()) {
-
   references <- kwb.read::read_xml_as_path_value(endnote_xml)
 
   xml_paths <- references$path %>%
@@ -32,16 +31,17 @@ create_df_from_endnote_xml <- function(endnote_xml = default_xml()) {
 
   n_col <- ncol(references_df)
 
-  colnames(references_df) <- c("record_id", paste0("key", 1:(n_col-2)), "value")
+  colnames(references_df) <- c("record_id", paste0("key", 1:(n_col - 2)), "value")
 
-  endnote_df <- dplyr::left_join(references_df,
-                                   get_reference_type_names(endnote_xml))
+  endnote_df <- dplyr::left_join(
+    references_df,
+    get_reference_type_names(endnote_xml)
+  )
 
   add_file_info_attributes(endnote_df, endnote_xml)
 }
 
 if (FALSE) {
-
   abstracts <- references_df %>%
     dplyr::filter(.data$key1 == "abstract") %>%
     dplyr::group_by(

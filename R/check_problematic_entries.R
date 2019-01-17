@@ -13,32 +13,35 @@
 #' head(problematic_entries)
 #' }
 check_problematic_entries <- function(
-  endnote_list, give_hints = TRUE, dbg = TRUE) {
-
+                                      endnote_list, give_hints = TRUE, dbg = TRUE) {
   entries_org <- kwb.utils::catAndRun(
-    sprintf("Creating data frame from '%s'",
-            deparse(substitute(endnote_list))),
+    sprintf(
+      "Creating data frame from '%s'",
+      deparse(substitute(endnote_list))
+    ),
     dbg = dbg,
     expr = create_references_df(endnote_list)
   )
 
   entries_cleaned <- kwb.utils::catAndRun(
-    sprintf("Creating 'cleaned' data frame from '%s' for comparison",
-            deparse(substitute(endnote_list))),
+    sprintf(
+      "Creating 'cleaned' data frame from '%s' for comparison",
+      deparse(substitute(endnote_list))
+    ),
     dbg = dbg,
     expr = clean_references_df(endnote_list, give_hints, dbg)
   )
 
-  has_problems <- ! sapply(names(entries_org), function(col_name) {
+  has_problems <- !sapply(names(entries_org), function(col_name) {
     identical(entries_org[[col_name]], entries_cleaned[[col_name]])
   })
 
   cols_with_problems <- names(which(has_problems))
 
   check_list <- lapply(cols_with_problems, function(column) {
-
-    indices <- which(! sapply(seq_len(nrow(entries_org)), function (i) {
-      identical(entries_org[[column]][i],entries_cleaned[[column]][i])}))
+    indices <- which(!sapply(seq_len(nrow(entries_org)), function(i) {
+      identical(entries_org[[column]][i], entries_cleaned[[column]][i])
+    }))
 
     tibble::tibble(
       rec_number = entries_org[["rec_number"]][indices],

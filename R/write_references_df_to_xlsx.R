@@ -16,9 +16,7 @@
 #' write_references_df_to_xlsx(endnote_list)
 #' }
 write_references_df_to_xlsx <- function(
-  endnote_list, file = default_xlsx(endnote_list), export_dir = ".",
-  dbg = TRUE, ...
-) {
-
+                                        endnote_list, file = default_xlsx(endnote_list), export_dir = ".",
+                                        dbg = TRUE, ...) {
   write_references(endnote_list, file, export_dir, clean = FALSE, dbg = dbg, ...)
 }

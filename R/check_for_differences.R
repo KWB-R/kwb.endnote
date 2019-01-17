@@ -39,21 +39,19 @@
 #'
 #' }
 check_for_differences <- function(
-  df_x, df_y, dbg = TRUE
-) {
-
+                                  df_x, df_y, dbg = TRUE) {
   name_df_x <- deparse(substitute(df_x))
   name_df_y <- deparse(substitute(df_y))
 
   name_value_x <- sprintf("value_%s", name_df_x)
-  name_value_y <-  sprintf("value_%s", name_df_y)
+  name_value_y <- sprintf("value_%s", name_df_y)
 
   tidy_name <- function(name) paste0(name, "_tidy")
 
   get_text <- function(name_df, name_value) sprintf(
-    "Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
-    name_df, name_value, tidy_name(name_df)
-  )
+      "Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
+      name_df, name_value, tidy_name(name_df)
+    )
 
   df_x_tidy <- kwb.utils::catAndRun(
     messageText = get_text(name_df_x, name_value_x), dbg = dbg,
@@ -86,10 +84,10 @@ check_for_differences <- function(
 
   diffs_idx <- kwb.utils::catAndRun(
     messageText = messageText, dbg = dbg,
-    expr = which(! sapply(seq_len(nrow(df_xy_tidy)), function(row) identical(
-      df_xy_tidy[[name_value_x]][row],
-      df_xy_tidy[[name_value_y]][row]
-    )))
+    expr = which(!sapply(seq_len(nrow(df_xy_tidy)), function(row) identical(
+        df_xy_tidy[[name_value_x]][row],
+        df_xy_tidy[[name_value_y]][row]
+      )))
   )
 
   kwb.utils::catIf(dbg, sprintf(

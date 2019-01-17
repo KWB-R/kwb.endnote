@@ -13,7 +13,6 @@
 #' str(refs_list_by_pubtype, 1)
 #' }
 create_list_by_pubtype_from_df <- function(refs_df) {
-
   refs_df <- refs_df %>%
     dplyr::arrange(dplyr::desc(.data$rec_number))
 
@@ -26,7 +25,7 @@ create_list_by_pubtype_from_df <- function(refs_df) {
       dplyr::arrange(dplyr::desc(.data$rec_number))
   })
 
-  refs_df_list <- c(list(refs_df),refs_df_list)
+  refs_df_list <- c(list(refs_df), refs_df_list)
 
   stats::setNames(refs_df_list, c("ALL", pub_types))
 }

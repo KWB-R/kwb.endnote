@@ -7,7 +7,6 @@
 #' @importFrom stringr str_remove_all regex str_trim
 #' @importFrom kwb.utils catAndRun
 clean_dois <- function(dois, dbg = TRUE) {
-
   remove <- stringr::str_remove_all
 
   kwb.utils::catAndRun("Clean 'DOI'", dbg = dbg, expr = {
@@ -28,11 +27,12 @@ clean_dois <- function(dois, dbg = TRUE) {
 #' case give_hints = TRUE)
 #' @export
 give_hints_project_names <- function(project_names, dbg = TRUE) {
-
   kwb.utils::catAndRun(
     "Generate hints for 'Project Names'",
-    expr = { replace_na_with_value(project_names, "add_project_name")}
-    )
+    expr = {
+      replace_na_with_value(project_names, "add_project_name")
+    }
+  )
 }
 
 #' Helper function: clean project names
@@ -46,11 +46,8 @@ give_hints_project_names <- function(project_names, dbg = TRUE) {
 #' @importFrom stringr str_remove_all str_replace_all regex str_trim
 #' @importFrom kwb.utils catAndRun
 clean_project_names <- function(
-  project_names, give_hints = FALSE, dbg = TRUE
-) {
-
+                                project_names, give_hints = FALSE, dbg = TRUE) {
   kwb.utils::catAndRun("Clean 'Project Names'", dbg = dbg, expr = {
-
     project_names <- project_names %>%
       stringr::str_replace_all("\\s+?/", ",") %>%
       stringr::str_remove_all("-") %>%
@@ -66,12 +63,12 @@ clean_project_names <- function(
       project_names <- give_hints_project_names(project_names, dbg)
     }
 
-    project_names})
+    project_names
+  })
 }
 
 
 if (FALSE) {
-
   clean_project_names(project_names) %>%
     stringr::str_split(",", simplify = TRUE) %>%
     tibble::as.tibble() %>%
@@ -88,32 +85,32 @@ if (FALSE) {
 #' case give_hints = TRUE)
 #' @export
 give_hints_author_names <- function(author_names, dbg = TRUE) {
-
   kwb.utils::catAndRun(
     "Generate hints for 'Author Names'",
     dbg = dbg,
     expr = {
       multiple_authors_idx <- which(unlist(lapply(author_names, function(x)
-                             length(stringr::str_split(x, pattern = ",")[[1]])
-                           )) > 2
-                         )
+        length(stringr::str_split(x, pattern = ",")[[1]]))) > 2)
 
       firstname_lastname_idx <- which(
         stringr::str_detect(author_names, "^\\s?\\w+\\.?\\s+\\w+") &
-          ! stringr::str_detect(author_names, ","))
+          !stringr::str_detect(author_names, ",")
+      )
 
-      if(length(multiple_authors_idx) > 0) {
-      author_names[multiple_authors_idx] <- "fix_multiple_authors_per_line"
-
+      if (length(multiple_authors_idx) > 0) {
+        author_names[multiple_authors_idx] <- "fix_multiple_authors_per_line"
       }
 
-      if(length(firstname_lastname_idx) > 0) {
-        author_names[firstname_lastname_idx] <- paste0("fix_firstname_lastname_with_",
-                                                       "lastname_semicolon_firstname")
+      if (length(firstname_lastname_idx) > 0) {
+        author_names[firstname_lastname_idx] <- paste0(
+          "fix_firstname_lastname_with_",
+          "lastname_semicolon_firstname"
+        )
       }
 
-      replace_na_with_value(author_names,"add_author_lastname_semicolon_firstname")
-      })
+      replace_na_with_value(author_names, "add_author_lastname_semicolon_firstname")
+    }
+  )
 }
 
 #' Helper function: clean author names
@@ -126,22 +123,19 @@ give_hints_author_names <- function(author_names, dbg = TRUE) {
 #' @export
 #' @importFrom kwb.utils catAndRun
 clean_author_names <- function(
-  author_names, give_hints = FALSE, dbg = TRUE
-) {
-
+                               author_names, give_hints = FALSE, dbg = TRUE) {
   kwb.utils::catAndRun(
     "No cleaning of author_names implemented yet. Only hints are generated in
     case that user defines 'give_hints = TRUE' (default: FALSE)",
     expr = {},
     dbg = dbg
-    )
+  )
 
-    if (give_hints) {
-      author_names <- give_hints_author_names(author_names, dbg = dbg)
-    }
+  if (give_hints) {
+    author_names <- give_hints_author_names(author_names, dbg = dbg)
+  }
 
   author_names
-
 }
 
 #' Helper Function: Give Hints For Accessibility
@@ -153,12 +147,12 @@ clean_author_names <- function(
 #' case give_hints = TRUE)
 #' @export
 give_hints_accessiblity <- function(access, dbg = TRUE) {
-
   kwb.utils::catAndRun(
     "Generate hints for 'Accessiblity'",
     expr = {
       replace_na_with_value(access, "add_public_or_confidential")
-    })
+    }
+  )
 }
 
 #' Helper function: clean access information
@@ -171,9 +165,7 @@ give_hints_accessiblity <- function(access, dbg = TRUE) {
 #' @export
 #' @importFrom stringr str_remove_all str_replace_all regex str_trim
 clean_accessibility <- function(
-  access, give_hints = FALSE, dbg = TRUE
-) {
-
+                                access, give_hints = FALSE, dbg = TRUE) {
   replace_all <- function(string, pattern, replacement) {
     stringr::str_replace_all(
       string = string,
@@ -183,7 +175,6 @@ clean_accessibility <- function(
   }
 
   kwb.utils::catAndRun("Clean 'Accessibility'", dbg = dbg, expr = {
-
     access <- access %>%
       replace_all("PU.*", "public") %>%
       replace_all("public.*", "public") %>%
@@ -213,24 +204,25 @@ clean_accessibility <- function(
 #' head(refs_clean_df)
 #' }
 clean_references_df <- function(endnote_list, give_hints = FALSE, dbg = TRUE) {
-
-  refs_df <- create_references_df(endnote_list,collapse = TRUE)
+  refs_df <- create_references_df(endnote_list, collapse = TRUE)
 
   refs_df <- kwb.utils::catAndRun(
-
     messageText = "Check 'Author Names'", dbg = dbg, expr = {
-
       is_author <- stringr::str_detect(names(refs_df), "author")
 
       col_authors <- names(refs_df)[is_author]
 
       for (col_author in col_authors) {
         if (give_hints && col_author == "author01") {
-          replace_na_with_value(refs_df[[col_author]],
-          "add_at_least_one_author_with_lastname_semicolon_firstname")
+          replace_na_with_value(
+            refs_df[[col_author]],
+            "add_at_least_one_author_with_lastname_semicolon_firstname"
+          )
         }
-        refs_df[[col_author]]  <- clean_author_names(
-          refs_df[[col_author]], give_hints = give_hints, dbg = dbg)
+        refs_df[[col_author]] <- clean_author_names(
+          refs_df[[col_author]],
+          give_hints = give_hints, dbg = dbg
+        )
       }
 
       refs_df
@@ -240,9 +232,12 @@ clean_references_df <- function(endnote_list, give_hints = FALSE, dbg = TRUE) {
   refs_df %>% dplyr::mutate(
     electronic_resource_num = clean_dois(.data$electronic_resource_num, dbg = dbg),
     custom2 = clean_project_names(.data$custom2,
-                                  give_hints = TRUE,
-                                  dbg = dbg),
+      give_hints = TRUE,
+      dbg = dbg
+    ),
     custom3 = clean_accessibility(.data$custom3,
-                                  give_hints = TRUE,
-                                  dbg = dbg))
+      give_hints = TRUE,
+      dbg = dbg
+    )
+  )
 }

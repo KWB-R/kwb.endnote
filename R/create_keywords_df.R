@@ -12,7 +12,6 @@
 #' head(keywords_df)
 #'
 create_keywords_df <- function(references_df) {
-
   keywords <- references_df %>%
     dplyr::filter(.data$key1 == "keywords") %>%
     dplyr::select(

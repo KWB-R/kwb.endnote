@@ -13,10 +13,9 @@
 #' str(unique_entries_list, 1)
 #' }
 create_list_with_unique_entries <- function(refs_df) {
-
   select_columns <- function(pattern) {
     columns <- unique(stringr::str_extract(names(refs_df), pattern))
-    columns[! is.na(columns)]
+    columns[!is.na(columns)]
   }
 
   tidy_unique_df <- function(columns) {
@@ -36,7 +35,7 @@ create_list_with_unique_entries <- function(refs_df) {
       dplyr::rename(!!rlang::quo_name(column) := .data$value)
   }
 
-  ignore_cols <-  c(
+  ignore_cols <- c(
     select_columns(".*[0-9][0-9].*"),
     "rec_number", "ref_type", "database_path", "database_name"
   )

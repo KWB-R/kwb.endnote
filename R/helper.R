@@ -1,6 +1,5 @@
 # attr_of_element --------------------------------------------------------------
 attr_of_element <- function(x, element, which) {
-
   attr(x[[element]], which)
 }
 
@@ -8,7 +7,6 @@ attr_of_element <- function(x, element, which) {
 
 # Helper function to generate column name with index as suffix
 colname_i <- function(name, i) {
-
   sprintf("%s%02d", name, i)
 }
 
@@ -22,21 +20,17 @@ colname_i <- function(name, i) {
 #' @export
 #'
 default_xml <- function() {
-
   extdata_file("2019-01-07_KWB_documents.xml")
 }
 
 # first_of_element -------------------------------------------------------------
 first_of_element <- function(x, element) {
-
   x[[element]][[1]]
 }
 
 # get_list_entry ---------------------------------------------------------------
 get_list_entry <- function(x, path) {
-
-  while (! is.null(x) && length(path)) {
-
+  while (!is.null(x) && length(path)) {
     p <- path[1]
 
     path <- path[-1]
@@ -57,7 +51,6 @@ get_list_entry <- function(x, path) {
 #' ref_type_names <- get_reference_type_names()
 #' head(ref_type_names)
 get_reference_type_names <- function(endnote_xml = default_xml()) {
-
   records <- unname(create_endnote_list(endnote_xml))
 
   data.frame(
@@ -71,7 +64,6 @@ get_reference_type_names <- function(endnote_xml = default_xml()) {
 
 # numeric_first_elements -------------------------------------------------------
 numeric_first_elements <- function(x, element) {
-
   as.numeric(sapply(x, first_of_element, element))
 }
 
@@ -82,7 +74,6 @@ numeric_first_elements <- function(x, element) {
 #' @param \dots parts of path passed to \code{\link{system.file}}
 #' @export
 extdata_file <- function(...) {
-
   system.file("extdata", ..., package = "kwb.endnote")
 }
 
@@ -95,7 +86,6 @@ extdata_file <- function(...) {
 #' @return object with file info attributes
 #' @export
 add_file_info_attributes <- function(obj, path) {
-
   structure(
     obj,
     "xml_filename_without_extension" = tools::file_path_sans_ext(basename(path)),
@@ -146,7 +136,6 @@ default_xlsx <- function(endnote_list) {
 #' }
 
 tidy_df <- function(df, exclude_cols = "rec_number") {
-
   df %>%
     tidyr::gather("key", "value", setdiff(names(df), exclude_cols)) %>%
     dplyr::filter(!is.na(.data$value)) %>%
@@ -155,7 +144,7 @@ tidy_df <- function(df, exclude_cols = "rec_number") {
 
 
 replace_na_with_value <- function(vector, value) {
-  if(any(is.na(vector))) {
+  if (any(is.na(vector))) {
     vector[is.na(vector)] <- value
   }
 
