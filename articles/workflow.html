@@ -518,6 +518,43 @@
 <a class="sourceLine" id="cb4-3" data-line-number="3">  </a></code></pre></div>
 <p>In total 2 new entries where created in 2019-01-14_KWB_documents.xml compared to 2019-01-07_KWB_documents.xml which contain 37 new values.</p>
 </div>
+<div id="use-case-3-get-hints-for-author-names" class="section level3">
+<h3 class="hasAnchor">
+<a href="#use-case-3-get-hints-for-author-names" class="anchor"></a>Use Case 3: Get Hints For ‘Author Names’</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">multi_cols_list &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">tidy_multi_cols_list</span>(refs_clean)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(multi_cols_list)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; [1] "author"           "author_secondary" "author_tecondary"</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; [4] "urls_pdf"         "keywords"</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">hints_author_names &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(multi_cols_list<span class="op">$</span>author<span class="op">$</span>value)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">hints =</span> kwb.endnote<span class="op">::</span><span class="kw">give_hints_author_names</span>(.data<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(.data<span class="op">$</span>hints, <span class="dt">pattern =</span> <span class="st">"^fix_"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(.data<span class="op">$</span>author) </a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; Generate hints for 'Author Names' ... Replacing 31 values with fix_multiple_authors_per_line ... ok. </span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Replacing 230 values with fix_firstname_lastname_with_lastname_semicolon_firstname ... ok. </span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; Replacing 27 values with fix_author_name_by_deleting_last_semicolon ... ok. </span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; ok.</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">hints_author_names </a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; # A tibble: 269 x 2</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt;    author             hints                                                </span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt;    &lt;chr&gt;              &lt;chr&gt;                                                </span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;  1 " Claire Pineau "  fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;  2 "A. Bonhomme "     fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt;  3 A. Drews           fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt;  4 A. Hein            fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt;  5 A. Lesouëf         fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt;  6 "A. Lesouëf "      fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt;  7 A. Matzinger       fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt;  8 A. Peter-Fröhlich  fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt;  9 Adrien Moreau      fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt; 10 Alexander Sperlich fix_firstname_lastname_with_lastname_semicolon_first…</span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; # … with 259 more rows</span></a></code></pre></div>
+</div>
 </div>
   </div>
 
