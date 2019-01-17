@@ -150,3 +150,83 @@ replace_na_with_value <- function(vector, value) {
 
   vector
 }
+
+
+select_columns <- function(df, pattern) {
+  columns <- unique(stringr::str_extract(names(df), pattern))
+  columns[!is.na(columns)]
+}
+
+
+
+#' Helper Function: Get Available Multi Col Names
+#'
+#' @description all names which are valid inputs for tidy_selected_cols()
+#' @param df as retrieved by create_references_df() or clean_references_df()
+#' @return all names which are valid inputs for tidy_selected_cols()
+#' @export
+#' @importFrom stringr str_remove
+
+get_available_multi_cols <- function(df) {
+
+available_multi_cols <- stringr::str_extract(names(df), ".*[0-9][0-9]$") %>%
+  stringr::str_remove("[0-9][0-9]$") %>%
+  unique()
+
+available_multi_cols <- available_multi_cols[!is.na(available_multi_cols)]
+
+available_multi_cols
+}
+
+
+#' Helper Function: Tidy Selected Cols
+#'
+#' @param df as retrieved by create_references_df() or clean_references_df()
+#' @param column a multi col column e.g. "author"
+#' @return tidy dataframe for selected multi col in df
+#' @export
+#' @importFrom dplyr mutate arrange
+#' @importFrom tidyr separate
+
+tidy_selected_cols <- function(df,
+                               column = "author") {
+
+
+
+  cols_selected <- c("rec_number", select_columns(df,
+                                                  pattern = sprintf("^%s[0-9][0-9]",
+                                                                    column)))
+
+  if(length(cols_selected) > 1) {
+    tidy_df(refs_df[,cols_selected],
+            exclude_cols = "rec_number") %>%
+    tidyr::separate(.data$key,
+                    into = c("key_name", "key_num"),
+                    sep = -2,
+                    remove = FALSE) %>%
+    dplyr::mutate(key_num = as.numeric(.data$key_num)) %>%
+    dplyr::arrange(dplyr::desc(.data$rec_number), .data$key)
+
+  } else {
+    stop(sprintf("Provided multi column '%s' not 'df'\nPlease choose one of: %s",
+                 column,
+                 paste(get_available_multi_cols(df), collapse = ", ")
+                 ))
+  }
+}
+
+#' Helper Function: Tidy Multi Cols
+#'
+#' @param df as retrieved by create_references_df() or clean_references_df()
+#' @return tidy dataframe for all multi cols in df
+#' @export
+#' @importFrom dplyr bind_rows
+
+tidy_multi_cols <- function(df) {
+
+  tidy_multi_cols_list <- lapply(get_available_multi_cols(df), function(col) {
+    tidy_selected_cols(df, column = col)})
+
+  dplyr::bind_rows(tidy_multi_cols_list)
+
+}

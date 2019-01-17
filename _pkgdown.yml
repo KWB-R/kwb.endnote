@@ -51,5 +51,5 @@ reference:
       - starts_with("get_")
       - starts_with("give_")
       - record_list_to_df
-      - tidy_df
+      - starts_with("tidy_")
       - "%>%"
