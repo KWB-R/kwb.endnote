@@ -53,7 +53,7 @@ give_hints_author_names <- function(author_names, dbg = TRUE) {
       ends_with_semicolon_idx <- get_indices_ends_with_semicolon(author_names)
 
 
-      author_fullname$value %>%
+      author_names %>%
       replace_indices_with_value(multiple_authors_idx,
                                  "fix_multiple_authors_per_line",
                                  dbg) %>%
