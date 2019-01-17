@@ -198,7 +198,7 @@ tidy_selected_cols <- function(df,
                                                                     column)))
 
   if(length(cols_selected) > 1) {
-    tidy_df(refs_df[,cols_selected],
+    tidy_df(df[,cols_selected],
             exclude_cols = "rec_number") %>%
     tidyr::separate(.data$key,
                     into = c("key_name", "key_num"),
