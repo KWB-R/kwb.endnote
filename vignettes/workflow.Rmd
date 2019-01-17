@@ -84,7 +84,7 @@ values.
 
 ```{r echo=TRUE}
 
-multi_cols_list <- kwb.endnote::tidy_multi_cols_list(refs_clean_df)
+multi_cols_list <- kwb.endnote::tidy_multi_cols_list(refs_clean)
 
 names(multi_cols_list)
 
