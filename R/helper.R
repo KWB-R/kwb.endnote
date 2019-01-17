@@ -143,9 +143,30 @@ tidy_df <- function(df, exclude_cols = "rec_number") {
 }
 
 
-replace_na_with_value <- function(vector, value) {
-  if (any(is.na(vector))) {
-    vector[is.na(vector)] <- value
+replace_na_with_value <- function(vector, value, dbg = TRUE) {
+
+  na_indices <- which(is.na(vector))
+
+  if (any(na_indices)) {
+    msg <- sprintf("Replacing %d NA values with %s",
+                   length(na_indices),
+                   value)
+    kwb.utils::catAndRun(msg, expr = {vector[na_indices] <- value}, dbg = dbg)
+  }
+
+  vector
+}
+
+
+replace_indices_with_value <- function(vector, indices, value, dbg = TRUE) {
+
+  n_indices <- length(indices)
+
+  if (n_indices > 0) {
+    msg <- sprintf("Replacing %d values with %s",
+                   n_indices,
+                   value)
+    kwb.utils::catAndRun(msg, expr = {vector[indices] <- value}, dbg = dbg)
   }
 
   vector
