@@ -162,11 +162,11 @@ clean_references_df <- function(endnote_list, give_hints = FALSE, dbg = TRUE) {
   refs_df %>% dplyr::mutate(
     electronic_resource_num = clean_dois(.data$electronic_resource_num, dbg = dbg),
     custom2 = clean_project_names(.data$custom2,
-      give_hints = TRUE,
+      give_hints = give_hints,
       dbg = dbg
     ),
     custom3 = clean_accessibility(.data$custom3,
-      give_hints = TRUE,
+      give_hints = give_hints,
       dbg = dbg
     )
   )
