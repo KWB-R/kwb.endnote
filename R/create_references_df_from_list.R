@@ -19,7 +19,7 @@ get_abstract <- function(record_list, collapse = FALSE) {
     return(NA_character_)
   }
 
-  collapse_fields(abstract, collapse, element = 1)
+  collapse_fields(abstract, collapse, collapse_val = " ", element = 1)
 }
 
 #' Helper function: get keywords from list for a reference
@@ -76,7 +76,7 @@ get_multi_entry <- function(
     entry <- if (is.null(element)) {
       entries[[i]]
     } else {
-      collapse_fields(entries[[i]], collapse, element)
+      collapse_fields(entries[[i]], collapse, collapse_val = "", element)
     }
 
     stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
@@ -86,9 +86,12 @@ get_multi_entry <- function(
 }
 
 # collapse_fields --------------------------------------------------------------
-collapse_fields <- function(entries, collapse = TRUE, element) {
+collapse_fields <- function(entries,
+                            collapse = TRUE,
+                            collapse_val = "",
+                            element) {
   if (is.list(entries) && collapse) {
-    paste(collapse = "", lapply(seq_along(entries), function(i) {
+    paste(collapse = collapse_val, lapply(seq_along(entries), function(i) {
       null_to_na(entries[[i]][[element]])
     }))
   } else {
@@ -146,7 +149,10 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf", collapse = FALSE) {
 record_list_to_df <- function(record_list, collapse = FALSE) {
   get_record_entry <- function(path) get_list_entry(record_list$record, path)
   get_style <- function(path) {
-    collapse_fields(get_record_entry(path), collapse = collapse, element = 1)
+    collapse_fields(get_record_entry(path),
+                    collapse = collapse,
+                    collapse_val = "",
+                    element = 1)
   }
   get_titles_style <- function(path) get_style(c("titles", path))
   get_period_style <- function(path) get_style(c("periodical", path))
