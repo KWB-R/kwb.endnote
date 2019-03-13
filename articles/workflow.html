@@ -218,8 +218,8 @@
 <a class="sourceLine" id="cb2-98" data-line-number="98">diffs_df &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">check_for_differences</span>(refs_org, refs_clean)</a>
 <a class="sourceLine" id="cb2-99" data-line-number="99"><span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.02s) </span></a>
 <a class="sourceLine" id="cb2-100" data-line-number="100"><span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.01s) </span></a>
-<a class="sourceLine" id="cb2-101" data-line-number="101"><span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span></a>
-<a class="sourceLine" id="cb2-102" data-line-number="102"><span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (0.08s) </span></a>
+<a class="sourceLine" id="cb2-101" data-line-number="101"><span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.03s) </span></a>
+<a class="sourceLine" id="cb2-102" data-line-number="102"><span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (0.09s) </span></a>
 <a class="sourceLine" id="cb2-103" data-line-number="103"><span class="co">#&gt; Content has changed for 845 indices</span></a>
 <a class="sourceLine" id="cb2-104" data-line-number="104"></a>
 <a class="sourceLine" id="cb2-105" data-line-number="105">diffs_df <span class="op">%&gt;%</span></a>
@@ -288,9 +288,9 @@
 <a class="sourceLine" id="cb3-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">en_diffs_df &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">check_for_differences</span>(en_old_df, en_new_df)</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.01s) </span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.02s) </span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.01s) </span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.10s) </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.09s) </span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; Content has changed for 37 indices</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb3-18" data-line-number="18">en_diffs_df <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -591,7 +591,7 @@
   docsearch({
     
     
-    apiKey: '',
+    apiKey: 'f6e4c9e12b7d3ec8a39f65c0e9ab7f88',
     indexName: 'kwb_endnote',
     inputSelector: 'input#search-input.form-control',
     transformData: function(hits) {
