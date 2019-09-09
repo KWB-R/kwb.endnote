@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workflow • kwb.endnote</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Workflow">
@@ -40,7 +41,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -69,12 +70,12 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/KWB-R/kwb.endnote">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -88,13 +89,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Workflow</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2019-03-14</h4>
+            <h4 class="date">2019-09-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.endnote/blob/master/vignettes/workflow.Rmd"><code>vignettes/workflow.Rmd</code></a></small>
       <div class="hidden name"><code>workflow.Rmd</code></div>
@@ -106,7 +108,7 @@
 <div id="read-endnote-xml" class="section level2">
 <h2 class="hasAnchor">
 <a href="#read-endnote-xml" class="anchor"></a>Read Endnote XML</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kwb.endnote)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kwb.endnote)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">## Path to ENDNOTE XML </a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">endnote_xml &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">default_xml</span>()</a>
@@ -216,16 +218,16 @@
 <a class="sourceLine" id="cb2-96" data-line-number="96"></a>
 <a class="sourceLine" id="cb2-97" data-line-number="97">## Check both for differences</a>
 <a class="sourceLine" id="cb2-98" data-line-number="98">diffs_df &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">check_for_differences</span>(refs_org, refs_clean)</a>
-<a class="sourceLine" id="cb2-99" data-line-number="99"><span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.03s) </span></a>
+<a class="sourceLine" id="cb2-99" data-line-number="99"><span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.02s) </span></a>
 <a class="sourceLine" id="cb2-100" data-line-number="100"><span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.01s) </span></a>
-<a class="sourceLine" id="cb2-101" data-line-number="101"><span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.03s) </span></a>
+<a class="sourceLine" id="cb2-101" data-line-number="101"><span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span></a>
 <a class="sourceLine" id="cb2-102" data-line-number="102"><span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (0.09s) </span></a>
 <a class="sourceLine" id="cb2-103" data-line-number="103"><span class="co">#&gt; Content has changed for 845 indices</span></a>
 <a class="sourceLine" id="cb2-104" data-line-number="104"></a>
 <a class="sourceLine" id="cb2-105" data-line-number="105">diffs_df <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-106" data-line-number="106"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key <span class="op">!=</span><span class="st"> "abstract"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-107" data-line-number="107"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-108" data-line-number="108"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb2-107" data-line-number="107"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-108" data-line-number="108"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">rec_number</th>
@@ -288,15 +290,15 @@
 <a class="sourceLine" id="cb3-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">en_diffs_df &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">check_for_differences</span>(en_old_df, en_new_df)</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.01s) </span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.01s) </span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.02s) </span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.10s) </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.09s) </span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; Content has changed for 37 indices</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb3-18" data-line-number="18">en_diffs_df <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data<span class="op">$</span>key <span class="op">!=</span><span class="st"> "abstract"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(.data<span class="op">$</span>rec_number), .data<span class="op">$</span>key) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">rec_number</th>
@@ -518,7 +520,7 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">n_new_entries &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(en_diffs_df<span class="op">$</span>rec_number))</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">n_new_entries &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(en_diffs_df<span class="op">$</span>rec_number))</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">  </a></code></pre></div>
 <p>In total 2 new entries where created in 2019-01-14_KWB_documents.xml compared to 2019-01-07_KWB_documents.xml which contain 37 new values.</p>
 </div>
@@ -528,19 +530,19 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">multi_cols_list &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">tidy_multi_cols_list</span>(refs_clean)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(multi_cols_list)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(multi_cols_list)</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; [1] "author"           "author_secondary" "author_tecondary"</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; [4] "urls_pdf"         "keywords"</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">hints_author_names &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(multi_cols_list<span class="op">$</span>author<span class="op">$</span>value)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">hints_author_names &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(multi_cols_list<span class="op">$</span>author<span class="op">$</span>value)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">hints =</span> kwb.endnote<span class="op">::</span><span class="kw">give_hints_author_names</span>(.data<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span>(.data<span class="op">$</span>hints, <span class="dt">pattern =</span> <span class="st">"^fix_"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(.data<span class="op">$</span>author) </a>
 <a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; Generate hints for 'Author Names' ... Replacing 31 values with fix_multiple_authors_per_line ... ok. (0.00s) </span></a>
 <a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Replacing 230 values with fix_firstname_lastname_with_lastname_semicolon_firstname ... ok. (0.00s) </span></a>
 <a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; Replacing 27 values with fix_author_name_by_deleting_last_semicolon ... ok. (0.00s) </span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; ok. (0.04s)</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; ok. (0.05s)</span></a>
 <a class="sourceLine" id="cb5-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb5-18" data-line-number="18"></a>
 <a class="sourceLine" id="cb5-19" data-line-number="19">hints_author_names </a>
@@ -563,6 +565,7 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -576,13 +579,15 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
