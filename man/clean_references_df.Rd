@@ -4,13 +4,13 @@
 \alias{clean_references_df}
 \title{Clean References Dataframe}
 \usage{
-clean_references_df(endnote_list, replace_na = FALSE, dbg = TRUE)
+clean_references_df(endnote_list, give_hints = FALSE, dbg = TRUE)
 }
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}
 
-\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
-default: FALSE) defined in relevant helper function}
+\item{give_hints}{if TRUE hints will be generated, e.g.
+"add_public_or_confidential" for accessiblity data}
 
 \item{dbg}{show debug messages (default: TRUE)}
 }

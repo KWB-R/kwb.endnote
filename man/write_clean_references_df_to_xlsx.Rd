@@ -5,16 +5,18 @@
 \title{Write Clean References Dataframe to XLSX}
 \usage{
 write_clean_references_df_to_xlsx(endnote_list,
-  file = default_clean_xlsx(endnote_list), replace_na = FALSE,
-  dbg = TRUE, ...)
+  file = default_clean_xlsx(endnote_list), export_dir = ".",
+  give_hints = FALSE, dbg = TRUE, ...)
 }
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}
 
-\item{file}{file where to save (default: "references_clean.xlsx")}
+\item{file}{name of file to save (default: default_clean_xlsx(endnote_list))}
 
-\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
-default: FALSE)}
+\item{export_dir}{directory where to save 'file' (default: ".")}
+
+\item{give_hints}{if TRUE hints will be generated, e.g.
+"add_public_or_confidential" for accessiblity data}
 
 \item{dbg}{show debug messages (default: TRUE)}
 

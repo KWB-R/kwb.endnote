@@ -20,6 +20,8 @@ knitr::opts_chunk$set(
 # Import Endnote XML As Data Frame
 
 ```{r echo=TRUE}
+library(kwb.endnote)
+
 endnote_xml <- kwb.endnote::default_xml()
 
 references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml)
@@ -36,7 +38,6 @@ The imported Endnote XML library `r basename(endnote_xml)` contains
 
 
 ```{r echo=TRUE}
-library(dplyr)
 refs_by_type <- kwb.endnote::get_reference_type_names(endnote_xml) %>%
   dplyr::count(.data$ref_type_name) %>%
   dplyr::arrange(dplyr::desc(.data$n))

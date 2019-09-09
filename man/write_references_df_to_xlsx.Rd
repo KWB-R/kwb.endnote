@@ -5,12 +5,15 @@
 \title{Write References Dataframe to XLSX}
 \usage{
 write_references_df_to_xlsx(endnote_list,
-  file = default_xlsx(endnote_list), dbg = TRUE, ...)
+  file = default_xlsx(endnote_list), export_dir = ".", dbg = TRUE,
+  ...)
 }
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}
 
-\item{file}{file where to save (default: "references.xlsx")}
+\item{file}{name of file to save (default: default_xlsx(endnote_list))}
+
+\item{export_dir}{directory where to save 'file' (default: ".")}
 
 \item{dbg}{show debug messages (default: TRUE)}
 

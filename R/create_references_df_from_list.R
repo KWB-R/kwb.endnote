@@ -1,7 +1,6 @@
 #' @noRd
 #' @keywords internal
 null_to_na <- function(x, na_fill = NA_character_) {
-
   if (is.null(x[[1]])) na_fill else x[[1]]
 }
 
@@ -14,15 +13,13 @@ null_to_na <- function(x, na_fill = NA_character_) {
 #' @export
 #' @importFrom dplyr bind_cols
 get_abstract <- function(record_list, collapse = FALSE) {
-
   abstract <- record_list$record$abstract
 
   if (is.null(abstract)) {
-
     return(NA_character_)
   }
 
-  collapse_fields(abstract, collapse, element = 1)
+  collapse_fields(abstract, collapse, collapse_val = " ", element = 1)
 }
 
 #' Helper function: get keywords from list for a reference
@@ -36,10 +33,8 @@ get_abstract <- function(record_list, collapse = FALSE) {
 #' @export
 #' @importFrom dplyr bind_cols
 get_keywords <- function(
-  record_list, col_name = "keyword", extract_value = "keywords",
-  collapse = FALSE
-) {
-
+                         record_list, col_name = "keyword", extract_value = "keywords",
+                         collapse = FALSE) {
   get_multi_entry(
     entries = record_list$record[[extract_value]],
     col_name = col_name,
@@ -59,9 +54,7 @@ get_keywords <- function(
 #' @export
 #' @importFrom dplyr bind_cols
 get_authors <- function(
-  record_list, col_name = "author", extract_value = "authors", collapse = FALSE
-) {
-
+                        record_list, col_name = "author", extract_value = "authors", collapse = FALSE) {
   get_multi_entry(
     entries = record_list$record$contributors[[extract_value]],
     col_name = col_name,
@@ -72,25 +65,18 @@ get_authors <- function(
 
 # get_multi_entry --------------------------------------------------------------
 get_multi_entry <- function(
-  entries, col_name, element = NULL, collapse = FALSE
-) {
-
+                            entries, col_name, element = NULL, collapse = FALSE) {
   if (is.null(entries)) {
-
     return(stats::setNames(nm = colname_i(col_name, 1), tibble::tibble(
       value = NA_character_
     )))
   }
 
   dplyr::bind_cols(lapply(seq_along(entries), function(i) {
-
     entry <- if (is.null(element)) {
-
       entries[[i]]
-
     } else {
-
-      collapse_fields(entries[[i]], collapse, element)
+      collapse_fields(entries[[i]], collapse, collapse_val = "", element)
     }
 
     stats::setNames(nm = colname_i(col_name, i), tibble::tibble(
@@ -100,16 +86,15 @@ get_multi_entry <- function(
 }
 
 # collapse_fields --------------------------------------------------------------
-collapse_fields <- function(entries, collapse = TRUE, element) {
-
+collapse_fields <- function(entries,
+                            collapse = TRUE,
+                            collapse_val = "",
+                            element) {
   if (is.list(entries) && collapse) {
-
-    paste(collapse = "", lapply(seq_along(entries), function(i) {
+    paste(collapse = collapse_val, lapply(seq_along(entries), function(i) {
       null_to_na(entries[[i]][[element]])
     }))
-
   } else {
-
     null_to_na(entries[[element]])
   }
 }
@@ -121,7 +106,6 @@ collapse_fields <- function(entries, collapse = TRUE, element) {
 #' @export
 #' @inheritParams get_authors
 get_secondary_authors <- function(record_list, collapse = FALSE) {
-
   get_authors(record_list, "author_secondary", "secondary-authors", collapse)
 }
 
@@ -132,7 +116,6 @@ get_secondary_authors <- function(record_list, collapse = FALSE) {
 #' @export
 #' @inheritParams get_authors
 get_tertiary_authors <- function(record_list, collapse = FALSE) {
-
   get_authors(record_list, "author_tertiary", "tertiary-authors", collapse)
 }
 
@@ -147,7 +130,6 @@ get_tertiary_authors <- function(record_list, collapse = FALSE) {
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
 get_pdfurls <- function(record_list, col_name = "urls_pdf", collapse = FALSE) {
-
   get_multi_entry(
     entries = record_list$record$urls$`pdf-urls`,
     col_name = col_name,
@@ -165,10 +147,12 @@ get_pdfurls <- function(record_list, col_name = "urls_pdf", collapse = FALSE) {
 #' @importFrom dplyr bind_cols
 #' @importFrom tibble tibble
 record_list_to_df <- function(record_list, collapse = FALSE) {
-
   get_record_entry <- function(path) get_list_entry(record_list$record, path)
   get_style <- function(path) {
-    collapse_fields(get_record_entry(path), collapse = collapse, element = 1)
+    collapse_fields(get_record_entry(path),
+                    collapse = collapse,
+                    collapse_val = "",
+                    element = 1)
   }
   get_titles_style <- function(path) get_style(c("titles", path))
   get_period_style <- function(path) get_style(c("periodical", path))
@@ -197,7 +181,7 @@ record_list_to_df <- function(record_list, collapse = FALSE) {
         pubdates = get_dates_style(c("pub-dates", "date")),
         pages = get_style("pages"),
         volume = get_style("volume"),
-        numvols  = get_style("num-vols"),
+        numvols = get_style("num-vols"),
         notes = get_style("notes"),
         section = get_style("section"),
         publisher = get_style("publisher"),
@@ -237,9 +221,7 @@ record_list_to_df <- function(record_list, collapse = FALSE) {
 #' head(refs_df)
 #'
 create_references_df <- function(endnote_list, collapse = FALSE) {
-
   extract_values_from_list <- lapply(seq_along(endnote_list), function(rec_id) {
-
     record_list_to_df(record_list = endnote_list[rec_id], collapse)
   })
 
@@ -276,6 +258,4 @@ create_references_df <- function(endnote_list, collapse = FALSE) {
       starting("database"),
       dplyr::everything()
     )
-
-
 }

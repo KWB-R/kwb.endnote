@@ -4,13 +4,13 @@
 \alias{check_problematic_entries}
 \title{Check Endnote for Problematic References}
 \usage{
-check_problematic_entries(endnote_list, replace_na = TRUE, dbg = TRUE)
+check_problematic_entries(endnote_list, give_hints = TRUE, dbg = TRUE)
 }
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}
 
-\item{replace_na}{if TRUE NAs are replaced with 'replace_na_text' (
-default: TRUE) defined in relevant helper function}
+\item{give_hints}{if TRUE hints will be generated, e.g.
+"add_public_or_confidential" for accessiblity data}
 
 \item{dbg}{show debug messages (default: TRUE)}
 }

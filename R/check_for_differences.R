@@ -1,35 +1,9 @@
-#' Helper function: tidy dataframe
-#'
-#' @param df data frame as retrieved by create_references_df() or
-#' clean_references_df()
-#' @return a tidy dataframe with columns rec_number, key and value
-#' @export
-#' @importFrom tidyr gather
-#' @importFrom dplyr filter arrange
-#' @examples
-#' \dontrun{
-#' endnote_list <- create_endnote_list()
-#' refs_df <- create_references_df(endnote_list)
-#' refs_df_tidy <- tidy_df(refs_df)
-#' }
-
-tidy_df <- function(df) {
-  df %>%
-    tidyr::gather("key", "value", -.data$rec_number) %>%
-    dplyr::filter(!is.na(.data$value)) %>%
-    dplyr::arrange(.data$rec_number, .data$key)
-}
-
 #' Check two Dataframes for Differences
 #'
 #' @param df_x data frame as retrieved by create_references_df() or
 #' clean_references_df()
 #' @param df_y data frame as retrieved by create_references_df() or
 #' clean_references_df()
-#' @param name_value_x column name for values of 'df_x' dataframe (default:
-#' "value_x")
-#' @param name_value_y column name for values of 'df_y' dataframe (default:
-#' "value_y")
 #' @param dbg should dbg messages be printed (default: TRUE)
 #' @return a dataframe containing only the differences between df_x and df_y
 #' @export
@@ -65,18 +39,19 @@ tidy_df <- function(df) {
 #'
 #' }
 check_for_differences <- function(
-  df_x, df_y, name_value_x = "value_x", name_value_y = "value_y", dbg = TRUE
-) {
-
+                                  df_x, df_y, dbg = TRUE) {
   name_df_x <- deparse(substitute(df_x))
   name_df_y <- deparse(substitute(df_y))
+
+  name_value_x <- sprintf("value_%s", name_df_x)
+  name_value_y <- sprintf("value_%s", name_df_y)
 
   tidy_name <- function(name) paste0(name, "_tidy")
 
   get_text <- function(name_df, name_value) sprintf(
-    "Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
-    name_df, name_value, tidy_name(name_df)
-  )
+      "Tidying data.frame '%s' and rename 'value' to '%s'. Saving to %s",
+      name_df, name_value, tidy_name(name_df)
+    )
 
   df_x_tidy <- kwb.utils::catAndRun(
     messageText = get_text(name_df_x, name_value_x), dbg = dbg,
@@ -109,10 +84,10 @@ check_for_differences <- function(
 
   diffs_idx <- kwb.utils::catAndRun(
     messageText = messageText, dbg = dbg,
-    expr = which(! sapply(seq_len(nrow(df_xy_tidy)), function(row) identical(
-      df_xy_tidy[[name_value_x]][row],
-      df_xy_tidy[[name_value_y]][row]
-    )))
+    expr = which(!sapply(seq_len(nrow(df_xy_tidy)), function(row) identical(
+        df_xy_tidy[[name_value_x]][row],
+        df_xy_tidy[[name_value_y]][row]
+      )))
   )
 
   kwb.utils::catIf(dbg, sprintf(
