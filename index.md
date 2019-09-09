@@ -9,7 +9,7 @@ Helper Functions For Analysing KWB Endnote Library
 
 ## Installation
 
-```{r echo = TRUE, eval = FALSE}
+```r
 #install.packages("remotes", repos = "https://cloud.r-project.org")
 remotes::install_github("KWB-R/kwb.endnote")
 ```
