@@ -211,8 +211,9 @@ In total `r percent_pubs_with_project_meta` percent (i.e.
 contain meta-information on the project. However, the spelling of project names
 does not follow a controlled vocabulary yet as can be seen in the table above. 
 
-Thus it is recommended to establish a controlled vocabulary for [project acroyms](https://kwb-r.github.io/fakin.doc/best-practices.html#acronyms) 
-according to the best-practices defined in the FAKIN project (see [here](https://kwb-r.github.io/fakin.doc/best-practices.html#acronyms))
+Thus it is recommended to establish a controlled vocabulary for [project identifiers](https://kwb-r.github.io/fakin.doc/qms.html#project-identifier) 
+according to the best-practices defined in the FAKIN project (see 
+[here](https://kwb-r.github.io/fakin.doc/best-practices.html#acronyms)).
 
 ## By Author
 
