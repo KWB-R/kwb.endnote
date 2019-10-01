@@ -167,16 +167,16 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_endnote_list.html'>create_endnote_list</a></span>()
 <span class='no'>refs_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_references_df</span>(<span class='no'>endnote_list</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>refs_df</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 87
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>refs_df</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 89
 #&gt;   rec_number ref_type ref_type_name year  title title_secondary title_tertiary
 #&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;         
 #&gt; 1        865       17 Journal Arti… subm… Inve… Sustainable Wa… &lt;NA&gt;          
 #&gt; 2        876        5 Book Section  in p… "Num… Natural Water … &lt;NA&gt;          
-#&gt; 3       1051       17 Journal Arti… 2018  On t… Water Research  &lt;NA&gt;          
-#&gt; 4       1059       17 Journal Arti… 2018  Bewe… Korrespondenz … &lt;NA&gt;          
-#&gt; 5       1050       47 Conference P… 2018  Quan… Regenwasser in… &lt;NA&gt;          
-#&gt; 6       1052       17 Journal Arti… 2018  Erge… fbr-Wasserspie… &lt;NA&gt;          
-#&gt; # … with 80 more variables: abstract &lt;chr&gt;, author_tertiary01 &lt;chr&gt;,
+#&gt; 3       1100       27 Report        2019  NOVA… &lt;NA&gt;            &lt;NA&gt;          
+#&gt; 4       1101       47 Conference P… 2019  Resi… 10th NOVATECH   &lt;NA&gt;          
+#&gt; 5       1063       27 Report        2019  Phor… &lt;NA&gt;            &lt;NA&gt;          
+#&gt; 6       1099       17 Journal Arti… 2019  Nähr… wwt wasserwirt… &lt;NA&gt;          
+#&gt; # … with 82 more variables: abstract &lt;chr&gt;, author_tertiary01 &lt;chr&gt;,
 #&gt; #   author_tertiary02 &lt;chr&gt;, author_secondary01 &lt;chr&gt;,
 #&gt; #   author_secondary02 &lt;chr&gt;, author_secondary03 &lt;chr&gt;,
 #&gt; #   author_secondary04 &lt;chr&gt;, author_secondary05 &lt;chr&gt;,
@@ -190,16 +190,16 @@
 #&gt; #   author20 &lt;chr&gt;, author21 &lt;chr&gt;, author22 &lt;chr&gt;, author23 &lt;chr&gt;,
 #&gt; #   author24 &lt;chr&gt;, author25 &lt;chr&gt;, author26 &lt;chr&gt;, author27 &lt;chr&gt;,
 #&gt; #   author28 &lt;chr&gt;, author29 &lt;chr&gt;, author30 &lt;chr&gt;, author31 &lt;chr&gt;,
-#&gt; #   authaddress &lt;chr&gt;, periodical_title_full &lt;chr&gt;,
-#&gt; #   periodical_title_abbr &lt;chr&gt;, pages &lt;chr&gt;, volume &lt;chr&gt;, numvols &lt;chr&gt;,
-#&gt; #   section &lt;chr&gt;, edition &lt;chr&gt;, pubdates &lt;chr&gt;, publisher &lt;chr&gt;,
-#&gt; #   publocation &lt;chr&gt;, puborig &lt;chr&gt;, urls_pdf01 &lt;chr&gt;, urls_related &lt;chr&gt;,
-#&gt; #   urls_pdf02 &lt;chr&gt;, urls_pdf03 &lt;chr&gt;, electronic_resource_num &lt;chr&gt;,
-#&gt; #   worktype &lt;chr&gt;, label &lt;chr&gt;, keyword01 &lt;chr&gt;, keyword02 &lt;chr&gt;,
-#&gt; #   keyword03 &lt;chr&gt;, keyword04 &lt;chr&gt;, keyword05 &lt;chr&gt;, keyword06 &lt;chr&gt;,
-#&gt; #   keyword07 &lt;chr&gt;, notes &lt;chr&gt;, caption &lt;chr&gt;, custom1 &lt;chr&gt;, custom2 &lt;chr&gt;,
-#&gt; #   custom3 &lt;chr&gt;, custom7 &lt;chr&gt;, isbn &lt;chr&gt;, language &lt;chr&gt;,
-#&gt; #   database_name &lt;chr&gt;, database_path &lt;chr&gt;</div><div class='input'>
+#&gt; #   author32 &lt;chr&gt;, author33 &lt;chr&gt;, authaddress &lt;chr&gt;,
+#&gt; #   periodical_title_full &lt;chr&gt;, periodical_title_abbr &lt;chr&gt;, pages &lt;chr&gt;,
+#&gt; #   volume &lt;chr&gt;, numvols &lt;chr&gt;, section &lt;chr&gt;, edition &lt;chr&gt;, pubdates &lt;chr&gt;,
+#&gt; #   publisher &lt;chr&gt;, publocation &lt;chr&gt;, puborig &lt;chr&gt;, urls_pdf01 &lt;chr&gt;,
+#&gt; #   urls_related &lt;chr&gt;, urls_pdf02 &lt;chr&gt;, urls_pdf03 &lt;chr&gt;,
+#&gt; #   electronic_resource_num &lt;chr&gt;, worktype &lt;chr&gt;, label &lt;chr&gt;,
+#&gt; #   keyword01 &lt;chr&gt;, keyword02 &lt;chr&gt;, keyword03 &lt;chr&gt;, keyword04 &lt;chr&gt;,
+#&gt; #   keyword05 &lt;chr&gt;, keyword06 &lt;chr&gt;, keyword07 &lt;chr&gt;, notes &lt;chr&gt;,
+#&gt; #   caption &lt;chr&gt;, custom1 &lt;chr&gt;, custom2 &lt;chr&gt;, custom3 &lt;chr&gt;, custom7 &lt;chr&gt;,
+#&gt; #   isbn &lt;chr&gt;, language &lt;chr&gt;, database_name &lt;chr&gt;, database_path &lt;chr&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

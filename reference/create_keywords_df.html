@@ -161,8 +161,8 @@ kwb.endnote::create_df_from_endnote_xml()</p></td>
     <p>keywords dataframe</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>references_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_df_from_endnote_xml.html'>create_df_from_endnote_xml</a></span>()</div><div class='output co'>#&gt; Reading '2019-01-07_KWB_documents.xml' in folder
-#&gt;   '/home/travis/R/Library/kwb.endnote/extdata' ... ok.</div><div class='output co'>#&gt; <span class='warning'>Warning: The function toSubdirMatrix() is deprecated. Please use kwb.file::to_subdir_matrix() instead.</span></div><div class='output co'>#&gt; Splitting paths ... ok. (0.05s) </div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='no'>keywords_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_keywords_df</span>(<span class='no'>references_df</span>)
+    <pre class="examples"><div class='input'><span class='no'>references_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_df_from_endnote_xml.html'>create_df_from_endnote_xml</a></span>()</div><div class='output co'>#&gt; Reading '2019-07-09_KWB_documents.xml' in folder
+#&gt;   '/home/travis/R/Library/kwb.endnote/extdata' ... ok.</div><div class='output co'>#&gt; <span class='warning'>Warning: The function toSubdirMatrix() is deprecated. Please use kwb.file::to_subdir_matrix() instead.</span></div><div class='output co'>#&gt; Splitting paths ... ok. (0.06s) </div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='no'>keywords_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_keywords_df</span>(<span class='no'>references_df</span>)
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>keywords_df</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   value                 n
 #&gt;   &lt;chr&gt;             &lt;int&gt;
@@ -171,7 +171,7 @@ kwb.endnote::create_df_from_endnote_xml()</p></td>
 #&gt; 3 simulation           17
 #&gt; 4 stadtentwässerung    17
 #&gt; 5 ökobilanz            16
-#&gt; 6 drinking water       15</div><div class='input'>
+#&gt; 6 cso                  15</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
