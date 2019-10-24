@@ -6,7 +6,7 @@
 #'   from get_reference_type_names()
 #' @export
 #' @importFrom kwb.read read_xml_as_path_value
-#' @importFrom kwb.fakin toSubdirMatrix
+#' @importFrom kwb.file to_subdir_matrix
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr left_join
 #' @importFrom fs file_info
@@ -21,7 +21,7 @@ create_df_from_endnote_xml <- function(endnote_xml = default_xml()) {
     stringr::str_remove_all(pattern = "^/xml/records/record")
 
   references_df <- kwb.utils::asNoFactorDataFrame(cbind(
-    kwb.fakin::toSubdirMatrix(xml_paths),
+    kwb.file::to_subdir_matrix(xml_paths),
     references[, -1]
   ))
 

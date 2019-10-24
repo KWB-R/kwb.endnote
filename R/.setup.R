@@ -21,7 +21,7 @@ kwb.pkgbuild::add_gitlabci_to_ghpages("kwb.endnote", dest_dir = tempdir())
 
 usethis::use_vignette("analyse-endnote")
 
-pkg_dependencies <- c('dplyr', 'kwb.fakin', 'kwb.read', 'stringr')
+pkg_dependencies <- c('dplyr', 'kwb.file', 'kwb.read', 'stringr')
 
 sapply(pkg_dependencies, usethis::use_package)
 desc::desc_normalize()

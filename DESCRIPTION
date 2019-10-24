@@ -25,7 +25,7 @@ Imports:
     forcats,
     fs,
     ggplot2,
-    kwb.fakin,
+    kwb.file,
     kwb.read,
     kwb.utils,
     magrittr,
@@ -41,7 +41,7 @@ Suggests:
     knitr,
     rmarkdown
 Remotes:
-    github::kwb-r/kwb.fakin,
+    github::kwb-r/kwb.file,
     github::kwb-r/kwb.read,
     github::kwb-r/kwb.utils
 Encoding: UTF-8
