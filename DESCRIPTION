@@ -1,7 +1,7 @@
 Package: kwb.endnote
 Title: Helper Functions for Analysing KWB Endnote Library
     (Exported as .xml)
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Michael",
              family = "Rustler",
@@ -25,7 +25,7 @@ Imports:
     forcats,
     fs,
     ggplot2,
-    kwb.fakin,
+    kwb.file,
     kwb.read,
     kwb.utils,
     magrittr,
@@ -41,7 +41,7 @@ Suggests:
     knitr,
     rmarkdown
 Remotes:
-    github::kwb-r/kwb.fakin,
+    github::kwb-r/kwb.file,
     github::kwb-r/kwb.read,
     github::kwb-r/kwb.utils
 Encoding: UTF-8

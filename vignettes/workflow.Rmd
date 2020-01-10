@@ -23,9 +23,11 @@ knitr::opts_chunk$set(
 library(kwb.endnote)
 
 ## Path to ENDNOTE XML 
-endnote_xml <- kwb.endnote::default_xml()
+endnote_xml <-  kwb.endnote::default_xml()
 endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
 ```
+
+The imported Endnote XML library is: `r basename(endnote_xml)`
 
 ## Check Import 
 
@@ -53,8 +55,8 @@ diffs_df %>%
 
 ```{r echo=TRUE}
 
-en_old_xml <- kwb.endnote::extdata_file("2019-01-07_KWB_documents.xml")
-en_new_xml <- kwb.endnote::extdata_file("2019-01-14_KWB_documents.xml")
+en_old_xml <- kwb.endnote::extdata_file("2019-01-14_KWB_documents.xml")
+en_new_xml <- kwb.endnote::extdata_file("2019-07-09_KWB_documents.xml")
 
 en_old_list <- kwb.endnote::create_endnote_list(en_old_xml)
 en_new_list <- kwb.endnote::create_endnote_list(en_new_xml)
