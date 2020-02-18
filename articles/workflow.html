@@ -96,7 +96,7 @@
       <h1>Workflow</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2020-01-10</h4>
+            <h4 class="date">2020-02-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.endnote/blob/master/vignettes/workflow.Rmd"><code>vignettes/workflow.Rmd</code></a></small>
       <div class="hidden name"><code>workflow.Rmd</code></div>
@@ -224,7 +224,7 @@
 <a class="sourceLine" id="cb2-101" data-line-number="101">## Check both for differences</a>
 <a class="sourceLine" id="cb2-102" data-line-number="102">diffs_df &lt;-<span class="st"> </span>kwb.endnote<span class="op">::</span><span class="kw">check_for_differences</span>(refs_org, refs_clean)</a>
 <a class="sourceLine" id="cb2-103" data-line-number="103"><span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.02s) </span></a>
-<a class="sourceLine" id="cb2-104" data-line-number="104"><span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.01s) </span></a>
+<a class="sourceLine" id="cb2-104" data-line-number="104"><span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.02s) </span></a>
 <a class="sourceLine" id="cb2-105" data-line-number="105"><span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span></a>
 <a class="sourceLine" id="cb2-106" data-line-number="106"><span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (0.08s) </span></a>
 <a class="sourceLine" id="cb2-107" data-line-number="107"><span class="co">#&gt; Content has changed for 851 indices</span></a>
@@ -297,7 +297,7 @@
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.01s) </span></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.01s) </span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.07s) </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.08s) </span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; Content has changed for 1486 indices</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb3-18" data-line-number="18">en_diffs_df <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -9181,7 +9181,7 @@
 <a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; Generate hints for 'Author Names' ... Replacing 34 values with fix_multiple_authors_per_line ... ok. (0.00s) </span></a>
 <a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Replacing 268 values with fix_firstname_lastname_with_lastname_semicolon_firstname ... ok. (0.00s) </span></a>
 <a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; Replacing 30 values with fix_author_name_by_deleting_last_semicolon ... ok. (0.00s) </span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; ok. (0.03s)</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; ok. (0.04s)</span></a>
 <a class="sourceLine" id="cb5-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb5-18" data-line-number="18"></a>
 <a class="sourceLine" id="cb5-19" data-line-number="19">hints_author_names </a>
