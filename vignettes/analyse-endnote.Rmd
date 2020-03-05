@@ -24,7 +24,8 @@ library(kwb.endnote)
 
 endnote_xml <- kwb.endnote::default_xml()
 
-references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml)
+references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml) %>%  
+                 dplyr::filter(.data$ref_type_name != "Generic")
 
 n_publications <- length(unique(references_df$record_id))
 ```
@@ -47,65 +48,70 @@ knitr::kable(refs_by_type)
 
 ## By Year
 
-```{r echo=TRUE}
+
+```{r echo=TRUE, fig.width=8, fig.height=9}
 endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
 refs_df <- kwb.endnote::create_references_df(endnote_list)
 
-refs_by_year <- refs_df %>%
-dplyr::count(ref_type_name, year)
+p1 <- kwb.endnote::plot_pubs_by_year(refs_df) 
+plotly::ggplotly(p1)
+
+```
+
+## By Language
+
+```{r echo=TRUE}
+refs_by_language <- refs_df %>%
+dplyr::count(language) %>%  
+dplyr::mutate(percent = round(100*n/nrow(refs_df), 1))
+
   
-knitr::kable(refs_by_year)
-```  
-  
-```{r echo=TRUE, fig.width=8, fig.height=9}
-
-kwb.endnote::plot_pubs_by_year(refs_df)
-
+knitr::kable(refs_by_language)
 ```
 
-## By Keywords
+<!-- ## By Keywords -->
 
-```{r echo=TRUE}
+<!-- ```{r echo=TRUE, eval = FALSE} -->
+<!-- # keywords not exported anymore since Endnote 9.3 in XML -->
+<!--   keywords_df <- kwb.endnote::create_keywords_df(references_df)  -->
 
-  keywords_df <- kwb.endnote::create_keywords_df(references_df) 
- 
-  keywords_df %>% 
-  dplyr::filter(.data$n > 1) %>% 
-  knitr::kable()
-```
+<!--   keywords_df %>%  -->
+<!--   dplyr::filter(.data$n > 1) %>%  -->
+<!--   knitr::kable() -->
+<!-- ``` -->
 
-Create a word cloud for the keywords
+<!-- Create a word cloud for the keywords -->
 
-```{r echo=TRUE, fig.width=7, fig.height=7}
+<!-- ```{r echo=TRUE, eval = FALSE, fig.width=7, fig.height=7} -->
+<!-- # keywords not exported anymore since Endnote 9.3 in XML -->
+<!-- kwb.endnote::plot_wordcloud_keywords(keywords_df) -->
+<!-- ``` -->
 
-kwb.endnote::plot_wordcloud_keywords(keywords_df)
-```
+<!-- ## Which fields are filled? -->
 
-## Which fields are filled?
+<!-- ## Ordered Alphabetically -->
+<!-- ```{r echo=TRUE} -->
+<!-- references_df %>%   -->
+<!-- dplyr::count(key1, key2, key3, key4) %>%   -->
+<!-- knitr::kable() -->
+<!-- ``` -->
 
-## Ordered Alphabetically
-```{r echo=TRUE}
-references_df %>%  
-dplyr::count(key1, key2, key3, key4) %>%  
-knitr::kable()
-```
+<!-- ## Ordered By Frequency -->
+<!-- ```{r echo=TRUE} -->
+<!-- references_df %>%   -->
+<!-- dplyr::count(key1, key2, key3, key4) %>%   -->
+<!-- dplyr::arrange(dplyr::desc(n)) %>%  -->
+<!-- knitr::kable() -->
+<!-- ``` -->
 
-## Ordered By Frequency
-```{r echo=TRUE}
-references_df %>%  
-dplyr::count(key1, key2, key3, key4) %>%  
-dplyr::arrange(dplyr::desc(n)) %>% 
-knitr::kable()
-```
+<!-- ## Ordered By Ref Type Name and Frequency -->
 
-## Ordered By Ref Type Name and Frequency
-
-```{r echo=TRUE}
-references_df %>%  
-dplyr::count(ref_type_name, key1, key2, key3, key4) %>%  
-dplyr::arrange(ref_type_name, dplyr::desc(n)) %>% 
-knitr::kable()
-```
+<!-- ```{r echo=TRUE} -->
+<!-- references_df %>%   -->
+<!-- dplyr::count(ref_type_name, key1, key2, key3, key4) %>%   -->
+<!-- dplyr::arrange(ref_type_name, dplyr::desc(n)) %>%  -->
+<!-- knitr::kable() -->
+<!-- ``` -->
 
 
 ## Has an Abstract?
@@ -113,7 +119,7 @@ knitr::kable()
 ```{r echo=TRUE}
 refs_with_abstract <- references_df %>% 
   dplyr::filter(.data$key1 == "abstract") %>%
-  dplyr::count(.data$record_id, .data$rec_number, .data$ref_type_name) 
+  dplyr::count(.data$record_id, .data$rec_number, .data$ref_type_name)
 
 n_pubs_with_abstract <- nrow(refs_with_abstract) 
 ### Percent of Publications with Abstracts
@@ -144,38 +150,38 @@ These need to be corrected manually!
 
 ## By Accessibility Level 
 
-Is the accessibility level for the referenc defined in the fiel"custom3" 
+Is the accessibility level for the referenc defined in the fiel"caption" 
 (confidential or not?)
 
 ```{r echo=TRUE}
-refs_with_accessability_level <- references_df %>% 
-  dplyr::filter(.data$key1 == "custom3") %>%
-  dplyr::count(.data$value) 
+refs_with_accessability_level <- refs_df %>% 
+  dplyr::count(.data$caption) %>%  
+  dplyr::mutate(percent = round(100*n/nrow(refs_df), 1))
 
-n_pubs_with_accessability_level <- sum(refs_with_accessability_level$n) 
+
+n_pubs_with_accessability_level <- sum(refs_with_accessability_level$n[1:2]) 
 
 percent_with_accessibility_level <- round(100*n_pubs_with_accessability_level/n_publications, 1)
+
+is_confidential <- refs_with_accessability_level$caption=="confidential" & !is.na(refs_with_accessability_level$caption)
+
+
 knitr::kable(refs_with_accessability_level)
 
 
-is_confidential <- grepl(paste(c("conf", "PU", "intern", "private"), collapse="|"), 
-                        refs_with_accessability_level$value)
 
-n_pubs_confidential <-sum(refs_with_accessability_level$n[is_confidential])
 
-### in percent
-percent_confidential <- 100*sum(refs_with_accessability_level$n[is_confidential])/n_pubs_with_accessability_level
 ```
 
 Only for `r n_pubs_with_accessability_level` (i.e. `r percent_with_accessibility_level` percent) 
 meta information on the accessibility level is explicitly defined, out of which 
-`r n_pubs_confidential` are defined as confidential (i.e. 
-`r round(percent_confidential,1)` of the publications with metadata on the 
+`r refs_with_accessability_level$n[is_confidential]` are defined as confidential (i.e. 
+`r refs_with_accessability_level$percent[is_confidential]` of the publications with metadata on the 
 accessibility level).
 
 **Recommendation:**
 
-Fill the field **custom3** for all publications with either: 
+Fill the field **caption** for all publications with either: 
 
 - **public** or 
 
@@ -186,11 +192,11 @@ Fill the field **custom3** for all publications with either:
 
 ## By Project 
 
-Group references by "custom2" (i.e. "project names")
+Group references by "label" (i.e. "project names")
 
 ```{r echo=TRUE}
 refs_with_project <- references_df %>% 
-  dplyr::filter(.data$key1 == "custom2") 
+  dplyr::filter(.data$key1 == "label") 
 
 
 n_pubs_with_project_meta <- nrow(refs_with_project)
@@ -228,7 +234,8 @@ refs_by_author_lastfirst <- references_df %>%
   dplyr::count(.data$value)  %>%
   dplyr::arrange(dplyr::desc(.data$n))
 
-kwb.endnote::plot_pubs_by_author(refs_by_author_lastfirst[1:50, ])
+p2 <- kwb.endnote::plot_pubs_by_author(refs_by_author_lastfirst[1:50, ])
+plotly::ggplotly(p2)
 
 ```
 
@@ -272,8 +279,8 @@ refs_by_author_last <- references_df %>%
   dplyr::count(.data$value)  %>%
   dplyr::arrange(dplyr::desc(.data$n))
 
-kwb.endnote::plot_pubs_by_author(refs_by_author_last[1:50, ])
-
+p3 <- kwb.endnote::plot_pubs_by_author(refs_by_author_last[1:50, ])
+plotly::ggplotly(p3)
 
 ```
 
@@ -330,21 +337,22 @@ for how many we have this metadata:
 
 
 ```{r echo=TRUE}
-has_doi <- stringr::str_detect(pubs_in_journals$value, "doi")
-pubs_in_journals_with_doi <- pubs_in_journals[has_doi, ]
+has_doi <- pubs_in_journals %>%  
+           dplyr::filter(.data$key1 == "electronic-resource-num", 
+                         .data$value != "") 
 
-n_pubs_in_journals_with_doi <- nrow(pubs_in_journals_with_doi)
 
-knitr::kable(pubs_in_journals_with_doi)
+n_pubs_in_journals_with_doi <- nrow(has_doi)
+
+knitr::kable(has_doi)
 ```
 
-Only `r n_pubs_in_journals_with_doi` journal publications have a DOI which is 
-either encoded in the field **electronic-resource-num** and **urls**.
+Only `r n_pubs_in_journals_with_doi` (`r round(100*n_pubs_in_journals_with_doi/n_pubs_in_journals,1)` %) journal publications have a DOI which is  encoded in the field **electronic-resource-num**.
 
 All DOIs should be entered in the field **electronic-resource-num** in the 
 following format, i.e.:
 
-**https://doi.org/10.6084/m9.figshare.828487**
+**10.6084/m9.figshare.828487**
 
 
 # Export References To XLSX
