@@ -162,21 +162,21 @@
   from get_reference_type_names()</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>references_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_df_from_endnote_xml</span>()</div><div class='output co'>#&gt; Reading '2019-07-09_KWB_documents.xml' in folder
-#&gt;   '/home/travis/R/Library/kwb.endnote/extdata' ... ok.</div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>references_df</span>)</div><div class='output co'>#&gt;   record_id         key1    key2      key3  key4             value rec_number
-#&gt; 1         1     database                         KWB documents.enl        865
-#&gt; 2         1   source-app                                   EndNote        865
-#&gt; 3         1   rec-number                                       865        865
-#&gt; 4         1 foreign-keys     key                               865        865
-#&gt; 5         1     ref-type                                        17        865
-#&gt; 6         1 contributors authors author[1] style      Sprenger, C.        865
-#&gt;   ref_type_id   ref_type_name
-#&gt; 1          17 Journal Article
-#&gt; 2          17 Journal Article
-#&gt; 3          17 Journal Article
-#&gt; 4          17 Journal Article
-#&gt; 5          17 Journal Article
-#&gt; 6          17 Journal Article</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>references_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_df_from_endnote_xml</span>()</div><div class='output co'>#&gt; Reading '2019-12-05_KWB-documents.xml' in folder
+#&gt;   '/home/travis/R/Library/kwb.endnote/extdata' ... ok.</div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>references_df</span>)</div><div class='output co'>#&gt;   record_id         key1 key2 key3 key4                      value rec_number
+#&gt; 1         1     database                KWB-documents_20191205.enl       1046
+#&gt; 2         1   source-app                                   EndNote       1046
+#&gt; 3         1   rec-number                                      1046       1046
+#&gt; 4         1 foreign-keys  key                                 1046       1046
+#&gt; 5         1     ref-type                                        27       1046
+#&gt; 6         1 contributors                                                 1046
+#&gt;   ref_type_id ref_type_name
+#&gt; 1          27        Report
+#&gt; 2          27        Report
+#&gt; 3          27        Report
+#&gt; 4          27        Report
+#&gt; 5          27        Report
+#&gt; 6          27        Report</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
