@@ -35,7 +35,8 @@ Imports:
     tibble,
     tidyr,
     wordcloud2,
-    xml2
+    xml2, 
+    plotly
 Suggests: 
     covr,
     knitr,
