@@ -162,7 +162,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='fu'>create_endnote_list</span>()
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>endnote_list</span>[<span class='fl'>1</span>]$<span class='no'>record</span>)</div><div class='output co'>#&gt; List of 15
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>endnote_list</span>[<span class='fl'>1</span>]$<span class='no'>record</span>)</div><div class='output co'>#&gt; List of 11
 #&gt;  $ database    :List of 1
 #&gt;   ..$ : chr "KWB-documents_20191205.enl"
 #&gt;   ..- attr(*, "name")= chr "KWB-documents_20191205.enl"
@@ -172,77 +172,106 @@
 #&gt;   ..- attr(*, "name")= chr "EndNote"
 #&gt;   ..- attr(*, "version")= chr "19.3"
 #&gt;  $ rec-number  :List of 1
-#&gt;   ..$ : chr "1046"
+#&gt;   ..$ : chr "1134"
 #&gt;  $ foreign-keys:List of 1
 #&gt;   ..$ key:List of 1
-#&gt;   .. ..$ : chr "1046"
+#&gt;   .. ..$ : chr "1134"
 #&gt;   .. ..- attr(*, "app")= chr "EN"
 #&gt;   .. ..- attr(*, "db-id")= chr "z90eszwadd95piezvwmxvr9z9ww9xssrfp5t"
 #&gt;  $ ref-type    :List of 1
-#&gt;   ..$ : chr "27"
-#&gt;   ..- attr(*, "name")= chr "Report"
-#&gt;  $ contributors: list()
-#&gt;  $ titles      :List of 1
-#&gt;   ..$ title:List of 1
+#&gt;   ..$ : chr "47"
+#&gt;   ..- attr(*, "name")= chr "Conference Paper"
+#&gt;  $ contributors:List of 1
+#&gt;   ..$ authors:List of 7
+#&gt;   .. ..$ author:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "Riechel, Mathias"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
+#&gt;   .. ..$ author:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "Sonnenberg, Hauke"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
+#&gt;   .. ..$ author:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "Caradot, Nicolas"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
+#&gt;   .. ..$ author:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "Lengemann, Nic"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
+#&gt;   .. ..$ author:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "Eckert, Elke"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
+#&gt;   .. ..$ author:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "Ringe, Alexander"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
+#&gt;   .. ..$ author:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "Rouault, Pascale"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
+#&gt;  $ titles      :List of 2
+#&gt;   ..$ title          :List of 1
 #&gt;   .. ..$ style:List of 1
-#&gt;   .. .. ..$ : chr "NITROLIMIT – Stickstofflimitation in Binnengewässern: Ist Stickstoffreduktion ökologisch sinnvoll und wirtschaf"| __truncated__
+#&gt;   .. .. ..$ : chr "Unterstützung der Kanalsanierungsplanung durch statistische und datengetriebene Alterungsmodelle"
 #&gt;   .. .. ..- attr(*, "face")= chr "normal"
 #&gt;   .. .. ..- attr(*, "font")= chr "default"
 #&gt;   .. .. ..- attr(*, "size")= chr "100%"
-#&gt;  $ pages       :List of 1
-#&gt;   ..$ style:List of 1
-#&gt;   .. ..$ : chr "177"
-#&gt;   .. ..- attr(*, "face")= chr "normal"
-#&gt;   .. ..- attr(*, "font")= chr "default"
-#&gt;   .. ..- attr(*, "size")= chr "100%"
-#&gt;  $ dates       :List of 1
-#&gt;   ..$ year:List of 1
+#&gt;   ..$ secondary-title:List of 1
 #&gt;   .. ..$ style:List of 1
-#&gt;   .. .. ..$ : chr "2016"
+#&gt;   .. .. ..$ : chr "Kommunales Infrastruktur-Management "
 #&gt;   .. .. ..- attr(*, "face")= chr "normal"
 #&gt;   .. .. ..- attr(*, "font")= chr "default"
 #&gt;   .. .. ..- attr(*, "size")= chr "100%"
+#&gt;  $ dates       :List of 2
+#&gt;   ..$ year     :List of 1
+#&gt;   .. ..$ style:List of 1
+#&gt;   .. .. ..$ : chr "2019"
+#&gt;   .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. ..- attr(*, "size")= chr "100%"
+#&gt;   ..$ pub-dates:List of 1
+#&gt;   .. ..$ date:List of 1
+#&gt;   .. .. ..$ style:List of 1
+#&gt;   .. .. .. ..$ : chr "2019-09-26"
+#&gt;   .. .. .. ..- attr(*, "face")= chr "normal"
+#&gt;   .. .. .. ..- attr(*, "font")= chr "default"
+#&gt;   .. .. .. ..- attr(*, "size")= chr "100%"
 #&gt;  $ pub-location:List of 1
 #&gt;   ..$ style:List of 1
-#&gt;   .. ..$ : chr "Bad Saarow"
+#&gt;   .. ..$ : chr "Berlin, Germany"
 #&gt;   .. ..- attr(*, "face")= chr "normal"
 #&gt;   .. ..- attr(*, "font")= chr "default"
 #&gt;   .. ..- attr(*, "size")= chr "100%"
-#&gt;  $ publisher   :List of 1
-#&gt;   ..$ style:List of 1
-#&gt;   .. ..$ : chr "Brandenburgische Technische Universität Cottbus - Senftenberg"
-#&gt;   .. ..- attr(*, "face")= chr "normal"
-#&gt;   .. ..- attr(*, "font")= chr "default"
-#&gt;   .. ..- attr(*, "size")= chr "100%"
-#&gt;  $ label       :List of 1
-#&gt;   ..$ style:List of 1
-#&gt;   .. ..$ : chr "nitrolimit"
-#&gt;   .. ..- attr(*, "face")= chr "normal"
-#&gt;   .. ..- attr(*, "font")= chr "default"
-#&gt;   .. ..- attr(*, "size")= chr "100%"
-#&gt;  $ notes       :List of 1
-#&gt;   ..$ style:List of 1
-#&gt;   .. ..$ : chr "Keine Autoren, Institution nicht KWB. AM"
-#&gt;   .. ..- attr(*, "face")= chr "normal"
-#&gt;   .. ..- attr(*, "font")= chr "default"
-#&gt;   .. ..- attr(*, "size")= chr "100%"
-#&gt;  $ urls        :List of 1
-#&gt;   ..$ pdf-urls:List of 1
-#&gt;   .. ..$ url:List of 1
-#&gt;   .. .. ..$ : chr "internal-pdf://3618911338/2016-1046.pdf"
+#&gt;  $ urls        : list()
 #&gt;  $ language    :List of 1
 #&gt;   ..$ style:List of 1
-#&gt;   .. ..$ : chr "de"
+#&gt;   .. ..$ : chr "German"
 #&gt;   .. ..- attr(*, "face")= chr "normal"
 #&gt;   .. ..- attr(*, "font")= chr "default"
 #&gt;   .. ..- attr(*, "size")= chr "100%"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>endnote_list</span>, <span class='st'>"xml_file_info"</span>)</div><div class='output co'>#&gt;                                                                      path type
 #&gt; 1 /home/travis/R/Library/kwb.endnote/extdata/2019-12-05_KWB-documents.xml file
 #&gt;    size permissions   modification_time   user  group device_id hard_links
-#&gt; 1 2.33M   rw-rw-r-- 2020-03-10 11:48:21 travis travis      2049          1
+#&gt; 1 2.62M   rw-rw-r-- 2020-03-16 14:18:25 travis travis      2049          1
 #&gt;   special_device_id   inode block_size blocks flags generation
-#&gt; 1                 0 2567542       4096   4784     0          0
+#&gt; 1                 0 2567728       4096   5360     0          0
 #&gt;           access_time         change_time          birth_time
-#&gt; 1 2020-03-10 11:48:30 2020-03-10 11:48:24 2020-03-10 11:48:24</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>endnote_list</span>, <span class='st'>"xml_filename_without_extension"</span>)</div><div class='output co'>#&gt; [1] "2019-12-05_KWB-documents"</div></pre>
+#&gt; 1 2020-03-16 14:18:34 2020-03-16 14:18:28 2020-03-16 14:18:28</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>endnote_list</span>, <span class='st'>"xml_filename_without_extension"</span>)</div><div class='output co'>#&gt; [1] "2019-12-05_KWB-documents"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
