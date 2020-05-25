@@ -113,7 +113,7 @@
 <span class="co">## Path to ENDNOTE XML </span>
 <span class="no">endnote_xml</span> <span class="kw">&lt;-</span>  <span class="kw pkg">kwb.endnote</span><span class="kw ns">::</span><span class="fu"><a href="../reference/default_xml.html">default_xml</a></span>()
 <span class="no">endnote_list</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.endnote</span><span class="kw ns">::</span><span class="fu"><a href="../reference/create_endnote_list.html">create_endnote_list</a></span>(<span class="no">endnote_xml</span>)</pre></body></html></div>
-<p>The imported Endnote XML library is: 2020-05-21_KWB-documents.xml</p>
+<p>The imported Endnote XML library is: 2020-05-25_KWB-documents.xml</p>
 </div>
 <div id="check-import" class="section level2">
 <h2 class="hasAnchor">
@@ -216,7 +216,7 @@
 <span class="co">#&gt;     case that user defines 'give_hints = TRUE' (default: FALSE) ... ok. (0.00s) </span>
 <span class="co">#&gt; No cleaning of author_names implemented yet. Only hints are generated in</span>
 <span class="co">#&gt;     case that user defines 'give_hints = TRUE' (default: FALSE) ... ok. (0.00s) </span>
-<span class="co">#&gt; ok. (0.05s) </span>
+<span class="co">#&gt; ok. (0.04s) </span>
 <span class="co">#&gt; Clean 'DOI' ... ok. (0.00s) </span>
 <span class="co">#&gt; Clean 'Project Names' ... ok. (0.00s) </span>
 <span class="co">#&gt; Clean 'Accessibility' ... ok. (0.00s)</span>
@@ -226,7 +226,7 @@
 <span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.04s) </span>
 <span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.04s) </span>
 <span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (5.42s) </span>
+<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (5.38s) </span>
 <span class="co">#&gt; Content has changed for 392 indices</span>
 
 <span class="no">diffs_df</span> <span class="kw">%&gt;%</span>
@@ -260,22 +260,22 @@
 <td align="left">Wiese, Jürgen</td>
 </tr>
 <tr class="even">
-<td align="right">391</td>
+<td align="right">72</td>
 <td align="left">custom2</td>
-<td align="left">WssTP</td>
-<td align="left">wsstp</td>
+<td align="left">IMF</td>
+<td align="left">imf</td>
 </tr>
 <tr class="odd">
-<td align="right">296</td>
+<td align="right">327</td>
 <td align="left">custom2</td>
-<td align="left">WssTP</td>
-<td align="left">wsstp</td>
+<td align="left">PILOTOX</td>
+<td align="left">pilotox</td>
 </tr>
 <tr class="even">
-<td align="right">481</td>
+<td align="right">328</td>
 <td align="left">custom2</td>
-<td align="left">WssTP</td>
-<td align="left">wsstp</td>
+<td align="left">PILOTOX</td>
+<td align="left">pilotox</td>
 </tr>
 </tbody>
 </table>
@@ -294,10 +294,10 @@
 <span class="no">en_new_df</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.endnote</span><span class="kw ns">::</span><span class="fu"><a href="../reference/create_references_df.html">create_references_df</a></span>(<span class="no">en_new_list</span>)
 
 <span class="no">en_diffs_df</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.endnote</span><span class="kw ns">::</span><span class="fu"><a href="../reference/check_for_differences.html">check_for_differences</a></span>(<span class="no">en_old_df</span>, <span class="no">en_new_df</span>)
-<span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.04s) </span>
+<span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.03s) </span>
 <span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.04s) </span>
-<span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.02s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (5.05s) </span>
+<span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.01s) </span>
+<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (4.93s) </span>
 <span class="co">#&gt; Content has changed for 1486 indices</span>
 
 <span class="no">en_diffs_df</span> <span class="kw">%&gt;%</span>
