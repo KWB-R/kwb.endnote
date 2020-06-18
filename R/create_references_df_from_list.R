@@ -154,6 +154,11 @@ record_list_to_df <- function(record_list, collapse = FALSE) {
                     collapse_val = "",
                     element = 1)
   }
+
+  replace_newline_with_semicolon <- function(text) {
+    gsub("\r", ", ", text)
+  }
+
   get_titles_style <- function(path) get_style(c("titles", path))
   get_period_style <- function(path) get_style(c("periodical", path))
   get_dates_style <- function(path) get_style(c("dates", path))
@@ -191,9 +196,9 @@ record_list_to_df <- function(record_list, collapse = FALSE) {
         authaddress = get_style("auth-address"),
         edition = get_style("edition"),
         worktype = get_style("work-type"),
-        label = get_style("label"),
+        label = replace_newline_with_semicolon(get_style("label")),
         isbn = get_style("isbn"),
-        language = get_style("language")
+        language = replace_newline_with_semicolon(get_style("language"))
       )
     ) %>%
     dplyr::bind_cols(get_pdfurls(record_list, collapse = collapse)) %>%

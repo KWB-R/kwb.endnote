@@ -195,8 +195,7 @@ Fill the field **caption** for all publications with either:
 Group references by "label" (i.e. "project names")
 
 ```{r echo=TRUE}
-refs_with_project <- references_df %>% 
-  dplyr::filter(.data$key1 == "label") 
+refs_with_project <- refs_df[!is.na(refs_df$label),]
 
 
 n_pubs_with_project_meta <- nrow(refs_with_project)
@@ -206,7 +205,7 @@ percent_pubs_with_project_meta <- round(100*n_pubs_with_project_meta/n_publicati
 
 
 unique_project_names <- refs_with_project  %>% 
-  dplyr::count(.data$value) 
+  dplyr::count(.data$label) 
 
 knitr::kable(unique_project_names)
 
