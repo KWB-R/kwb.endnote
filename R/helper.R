@@ -20,7 +20,7 @@ colname_i <- function(name, i) {
 #' @export
 #'
 default_xml <- function() {
-  extdata_file("2020-05-25_KWB-documents.xml")
+  extdata_file("2020-06-17_KWB-documents.xml")
 }
 
 # first_of_element -------------------------------------------------------------
