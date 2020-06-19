@@ -4,9 +4,14 @@
 \alias{write_clean_references_df_to_xlsx}
 \title{Write Clean References Dataframe to XLSX}
 \usage{
-write_clean_references_df_to_xlsx(endnote_list,
-  file = default_clean_xlsx(endnote_list), export_dir = ".",
-  give_hints = FALSE, dbg = TRUE, ...)
+write_clean_references_df_to_xlsx(
+  endnote_list,
+  file = default_clean_xlsx(endnote_list),
+  export_dir = ".",
+  give_hints = FALSE,
+  dbg = TRUE,
+  ...
+)
 }
 \arguments{
 \item{endnote_list}{list created with create_endnote_list()}

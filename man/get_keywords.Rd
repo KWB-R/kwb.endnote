@@ -4,8 +4,12 @@
 \alias{get_keywords}
 \title{Helper function: get keywords from list for a reference}
 \usage{
-get_keywords(record_list, col_name = "keyword",
-  extract_value = "keywords", collapse = FALSE)
+get_keywords(
+  record_list,
+  col_name = "keyword",
+  extract_value = "keywords",
+  collapse = FALSE
+)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}

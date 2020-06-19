@@ -17,7 +17,7 @@
 #' ### Check differences between two different versions of "KWB_documents.xml"
 #' ############################################################################
 #'
-#' old_xml <- extdata_file("2020-05-25_KWB_documents.xml")
+#' old_xml <- extdata_file("2020-05-25_KWB-documents.xml")
 #' new_xml <- extdata_file("2020-06-17_KWB-documents.xml")
 #' old_list <- kwb.endnote::create_endnote_list(old_xml)
 #' new_list <- kwb.endnote::create_endnote_list(new_xml)

@@ -4,8 +4,12 @@
 \alias{get_authors}
 \title{Helper function: get authors from list for a reference}
 \usage{
-get_authors(record_list, col_name = "author",
-  extract_value = "authors", collapse = FALSE)
+get_authors(
+  record_list,
+  col_name = "author",
+  extract_value = "authors",
+  collapse = FALSE
+)
 }
 \arguments{
 \item{record_list}{list with one record of create_endnote_list()}
