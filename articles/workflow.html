@@ -224,9 +224,9 @@
 <span class="co">## Check both for differences</span>
 <span class="no">diffs_df</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.endnote</span><span class="kw ns">::</span><span class="fu"><a href="../reference/check_for_differences.html">check_for_differences</a></span>(<span class="no">refs_org</span>, <span class="no">refs_clean</span>)
 <span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.07s) </span>
-<span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.08s) </span>
+<span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.07s) </span>
 <span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.01s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (5.40s) </span>
+<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (5.15s) </span>
 <span class="co">#&gt; Content has changed for 393 indices</span>
 
 <span class="no">diffs_df</span> <span class="kw">%&gt;%</span>
@@ -297,7 +297,7 @@
 <span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.07s) </span>
 <span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.07s) </span>
 <span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.01s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (5.31s) </span>
+<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (5.15s) </span>
 <span class="co">#&gt; Content has changed for 1092 indices</span>
 
 <span class="no">en_diffs_df</span> <span class="kw">%&gt;%</span>
