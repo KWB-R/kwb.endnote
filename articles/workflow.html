@@ -96,7 +96,7 @@
       <h1 data-toc-skip>Workflow</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2020-06-18</h4>
+            <h4 class="date">2020-06-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.endnote/blob/master/vignettes/workflow.Rmd"><code>vignettes/workflow.Rmd</code></a></small>
       <div class="hidden name"><code>workflow.Rmd</code></div>
@@ -226,8 +226,8 @@
 <span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.07s) </span>
 <span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.08s) </span>
 <span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.01s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (5.41s) </span>
-<span class="co">#&gt; Content has changed for 392 indices</span>
+<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (5.40s) </span>
+<span class="co">#&gt; Content has changed for 393 indices</span>
 
 <span class="no">diffs_df</span> <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">.data</span>$<span class="no">key</span> <span class="kw">!=</span> <span class="st">"abstract"</span>) <span class="kw">%&gt;%</span>
@@ -297,8 +297,8 @@
 <span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.07s) </span>
 <span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.07s) </span>
 <span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.01s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (5.32s) </span>
-<span class="co">#&gt; Content has changed for 1090 indices</span>
+<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (5.31s) </span>
+<span class="co">#&gt; Content has changed for 1092 indices</span>
 
 <span class="no">en_diffs_df</span> <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">.data</span>$<span class="no">key</span> <span class="kw">!=</span> <span class="st">"abstract"</span>) <span class="kw">%&gt;%</span>
@@ -4117,6 +4117,18 @@
 <td align="left">P:-documents_20191205.enl</td>
 </tr>
 <tr class="odd">
+<td align="right">515</td>
+<td align="left">database_path</td>
+<td align="left">C:-documents_20191205.enl</td>
+<td align="left">P:-documents_20191205.enl</td>
+</tr>
+<tr class="even">
+<td align="right">515</td>
+<td align="left">urls_pdf02</td>
+<td align="left">internal-pdf://3553642818/Remy-2012-5151.pdf</td>
+<td align="left">internal-pdf://3553642818/Remy-2012-5152.pdf</td>
+</tr>
+<tr class="odd">
 <td align="right">514</td>
 <td align="left">database_path</td>
 <td align="left">C:-documents_20191205.enl</td>
@@ -6856,7 +6868,7 @@
 </table>
 <div class="sourceCode" id="cb4"><html><body><pre class="r">
 <span class="no">n_new_entries</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">en_diffs_df</span>$<span class="no">rec_number</span>))</pre></body></html></div>
-<p>In total 951 new entries where created in 2020-06-17_KWB-documents.xml compared to 2020-05-25_KWB-documents.xml which contain 1090 new values.</p>
+<p>In total 952 new entries where created in 2020-06-17_KWB-documents.xml compared to 2020-05-25_KWB-documents.xml which contain 1092 new values.</p>
 </div>
 <div id="use-case-3-get-hints-for-author-names" class="section level3">
 <h3 class="hasAnchor">
