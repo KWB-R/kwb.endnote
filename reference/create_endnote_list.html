@@ -86,7 +86,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.endnote/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,7 +147,7 @@
     <p>Create List From Endnote XML</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_endnote_list</span>(<span class='kw'>endnote_xml</span> <span class='kw'>=</span> <span class='fu'><a href='default_xml.html'>default_xml</a></span>())</pre>
+    <pre class="usage"><span class='fu'>create_endnote_list</span><span class='op'>(</span>endnote_xml <span class='op'>=</span> <span class='fu'><a href='default_xml.html'>default_xml</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,8 +164,9 @@
     <p>list of imported endnote_xml</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>endnote_list</span> <span class='kw'>&lt;-</span> <span class='fu'>create_endnote_list</span>()
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>endnote_list</span>[<span class='fl'>1</span>]$<span class='no'>record</span>)</div><div class='output co'>#&gt; List of 15
+    <pre class="examples"><div class='input'><span class='va'>endnote_list</span> <span class='op'>&lt;-</span> <span class='fu'>create_endnote_list</span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>endnote_list</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>$</span><span class='va'>record</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; List of 15
 #&gt;  $ database    :List of 1
 #&gt;   ..$ : chr "KWB-documents_20191205.enl"
 #&gt;   ..- attr(*, "name")= chr "KWB-documents_20191205.enl"
@@ -264,14 +265,15 @@
 #&gt;   .. ..$ : chr "de"
 #&gt;   .. ..- attr(*, "face")= chr "normal"
 #&gt;   .. ..- attr(*, "font")= chr "default"
-#&gt;   .. ..- attr(*, "size")= chr "100%"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>endnote_list</span>, <span class='st'>"xml_file_info"</span>)</div><div class='output co'>#&gt;                                                                      path type
-#&gt; 1 /home/travis/R/Library/kwb.endnote/extdata/2020-06-17_KWB-documents.xml file
-#&gt;   size permissions   modification_time   user  group device_id hard_links
-#&gt; 1 2.8M   rw-rw-r-- 2020-06-19 15:56:21 travis travis      2049          1
-#&gt;   special_device_id   inode block_size blocks flags generation
-#&gt; 1                 0 2567502       4096   5744     0          0
-#&gt;           access_time         change_time          birth_time
-#&gt; 1 2020-06-19 15:56:31 2020-06-19 15:56:24 2020-06-19 15:56:24</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>endnote_list</span>, <span class='st'>"xml_filename_without_extension"</span>)</div><div class='output co'>#&gt; [1] "2020-06-17_KWB-documents"</div></pre>
+#&gt;   .. ..- attr(*, "size")= chr "100%"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>endnote_list</span>, <span class='st'>"xml_file_info"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 18</span>
+#&gt;   path         type   size permissions modification_time   user  group device_id
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;fs::path&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fs:&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fs::perms&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> /Users/runn… file   2.8M rw-r--r--   2021-07-08 <span style='color: #949494;'>11:06:12</span> runn… staff  16<span style='text-decoration: underline;'>777</span>220
+#&gt; <span style='color: #949494;'># … with 10 more variables: hard_links &lt;dbl&gt;, special_device_id &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   inode &lt;dbl&gt;, block_size &lt;dbl&gt;, blocks &lt;dbl&gt;, flags &lt;int&gt;, generation &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   access_time &lt;dttm&gt;, change_time &lt;dttm&gt;, birth_time &lt;dttm&gt;</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>endnote_list</span>, <span class='st'>"xml_filename_without_extension"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "2020-06-17_KWB-documents"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -283,11 +285,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>.</p>
+  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://www.kompetenz-wasser.de/en/project/fakin/'><img src='https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/forschung-headerbild_fakin-2-1920x449.jpg' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

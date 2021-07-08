@@ -86,7 +86,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.endnote/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,7 +147,7 @@
     <p>Create dataframe from Endnote XML file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_df_from_endnote_xml</span>(<span class='kw'>endnote_xml</span> <span class='kw'>=</span> <span class='fu'><a href='default_xml.html'>default_xml</a></span>())</pre>
+    <pre class="usage"><span class='fu'>create_df_from_endnote_xml</span><span class='op'>(</span>endnote_xml <span class='op'>=</span> <span class='fu'><a href='default_xml.html'>default_xml</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,8 +165,10 @@
   from get_reference_type_names()</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>references_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_df_from_endnote_xml</span>()</div><div class='output co'>#&gt; Reading '2020-06-17_KWB-documents.xml' in folder
-#&gt;   '/home/travis/R/Library/kwb.endnote/extdata' ... ok.</div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>references_df</span>)</div><div class='output co'>#&gt;   record_id         key1    key2      key3  key4                      value
+    <pre class="examples"><div class='input'><span class='va'>references_df</span> <span class='op'>&lt;-</span> <span class='fu'>create_df_from_endnote_xml</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading '2020-06-17_KWB-documents.xml' in folder
+#&gt;   '/Users/runner/work/_temp/Library/kwb.endnote/extdata' ... ok.</div><div class='output co'>#&gt; <span class='message'>Joining, by = "record_id"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>references_df</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   record_id         key1    key2      key3  key4                      value
 #&gt; 1         1     database                         KWB-documents_20191205.enl
 #&gt; 2         1   source-app                                            EndNote
 #&gt; 3         1   rec-number                                                  2
@@ -192,11 +194,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>.</p>
+  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://www.kompetenz-wasser.de/en/project/fakin/'><img src='https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/forschung-headerbild_fakin-2-1920x449.jpg' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

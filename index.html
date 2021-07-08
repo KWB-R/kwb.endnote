@@ -44,7 +44,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -73,7 +73,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/KWB-R/kwb.endnote/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -101,8 +101,9 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co">#install.packages("remotes", repos = "https://cloud.r-project.org")</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"KWB-R/kwb.endnote"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#install.packages("remotes", repos = "https://cloud.r-project.org")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"KWB-R/kwb.endnote"</span><span class="op">)</span></code></pre></div>
 </div>
 
   </div>
@@ -129,6 +130,8 @@
 <ul class="list-unstyled">
 <li>
 <a href="https://mrustl.de">Michael Rustler</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-0647-7726" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.kompetenz-wasser.de/en/project/fakin/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/forschung-headerbild_fakin-2-1920x449.jpg" height="24"></a> <br><small class="roles"> Funder </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
@@ -136,10 +139,11 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://ci.appveyor.com/project/KWB-R/kwb-endnote"><img src="https://ci.appveyor.com/api/projects/status/jp6vfegit5c6hhwl?svg=true" alt="Appveyor build Status"></a></li>
-<li><a href="https://travis-ci.org/KWB-R/kwb.endnote"><img src="https://travis-ci.org/KWB-R/kwb.endnote.svg?branch=master" alt="Travis build Status"></a></li>
+<li><a href="https://github.com/KWB-R/kwb.endnote/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/KWB-R/kwb.endnote/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/KWB-R/kwb.endnote/actions?query=workflow%3Apkgdown"><img src="https://github.com/KWB-R/kwb.endnote/workflows/pkgdown/badge.svg" alt="pkgdown"></a></li>
 <li><a href="https://codecov.io/github/KWB-R/kwb.endnote"><img src="https://codecov.io/github/KWB-R/kwb.endnote/branch/master/graphs/badge.svg" alt="codecov"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Project Status"></a></li>
+<li><a href=""><img src="https://www.r-pkg.org/badges/version/kwb.endnote" alt="CRAN_Status_Badge"></a></li>
 </ul>
 </div>
 </div>
@@ -147,11 +151,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>.</p>
+  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/project/fakin/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/forschung-headerbild_fakin-2-1920x449.jpg" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
