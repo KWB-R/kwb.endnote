@@ -1,3 +1,17 @@
+# colbind: Wrapper around dplyr::bind_cols(). Makes sure that no rows get lost
+# if the data frame to add has no rows.
+colbind <- function(df, df_2) {
+  if (nrow(df_2) == 0L) {
+    # Return the original data frame if the data frame to add has no columns
+    if (ncol(df_2) == 0L) {
+      return(df)
+    }
+    # Give the data frame to add one empty row (full of NA)
+    df_2 <- df_2[1L, ]
+  }
+  dplyr::bind_cols(df, df_2)
+}
+
 #' @noRd
 #' @keywords internal
 null_to_na <- function(x, na_fill = NA_character_) {
@@ -154,6 +168,11 @@ record_list_to_df <- function(record_list, collapse = FALSE) {
                     collapse_val = "",
                     element = 1)
   }
+
+  replace_newline_with_semicolon <- function(text) {
+    gsub("\r", ", ", text)
+  }
+
   get_titles_style <- function(path) get_style(c("titles", path))
   get_period_style <- function(path) get_style(c("periodical", path))
   get_dates_style <- function(path) get_style(c("dates", path))
@@ -164,11 +183,11 @@ record_list_to_df <- function(record_list, collapse = FALSE) {
     ref_type_name = attr(get_record_entry("ref-type"), which = "name"),
     abstract = get_abstract(record_list, collapse)
   ) %>%
-    dplyr::bind_cols(get_keywords(record_list, collapse = collapse)) %>%
-    dplyr::bind_cols(get_authors(record_list, collapse = collapse)) %>%
-    dplyr::bind_cols(get_secondary_authors(record_list, collapse = collapse)) %>%
-    dplyr::bind_cols(get_tertiary_authors(record_list, collapse = collapse)) %>%
-    dplyr::bind_cols(
+    colbind(get_keywords(record_list, collapse = collapse)) %>%
+    colbind(get_authors(record_list, collapse = collapse)) %>%
+    colbind(get_secondary_authors(record_list, collapse = collapse)) %>%
+    colbind(get_tertiary_authors(record_list, collapse = collapse)) %>%
+    colbind(
       tibble::tibble(
         database_name = get_record_entry("database")[[1]],
         database_path = attr(get_record_entry("database"), which = "path"),
@@ -191,13 +210,13 @@ record_list_to_df <- function(record_list, collapse = FALSE) {
         authaddress = get_style("auth-address"),
         edition = get_style("edition"),
         worktype = get_style("work-type"),
-        label = get_style("label"),
+        label = replace_newline_with_semicolon(get_style("label")),
         isbn = get_style("isbn"),
-        language = get_style("language")
+        language = replace_newline_with_semicolon(get_style("language"))
       )
     ) %>%
-    dplyr::bind_cols(get_pdfurls(record_list, collapse = collapse)) %>%
-    dplyr::bind_cols(tibble::tibble(
+    colbind(get_pdfurls(record_list, collapse = collapse)) %>%
+    colbind(tibble::tibble(
       urls_related = get_style(c("urls", "related-urls", "url")),
       electronic_resource_num = get_style("electronic-resource-num"),
       custom1 = get_style("custom1"),
