@@ -218,7 +218,7 @@
 <span class="co">#&gt;     case that user defines 'give_hints = TRUE' (default: FALSE) ... ok. (0.00s) </span>
 <span class="co">#&gt; No cleaning of author_names implemented yet. Only hints are generated in</span>
 <span class="co">#&gt;     case that user defines 'give_hints = TRUE' (default: FALSE) ... ok. (0.00s) </span>
-<span class="co">#&gt; ok. (0.02s) </span>
+<span class="co">#&gt; ok. (0.01s) </span>
 <span class="co">#&gt; Clean 'DOI' ... ok. (0.00s) </span>
 <span class="co">#&gt; Clean 'Project Names' ... ok. (0.00s) </span>
 <span class="co">#&gt; Clean 'Accessibility' ... ok. (0.00s)</span>
@@ -226,9 +226,9 @@
 <span class="co">## Check both for differences</span>
 <span class="va">diffs_df</span> <span class="op">&lt;-</span> <span class="fu">kwb.endnote</span><span class="fu">::</span><span class="fu"><a href="../reference/check_for_differences.html">check_for_differences</a></span><span class="op">(</span><span class="va">refs_org</span>, <span class="va">refs_clean</span><span class="op">)</span>
 <span class="co">#&gt; Tidying data.frame 'refs_org' and rename 'value' to 'value_refs_org'. Saving to refs_org_tidy ... ok. (0.12s) </span>
-<span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.13s) </span>
+<span class="co">#&gt; Tidying data.frame 'refs_clean' and rename 'value' to 'value_refs_clean'. Saving to refs_clean_tidy ... ok. (0.12s) </span>
 <span class="co">#&gt; Joining data.frame 'refs_org_tidy' and 'refs_clean_tidy' with cols ''rec_number', 'key'' ... ok. (0.01s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (0.38s) </span>
+<span class="co">#&gt; Identifying indices with different content for 'value_refs_org' and 'value_refs_clean' ... ok. (0.36s) </span>
 <span class="co">#&gt; Content has changed for 393 indices</span>
 
 <span class="va">diffs_df</span> <span class="op">%&gt;%</span>
@@ -297,10 +297,10 @@
 <span class="va">en_new_df</span> <span class="op">&lt;-</span> <span class="fu">kwb.endnote</span><span class="fu">::</span><span class="fu"><a href="../reference/create_references_df.html">create_references_df</a></span><span class="op">(</span><span class="va">en_new_list</span><span class="op">)</span>
 
 <span class="va">en_diffs_df</span> <span class="op">&lt;-</span> <span class="fu">kwb.endnote</span><span class="fu">::</span><span class="fu"><a href="../reference/check_for_differences.html">check_for_differences</a></span><span class="op">(</span><span class="va">en_old_df</span>, <span class="va">en_new_df</span><span class="op">)</span>
-<span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.11s) </span>
-<span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.12s) </span>
+<span class="co">#&gt; Tidying data.frame 'en_old_df' and rename 'value' to 'value_en_old_df'. Saving to en_old_df_tidy ... ok. (0.14s) </span>
+<span class="co">#&gt; Tidying data.frame 'en_new_df' and rename 'value' to 'value_en_new_df'. Saving to en_new_df_tidy ... ok. (0.13s) </span>
 <span class="co">#&gt; Joining data.frame 'en_old_df_tidy' and 'en_new_df_tidy' with cols ''rec_number', 'key'' ... ok. (0.01s) </span>
-<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.38s) </span>
+<span class="co">#&gt; Identifying indices with different content for 'value_en_old_df' and 'value_en_new_df' ... ok. (0.40s) </span>
 <span class="co">#&gt; Content has changed for 1092 indices</span>
 
 <span class="va">en_diffs_df</span> <span class="op">%&gt;%</span> 
