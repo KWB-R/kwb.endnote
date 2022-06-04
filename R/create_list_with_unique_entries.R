@@ -12,7 +12,8 @@
 #' unique_entries_list <- create_list_with_unique_entries(refs_df)
 #' str(unique_entries_list, 1)
 #' }
-create_list_with_unique_entries <- function(refs_df) {
+create_list_with_unique_entries <- function(refs_df)
+{
   select_columns <- function(pattern) {
     columns <- unique(stringr::str_extract(names(refs_df), pattern))
     columns[!is.na(columns)]

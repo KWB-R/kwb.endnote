@@ -11,7 +11,8 @@
 #' refs_df <- kwb.endnote::create_references_df(endnote_list)
 #' plot_pubs_by_year(refs_df)
 #'
-plot_pubs_by_year <- function(refs_df) {
+plot_pubs_by_year <- function(refs_df)
+{
   refs_df %>%
     dplyr::mutate(year = stringr::str_trim(.data$year)) %>%
     dplyr::count(.data$ref_type_name, .data$year) %>%
