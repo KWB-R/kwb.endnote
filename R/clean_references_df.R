@@ -6,7 +6,8 @@
 #' @export
 #' @importFrom stringr str_remove_all regex str_trim
 #' @importFrom kwb.utils catAndRun
-clean_dois <- function(dois, dbg = TRUE) {
+clean_dois <- function(dois, dbg = TRUE)
+{
   remove <- stringr::str_remove_all
 
   kwb.utils::catAndRun("Clean 'DOI'", dbg = dbg, expr = {
@@ -28,8 +29,8 @@ clean_dois <- function(dois, dbg = TRUE) {
 #' @export
 #' @importFrom stringr str_remove_all str_replace_all regex str_trim
 #' @importFrom kwb.utils catAndRun
-clean_project_names <- function(
-                                project_names, give_hints = FALSE, dbg = TRUE) {
+clean_project_names <- function(project_names, give_hints = FALSE, dbg = TRUE)
+{
   kwb.utils::catAndRun("Clean 'Project Names'", dbg = dbg, expr = {
     project_names <- project_names %>%
       stringr::str_replace_all("\\s+?/", ",") %>%
@@ -68,8 +69,8 @@ if (FALSE) {
 #' @return vector with cleaned author names
 #' @export
 #' @importFrom kwb.utils catAndRun
-clean_author_names <- function(
-                               author_names, give_hints = FALSE, dbg = TRUE) {
+clean_author_names <- function(author_names, give_hints = FALSE, dbg = TRUE)
+{
   kwb.utils::catAndRun(
     "No cleaning of author_names implemented yet. Only hints are generated in
     case that user defines 'give_hints = TRUE' (default: FALSE)",
@@ -94,8 +95,8 @@ clean_author_names <- function(
 #' @return vector with cleaned accessibility information
 #' @export
 #' @importFrom stringr str_remove_all str_replace_all regex str_trim
-clean_accessibility <- function(
-                                access, give_hints = FALSE, dbg = TRUE) {
+clean_accessibility <- function(access, give_hints = FALSE, dbg = TRUE)
+{
   replace_all <- function(string, pattern, replacement) {
     stringr::str_replace_all(
       string = string,
@@ -133,7 +134,8 @@ clean_accessibility <- function(
 #' refs_clean_df <- clean_references_df(endnote_list)
 #' head(refs_clean_df)
 #' }
-clean_references_df <- function(endnote_list, give_hints = FALSE, dbg = TRUE) {
+clean_references_df <- function(endnote_list, give_hints = FALSE, dbg = TRUE)
+{
   refs_df <- create_references_df(endnote_list, collapse = TRUE)
 
   refs_df <- kwb.utils::catAndRun(
