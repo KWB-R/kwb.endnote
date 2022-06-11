@@ -29,7 +29,7 @@ Imports:
     ggplot2,
     kwb.file,
     kwb.read,
-    kwb.utils,
+    kwb.utils (>= 0.13.0),
     magrittr,
     openxlsx,
     rlang,
