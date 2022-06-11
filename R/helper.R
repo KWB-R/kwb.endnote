@@ -78,7 +78,7 @@ numeric_first_elements <- function(x, element)
 
 #' Get Path to File in This Package
 #'
-#' @param \dots parts of path passed to \code{\link{system.file}}
+#' @inheritParams kwb.utils::extdataFile
 #' @export
 extdata_file <- kwb.utils::createFunctionExtdataFile("kwb.endnote")
 
