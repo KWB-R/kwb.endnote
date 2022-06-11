@@ -37,11 +37,11 @@ Imports:
     tibble,
     tidyr,
     wordcloud2,
-    xml2, 
-    plotly
+    xml2
 Suggests: 
     covr,
     knitr,
+    plotly,
     rmarkdown
 Remotes:
     github::kwb-r/kwb.file,
