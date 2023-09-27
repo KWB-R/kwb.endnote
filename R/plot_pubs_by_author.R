@@ -14,14 +14,12 @@
 #' dplyr::arrange(dplyr::desc(.data$n))
 #' plot_pubs_by_author(refs_by_author_lastfirst[1:30, ])
 
-plot_pubs_by_author <- function(pubs_by_author_df) {
+plot_pubs_by_author <- function(pubs_by_author_df)
+{
   g <- ggplot2::ggplot(
     pubs_by_author_df,
     ggplot2::aes(
-      x = forcats::fct_reorder(
-        .data$value,
-        .data$n
-      ),
+      x = forcats::fct_reorder(.data$value, .data$n),
       y = .data$n
     )
   ) +
