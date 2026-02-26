@@ -1,10 +1,10 @@
 ---
-title: "Analyse Endnote Library"
+title: "Analyse Endnote Library (2025-12-08)"
 author: "Michael Rustler"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Analyse Endnote Library}
+  %\VignetteIndexEntry{Analyse Endnote Library (2025-12-08)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 ```{r echo=TRUE}
 library(kwb.endnote)
 
-endnote_xml <- kwb.endnote::default_xml()
+endnote_xml <- kwb.endnote::extdata_file("2025-12-08_KWB-documents.xml")
 
 references_df <- kwb.endnote::create_df_from_endnote_xml(endnote_xml) %>%  
                  dplyr::filter(.data$ref_type_name != "Generic")

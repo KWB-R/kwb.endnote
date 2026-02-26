@@ -23,7 +23,8 @@ knitr::opts_chunk$set(
 library(kwb.endnote)
 
 ## Path to ENDNOTE XML 
-endnote_xml <-  kwb.endnote::default_xml()
+#endnote_xml <-  kwb.endnote::default_xml()
+endnote_xml <- kwb.endnote::extdata_file("2025-12-08_KWB-documents.xml")
 endnote_list <- kwb.endnote::create_endnote_list(endnote_xml)
 ```
 
@@ -55,8 +56,8 @@ diffs_df %>%
 
 ```{r echo=TRUE}
 
-en_old_xml <- kwb.endnote::extdata_file("2020-05-25_KWB-documents.xml")
-en_new_xml <- kwb.endnote::extdata_file("2020-06-17_KWB-documents.xml")
+en_old_xml <- kwb.endnote::extdata_file("2020-06-25_KWB-documents.xml")
+en_new_xml <- kwb.endnote::extdata_file("2025-12-08_KWB-documents.xml")
 
 en_old_list <- kwb.endnote::create_endnote_list(en_old_xml)
 en_new_list <- kwb.endnote::create_endnote_list(en_new_xml)
